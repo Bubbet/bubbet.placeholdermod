@@ -1,0 +1,137 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/cTeletube"
+	IconNameKey = "Parts/cTeletube"
+	IDString = cteletube
+	EditorGroup = "Crew"
+	DescriptionKey = "Parts/cTeletubeDesc"
+	Cost = 500
+	Size = [1, 1]
+	PhysicalRect = [0, 0, 1, 1]
+	SaveRect = &PhysicalRect
+	MaxHealth = 1000
+	PenetrationResistance = .5
+	AllowedDoorLocations
+	[
+		[0, -1]
+		[0, 1]
+	]
+	InternalWallsByCell
+	[
+		{
+			Key = [0, 0]
+			Value = [Left, Right]
+		}
+	]
+	CrewSpeedFactor
+	{
+		Up = 10
+		Left = 0.0001
+		Right = 0.0001
+		Down = 0.0001
+	}
+	CrewCongestedSpeedFactor
+	{
+		Up = 10
+		Left = 0.0001
+		Right = 0.0001
+		Down = 0.0001
+	}
+	CrewFireSpeedFactor
+	{
+		Up = 10
+		Left = 0.0001
+		Right = 0.0001
+		Down = 0.0001
+	}
+	TypeCategories = [tube, corridor]
+	IsRotateable = true
+	IsWalled = false
+	GeneratorRequiresDoor = false
+	CreatePassableHolesWhenDestroyed = false
+	EditorIcon
+	{
+		Texture
+		{
+			File = "g/c/icon.png"
+			SampleMode = Linear
+		}
+		Size = [32, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "g/c/blueprints.png"
+			Size = [1, 1]
+		}
+	]
+	BlueprintBlendSprites
+	[
+		: <../../../../Data/Ships/Terran/Walls/blueprint walls.txt>
+		{
+			Location = [.5, .5]
+			BlendsWithCategories = [tube, corridor]
+		}
+	]
+	Components
+	{
+		WallsBlend : <../../../../Data/Ships/Terran/Walls/walls.txt>
+		{
+			Type = BlendSprite
+			Location = [.5, .5]
+			BlendsWithCategories = [tube, corridor]
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [.5, .5]
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "g/c/floor1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/c/floor2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/c/floor3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+						
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "g/c/roof1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/c/roof2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/c/roof3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/SmallPartDestroyedDry
+			Location = [.5, .5]
+		}
+	}
+}

@@ -1,0 +1,205 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/onexone"
+	IconNameKey = "Parts/onexone"
+	IDString = armor_regen_onexone
+	EditorGroup = "Defenses"
+	DescriptionKey = "Parts/onexoneDesc"
+	Cost = 500
+	AIValue = 30
+	Size = [1, 1]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1
+	PenetrationResistance = 1
+	TypeCategories = [defense, shield]
+	ProhibitAbove = 0
+	AllowedDoorLocations
+	[
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "../../../../Data/Ships/Terran/armor/icon.png"
+			SampleMode = Linear
+		}
+		Size = [22.66, 22.66]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "../../../../Data/Ships/Terran/armor/blueprints.png"
+			Size = [1, 1]
+		}
+	]
+	PowerUIStats
+	{
+		Min = 0
+		Ideal = 0
+	}
+	CrewUIStats
+	{
+		Min = 0
+		Ideal = 0
+	}
+	Components
+	{		
+		BatteryProducer
+		{
+			Type = AmmoConverter
+			OnlyWhenOperational = false
+			ToStorage = BatteryStorage
+			ToQuantity = 30
+			Interval = .4
+		}
+		
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = battery
+			MaxAmmo = 7000
+			PrerequisiteMetAmmo = 6999
+			PrerequisiteUnmetAmmo = 1
+			LowConsumeJobPriority = 0
+			HighConsumeJobPriority = 0
+			EmptyConsumeJobPriority = 0
+			JobUnassignThreshold = 0// Effectively unassignable.
+			ResupplyThreshold = 1000000
+			RequiredForWholePartOperation = true
+			DrainOnFtlJump = false
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+
+		ArcShield
+		{
+			Type = ArcShield
+			Radius = 1.25
+			Arc = 365d
+			DrainAmmoFrom = BatteryStorage
+			AmmoDrainPerDamage = 2
+			Rotation = -90d
+			Location = [0.5, 0.5]
+		}
+
+		EmitterCollider
+		{
+			Type = CircleCollider
+			ChainedTo = ArcShield
+			Location = [.2, 0]
+			Radius = 1
+			Density = 1
+		}
+
+		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
+		{
+			Type = Graphics
+			Location = [0.5, 0.5]
+			OperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/shield_generator/floor_on.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/shield_generator/floor_off.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		GraphicsOther
+		{
+			Type = Graphics
+			Location = [0.5, 0.5]
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "../bed/walls.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+		
+		Roof
+			{
+				Type = AmmoSprites
+				Location = [0.5, 0.5]
+				AmmoStorage = BatteryStorage
+				Layer = "roofs"
+				AmmoLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/armor/roof_66.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/armor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/armor/roof.png"
+						Size = [1, 1]
+					}
+				]	
+			}
+		
+		BatterySprites
+		{
+			Type = AmmoSprites
+			Location = [0.5, 0.5]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_low"
+			AmmoLevels
+			[
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries1.png"
+					Size = [1, 1]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries2.png"
+					Size = [1, 1]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries3.png"
+					Size = [1, 1]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries4.png"
+					Size = [1, 1]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries5.png"
+					Size = [1, 1]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/shield_generator/batteries6.png"
+					Size = [1, 1]
+				}
+			]
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [0.5, 0.5]
+		}
+	}
+}

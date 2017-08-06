@@ -1,0 +1,572 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/Bubble"
+	IconNameKey = "Parts/Bubble"
+	IDString = bubble_generator
+	EditorGroup = "Defenses"
+	DescriptionKey = "Parts/BubbleDesc"
+	Cost = 5000
+	AIValue = 30
+	Size = [2, 2]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 4000
+	PenetrationResistance = 1
+	TypeCategories = [defense, shield]
+	ProhibitAbove = 0
+	AllowedDoorLocations
+	[
+		[-1, 1]
+		[2, 1]
+		[0, 2]
+		[1, 2]
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "g/icon.png"
+			SampleMode = Linear
+		}
+		Size = [42.66, 42.66]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "g/blueprints.png"
+			Size = [2, 2]
+		}
+	]
+	PowerUIStats
+	{
+		Min = .0666
+		Ideal = 4
+	}
+	CrewUIStats
+	{
+		Min = .1
+		Ideal = 4
+	}
+	Components
+	{
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+		
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = battery
+			MaxAmmo = 6000
+			PrerequisiteMetAmmo = 5001
+			PrerequisiteUnmetAmmo = 0
+			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_LowConsume
+			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_HighConsume
+			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_EmptyConsume
+			JobUnassignThreshold = 1000000// Effectively unassignable.
+			ResupplyThreshold = 500
+			RequiredForWholePartOperation = true
+			AmmoDesireToggle = PowerToggle
+			DrainOnFtlJump = true
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+
+		PowerDrain
+		{
+			Type = AmmoConverter
+			FromStorage = BatteryStorage
+			FromQuantity = 100
+			Interval = 1
+		}
+
+		ArcShield
+		{
+			Type = ArcShield
+			Radius = 10
+			Arc = 365d
+			DrainAmmoFrom = BatteryStorage
+			AmmoDrainPerDamage = 0.125
+			Rotation = -90d
+			Location = [1, 1]
+
+			BlueprintArcSprite
+			{
+				Texture = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy.png"
+				Size = [0, 1.5]
+				Color = [0, 0, 255, 127]
+			}
+			BlueprintArcSpriteSegments = 64
+
+			CoverageArcSprite
+			{
+				Texture = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy.png"
+				Size = [0, 1.5]
+				Color = [255, 255, 255, 127]
+			}
+			CoverageArcSpriteSegments = 64
+
+			HitMediaEffects
+			[
+				{
+					Type = ArcShield
+					FadeInTime = .1
+					FadeOutTime = .5
+					Radius = &~/Part/Components/ArcShield/Radius
+					Arc = 20d
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy.png"
+						Shader = "../../../../Data/Ships/Terran/Shield_Generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = -2
+						_waveAlpha = .75
+						_waveCurveInterval = 1
+						_waveCurveMagnitude = .25
+						_waveCurveUOffsetPerSecond = 0
+						//TargetBlendMode = Add
+						_fullPowerColor = [0, 0, 255, 191]
+						_lowPowerColor = [255, 0, 0, .191]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 3]
+					}
+					ArcSpriteSegments = 6
+					Bucket = Upper3
+				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/Shield_Generator/shield_hit.wav"
+					Volume = 1
+					Speed = 1
+					IgnoreIntensity = true
+					SpeedVariation = .25
+					MaxConcurrent = 10
+				}
+			]
+		}
+
+		EmitterCollider
+		{
+			Type = CircleCollider
+			ChainedTo = ArcShield
+			Location = [.2, 0]
+			Radius = 1
+			Density = .1
+		}
+
+		ArcShieldEffect
+		{
+			Type = ContinuousEffects
+			ChainedTo = ArcShield
+			FactorMediaEffectsIntensityWith = ArcShield
+			Location = [&~/Part/Components/ArcShield/Radius, 0]
+			OnlyWhenOperational = true
+			MediaEffects
+			[
+				{
+					Type = ArcShield
+					Radius = &~/Part/Components/ArcShield/Radius
+					Arc = &~/Part/Components/ArcShield/Arc
+					FadeInTime = .25
+					FadeOutTime = .25
+					FadeFromScale = .8
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy.png"
+						Shader = "../../../../Data/Ships/Terran/Shield_Generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = 1
+						_waveAlpha = 1
+						_waveCurveInterval = .5
+						_waveCurveMagnitude = .35
+						_waveCurveUOffsetPerSecond = .2
+						_fullPowerColor = [0, 0, 255, 127]
+						_lowPowerColor = [255, 0, 0, 127]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 1.5]
+					}
+					ArcSpriteSegments = 64
+					Bucket = Lower1
+				}
+
+				: /SOUNDS/AudioExteriorDetail
+				{
+					Sound = "../../../../Data/Ships/Terran/Shield_Generator/shield_loop.wav"
+					Volume = .15
+					Speed = .5
+					MaxConcurrent = 1
+					MaxConcurrentVolume = .3
+					DynamicVolume : ^/0/DynamicVolume
+					{
+						MinDistance = .75
+						MaxDistance = 1.5
+					}
+					IgnoreIntensity = true
+				}
+			]
+		}
+
+		EmitterEffect
+		{
+			Type = ContinuousEffects
+			ChainedTo = ArcShield
+			FactorMediaEffectsIntensityWith = ArcShield
+			Location = [2.2, 0]
+			OnlyWhenOperational = true
+			MediaEffects
+			[
+				{
+					Type = ArcShield
+					Radius = 1
+					Arc = &~/Part/Components/ArcShield/Arc
+					FadeInTime = .25
+					FadeOutTime = .25
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy.png"
+						UVRect = [0, 1, 1, -1]
+						Shader = "../../../../Data/Ships/Terran/Shield_Generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = -1
+						_waveAlpha = 1
+						_waveCurveInterval = .5
+						_waveCurveMagnitude = .35
+						_waveCurveUOffsetPerSecond = .2
+						_fullPowerColor = [0, 0, 255, 127]
+						_lowPowerColor = [255, 0, 0, 127]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 1.0]
+					}
+					ArcSpriteSegments = 12
+					Bucket = Lower1
+				}
+
+				: /SOUNDS/AudioExteriorDetail
+				{
+					Sound = "../../../../Data/Ships/Terran/Shield_Generator/shield_emitter_loop.wav"
+					Volume = .2
+					Speed = 1
+					MaxConcurrent = 1
+					MaxConcurrentVolume = .4
+					IgnoreIntensity = true
+				}
+			]
+		}
+
+		ShieldOperationEffects
+		{
+			Type = OperationEffects
+			ChainedTo = ArcShieldEffect
+			BecameOperationalMediaEffects
+			[
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/Shield_Generator/shield_activate.wav"
+					Volume = .5
+					Speed = 1
+					IgnoreIntensity = true
+				}
+			]
+			BecameNonOperationalMediaEffects
+			[
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/Shield_Generator/shield_deactivate.wav"
+					Volume = .5
+					Speed = 1
+					IgnoreIntensity = true
+				}
+			]
+		}
+
+		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+		}
+
+		GraphicsOther
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/doodads_on1.png"
+							"g/doodads_on2.png"
+							"g/doodads_on3.png"
+							"g/doodads_on4.png"
+							"g/doodads_on5.png"
+							"g/doodads_on6.png"
+							"g/doodads_on7.png"
+							"g/doodads_on8.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						File = "g/doodads_off.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "g/lights.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "g/walls.png"
+						Size = [2, 2]
+					}
+					{
+						File = "g/walls_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "g/walls_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			OperationalRoofDoodad
+			{
+				Layer = "roof_doodads"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/roof_doodads_on1.png"
+							"g/roof_doodads_on2.png"
+							"g/roof_doodads_on3.png"
+							"g/roof_doodads_on4.png"
+							"g/roof_doodads_on5.png"
+							"g/roof_doodads_on6.png"
+							"g/roof_doodads_on7.png"
+							"g/roof_doodads_on8.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			NonOperationalRoofDoodad
+			{
+				Layer = "roof_doodads"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_doodads_off.png"
+						Size = [2, 2]
+						AnimationInterval = 0.1
+					}
+				]
+			}
+			OperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalRoofWindows = &OperationalRoofWindows
+		}
+
+		BatterySprites
+		{
+			Type = AmmoSprites
+			Location = [1, 1]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_low"
+			AmmoLevels
+			[
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries1.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries2.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries3.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries4.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries5.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries6.png"
+					Size = [2, 2]
+				}
+			]
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [1, 1]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [1, 1]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of power.
+				{
+					Source = BatteryStorage
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoPower
+						Size = [1.5, 1.5]
+					}
+				}
+			]
+		}
+	}
+}

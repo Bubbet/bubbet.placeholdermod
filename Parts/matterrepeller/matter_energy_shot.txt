@@ -1,0 +1,146 @@
+ID = matter_energy_shot
+Range = 450
+IdealRange = 250
+Speed = 100
+
+Components
+{
+	Physics
+	{
+		Type = CirclePhysics
+		Radius = 0.01
+		Density = 0.1
+	}
+
+	Death
+	{
+		Type = DeathByLifetime
+		// Lifetime will be auto-calculated based on range and speed.
+	}
+
+	Sprite
+	{
+		Type = AnimatedSprite
+		Animation
+		{
+			AtlasSprite
+			{
+				Texture = "laser.png"
+				Size = [0.4, 0.4]
+			}
+			FrameCount = 8
+			FrameSize = [128, 128]
+			FramesPerRow = 2
+			FramesPerSecond = 60
+		}
+	}
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		InheritVelocityFrom = Physics
+		MediaEffects
+		[
+			&/PARTICLES/MatterGunGlow
+		]
+	}
+
+	Hit
+	{
+		Type = PenetratingHit
+		PhysicsComponent = Physics
+		Penetration = 4
+		PenetrationSpeed = 15
+
+		HitShield
+		{
+			HitEffects
+			[
+				{
+					Type = ShieldDamage
+					Damage = 10000
+				}
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 5000
+					RadiusVsOperational = 13
+					DamageVsStructurePerTile = 3000
+					RadiusVsStructure = 10
+				}
+				{
+					Type = Impulse;
+					Impulse = 250;
+				}
+			]
+
+			MediaEffects = &../HitOperational/MediaEffects
+		}
+		HitOperational
+		{
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 25600
+					RadiusVsOperational = 3.5
+					DamageVsStructurePerTile = 23400
+					RadiusVsStructure = 4
+				}
+				{
+					Type = Impulse;
+					Impulse = 100;
+				}
+			]
+
+			MediaEffects
+			[
+				&/PARTICLES/MatterGunHit
+				&/PARTICLES/MatterGunFlash
+				&/PARTICLES/MatterGunSparks
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "small_laser_hit.wav"
+					Volume = .4
+					SpeedVariation = .4
+				}
+
+				: /SHAKES/Shake
+				{
+					ShakeAmount = .03
+					Duration = .3
+				}
+			]
+		}
+		HitStructural = &HitOperational
+		PenetratingOperational
+		{
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 3000
+					RadiusVsOperational = 2
+					DamageVsStructurePerTile = 2000
+					RadiusVsStructure = 1
+				}
+				{
+					Type = PartFire
+					FireChance = .2
+				}
+			]
+			// No effect.
+		}
+		PenetratingStructural = &PenetratingOperational
+
+		FinishedPenetratingOperational
+		{
+
+			// No effect.
+		}
+		FinishedPenetratingStructural
+		{
+			// No effect.
+		}
+	}
+}

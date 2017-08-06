@@ -1,0 +1,184 @@
+Name = "Place Holder Mod"
+Version = 0.0.1
+Author = "Bubbet"
+
+
+// A longer description of what your mod does to the game. This is optional.
+Description = "My big mod, that includes all of my previous content along with the additon of:\n\n"\
+		"- Energy Wires\n\n"\
+		"- Energy Lasers\n\n"\
+		"- Arc Defenses\n\n"\
+		"- A Bed\n\n"\
+		"- Bubble Shields\n\n"\
+		"- A Decoupler\n\n"\
+		"- Smaller Ftl and Storage\n\n"\
+		"- Regenerative Armor\n\n"\
+		"- Matter Repeller\n\n"\
+		"- Teletubes\n\n"\
+		"- Small Reactor\n\n"\
+		"- A fast firing 1x1 laser weapon\n\n"\
+              "<green>- Made by Bubbet with sprite help from IVIemories.</green>"
+
+// Lang Folder
+StringsFolder = "Strings"
+Actions
+[
+	{
+		Action = Add
+		AddTo = "<Ammo/ammo.txt>/Ammo"
+		ToAdd
+		{
+				ID = charged_matter
+				MaxCarried = 1
+				MaxCarriedSprites = 1
+				CarriedSprite
+				{
+					File = "Ammo/physical_energy.png"
+					Size = [1, 1]
+				}
+				CarriedSpriteOffset = [0, .25]
+				AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = <Effects/particles.txt>
+		Overrides
+		{
+			EnergyLaserHit = &<Effects/Particles/Energy_laser_hit.txt>
+			MatterGunFlash = &<Effects/Particles/matter_laser_flash.txt>
+			MatterGunHit = &<Effects/Particles/matter_laser_hit.txt>
+			MatterGunHitStruct = &<Effects/Particles/matter_laser_hit_struct.txt>
+			MatterGunGlow = &<Effects/Particles/matter_laser_shot_glow.txt>
+			MatterGunSparks = &<Effects/Particles/matter_laser_sparks.txt>
+		}
+	}	
+	{	Action = AddMany
+
+		// This is the [] list to which we want to add data fields.
+		AddTo = "<Ships/Terran/terran.txt>/Terran/Parts"
+
+		// These are the data fields we want to add to the [] list.
+		ManyToAdd
+		[
+			&<parts/bubbleshield/s.txt>/Part
+			&<parts/bubbleshield/m.txt>/Part
+			&<parts/bubbleshield/l.txt>/Part
+			&<parts/decoupler/s.txt>/Part
+			&<parts/teletube/c.txt>/Part
+			&<parts/arcdefense/s.txt>/Part
+			&<parts/energy_laser/energy_laser.txt>/Part
+			&<parts/energy_wire/energy_wire_start.txt>/Part
+			&<parts/energy_wire/energy_wire.txt>/Part
+			&<parts/energy_wire/energy_wire_junc.txt>/Part
+			&<parts/reactor/s.txt>/Part
+			&<parts/ftl/s.txt>/Part
+			&<parts/ftlstorage/s.txt>/Part
+			&<parts/bed/bed.txt>/Part
+			&<parts/pointlaser/small_pointlaser.txt>/Part
+			&<parts/onexone/armor.txt>/Part
+			&<parts/matterrepeller/matterrepeller.txt>/Part
+		]
+	}
+	// Allowing the arcdefense to target various weapon bullets
+	{
+		Action = Overrides
+		OverrideIn = <Ships/Terran/small_laser/small_laser_shot.txt>/Components
+		Overrides
+		{
+
+			Acceleration
+			{
+				Type = Acceleration
+				PhysicsComponent = Physics
+				Acceleration = 3
+			}
+			Targetable
+			{
+				Type = Targetable
+				PhysicsComponent = Physics
+				AccelerationComponent = Acceleration
+				Health = 500
+
+				OnDeath
+				{
+				}
+			}
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = <Ships/Terran/med_cannon/med_bullet.txt>/Components
+		Overrides
+		{
+
+			Acceleration
+			{
+				Type = Acceleration
+				PhysicsComponent = Physics
+				Acceleration = 3
+			}
+			Targetable
+			{
+				Type = Targetable
+				PhysicsComponent = Physics
+				AccelerationComponent = Acceleration
+				Health = 500
+
+				OnDeath
+				{
+				}
+			}
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = <Ships/Terran/big_cannon/big_bullet.txt>/Components
+		Overrides
+		{
+
+			Acceleration
+			{
+				Type = Acceleration
+				PhysicsComponent = Physics
+				Acceleration = 3
+			}
+			Targetable
+			{
+				Type = Targetable
+				PhysicsComponent = Physics
+				AccelerationComponent = Acceleration
+				Health = 500
+
+				OnDeath
+				{
+				}
+			}
+		}
+	}
+	{
+		Action = Overrides
+		OverrideIn = <Ships/Terran/electro_bolt/electro_bolt_shot.txt>/Components
+		Overrides
+		{
+
+			Acceleration
+			{
+				Type = Acceleration
+				PhysicsComponent = Physics
+				Acceleration = 3
+			}
+			Targetable
+			{
+				Type = Targetable
+				PhysicsComponent = Physics
+				AccelerationComponent = Acceleration
+				Health = 500
+
+				OnDeath
+				{
+				}
+			}
+		}
+	}
+]

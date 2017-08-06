@@ -1,0 +1,893 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/Mrepeller"
+	IconNameKey = "Parts/Mrepeller"
+	IDString = matter_repeller
+	EditorGroup = "Defenses"
+	DescriptionKey = "Parts/MrepellerDesc"
+	Cost = 30000
+	AIValue = 30
+	Size = [2, 2]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 8000
+	PenetrationResistance = 1
+	TypeCategories = [weapon, weapon_using_power, defense, shield]
+	ProhibitAbove = 2
+	AllowedDoorLocations
+	[
+		[-1, 1]
+		[2, 1]
+		[0, 2]
+		[1, 2]
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "icon.png"
+			SampleMode = Linear
+		}
+		Size = [32, 64]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "blueprints.png"
+			Size = [2, 4.15]
+			Offset = [0, -1.075]
+		}
+	]
+	PowerUIStats
+	{
+		Min = .0666
+		Ideal = 4
+	}
+	CrewUIStats
+	{
+		Min = .1
+		Ideal = 4
+	}
+	Components
+	{
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+
+		FireModeToggle
+		{
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			DefaultToggleValue = 1
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = battery
+			MaxAmmo = 20000
+			PrerequisiteMetAmmo = 17001
+			PrerequisiteUnmetAmmo = 0
+			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_LowConsume
+			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_HighConsume
+			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_EmptyConsume
+			JobUnassignThreshold = 1000000// Effectively unassignable.
+			ResupplyThreshold = 100
+			RequiredForWholePartOperation = true
+			AmmoDesireToggle = PowerToggle
+			DrainOnFtlJump = true
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+		
+		MatterStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = charged_matter
+			MaxAmmo = 80000
+		}
+
+		PowerDrain
+		{
+			Type = AmmoConverter
+			FromStorage = BatteryStorage
+			FromQuantity = 500
+			Interval = 1.25
+		}
+		
+		AbsorbShield
+		{
+			Type = ArcShield
+			Radius = 49.9999999
+			Arc = &~/Part/Components/ArcShield/Arc
+
+			DrainAmmoFrom = MatterStorage
+			AmmoDrainPerDamage = -1.5
+			Rotation = &~/Part/Components/ArcShield/Rotation
+			Location = &~/Part/Components/ArcShield/Location
+		}
+		
+		ArcShield
+		{
+			Type = ArcShield
+			Radius = 50
+			Arc = 25d
+			DrainAmmoFrom = BatteryStorage
+			DrainAmmoTo = MatterStorage
+			AmmoDrainPerDamage = 0.5
+			
+			Rotation = -90d
+			Location = [1, 40]
+
+			BlueprintArcSprite
+			{
+				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Size = [0, 1.5]
+				Color = [0, 0, 255, 127]
+			}
+			BlueprintArcSpriteSegments = 64
+
+			CoverageArcSprite
+			{
+				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Size = [0, 1.5]
+				Color = [255, 255, 255, 127]
+			}
+			CoverageArcSpriteSegments = 64
+
+			HitMediaEffects
+			[
+				{
+					Type = ArcShield
+					FadeInTime = .1
+					FadeOutTime = .5
+					Radius = &~/Part/Components/ArcShield/Radius
+					Arc = 20d
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = -2
+						_waveAlpha = .75
+						_waveCurveInterval = 1
+						_waveCurveMagnitude = .25
+						_waveCurveUOffsetPerSecond = 0
+						//TargetBlendMode = Add
+						_fullPowerColor = [0, 0, 255, 191]
+						_lowPowerColor = [255, 0, 0, .191]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 3]
+					}
+					ArcSpriteSegments = 6
+					Bucket = Upper3
+				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_hit.wav"
+					Volume = 1
+					Speed = 1
+					IgnoreIntensity = true
+					SpeedVariation = .25
+					MaxConcurrent = 10
+				}
+			]
+		}
+
+		ArcShieldEffect
+		{
+			Type = ContinuousEffects
+			ChainedTo = ArcShield
+			FactorMediaEffectsIntensityWith = ArcShield
+			Location = [&~/Part/Components/ArcShield/Radius, 0]
+			OnlyWhenOperational = true
+			MediaEffects
+			[
+				{
+					Type = ArcShield
+					Radius = &~/Part/Components/ArcShield/Radius
+					Arc = &~/Part/Components/ArcShield/Arc
+					FadeInTime = .25
+					FadeOutTime = .25
+					FadeFromScale = .8
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = 1
+						_waveAlpha = 1
+						_waveCurveInterval = .5
+						_waveCurveMagnitude = .35
+						_waveCurveUOffsetPerSecond = .2
+						_fullPowerColor = [0, 0, 255, 127]
+						_lowPowerColor = [255, 0, 0, 127]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 1.5]
+					}
+					ArcSpriteSegments = 64
+					Bucket = Lower1
+				}
+
+				: /SOUNDS/AudioExteriorDetail
+				{
+					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_loop.wav"
+					Volume = .15
+					Speed = .5
+					MaxConcurrent = 1
+					MaxConcurrentVolume = .3
+					DynamicVolume : ^/0/DynamicVolume
+					{
+						MinDistance = .75
+						MaxDistance = 1.5
+					}
+					IgnoreIntensity = true
+				}
+			]
+		}
+
+		EmitterEffect
+		{
+			Type = ContinuousEffects
+			ChainedTo = ArcShield
+			FactorMediaEffectsIntensityWith = ArcShield
+			Location = [2.2, 0]
+			OnlyWhenOperational = true
+			MediaEffects
+			[
+				{
+					Type = ArcShield
+					Radius = 1
+					Arc = &~/Part/Components/ArcShield/Arc
+					FadeInTime = .25
+					FadeOutTime = .25
+					ArcSprite
+					{
+						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+						UVRect = [0, 1, 1, -1]
+						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						_waveTex
+						{
+							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							UVMode = Wrap
+						}
+						_waveSpeed = -1
+						_waveAlpha = 1
+						_waveCurveInterval = .5
+						_waveCurveMagnitude = .35
+						_waveCurveUOffsetPerSecond = .2
+						_fullPowerColor = [0, 0, 255, 127]
+						_lowPowerColor = [255, 0, 0, 127]
+						_lowPowerThicknessExponent = .6
+						TargetBlendMode = Add
+						Size = [0, 1.0]
+					}
+					ArcSpriteSegments = 12
+					Bucket = Lower1
+				}
+
+				: /SOUNDS/AudioExteriorDetail
+				{
+					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_emitter_loop.wav"
+					Volume = .2
+					Speed = 1
+					MaxConcurrent = 1
+					MaxConcurrentVolume = .4
+					IgnoreIntensity = true
+				}
+			]
+		}
+
+		ShieldOperationEffects
+		{
+			Type = OperationEffects
+			ChainedTo = ArcShieldEffect
+			BecameOperationalMediaEffects
+			[
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_activate.wav"
+					Volume = .5
+					Speed = 1
+					IgnoreIntensity = true
+				}
+			]
+			BecameNonOperationalMediaEffects
+			[
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_deactivate.wav"
+					Volume = .5
+					Speed = 1
+					IgnoreIntensity = true
+				}
+			]
+		}
+		//Graphics
+		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [2, 2]
+					}
+					{
+						File = "floor_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "floor_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [2, 2]
+					}
+					{
+						File = "floor_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "floor_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+		}
+		
+		GraphicsOther
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"Doodadson1.png"
+							"Doodadson2.png"
+							"Doodadson3.png"
+							"Doodadson4.png"
+							"Doodadson5.png"
+							"Doodadson6.png"
+							"Doodadson7.png"
+							"Doodadson8.png"
+							"Doodadson9.png"
+							"Doodadson10.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"Doodadsoff.png"
+							"Doodadsoff1.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "lights.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "walls.png"
+						Size = [2, 2]
+					}
+					{
+						File = "walls_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "walls_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "roof1.png"
+						Size = [2, 2]
+					}
+					{
+						File = "roof2.png"
+						Size = [2, 2]
+					}
+					{
+						File = "roof3.png"
+						Size = [2, 2]
+					}
+					{
+						File = "roof4.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			OperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "windowson1.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowson2.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowson3.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowson4.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "windowsoff1.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowsoff2.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowsoff3.png"
+						Size = [2, 2]
+					}
+					{
+						File = "windowsoff4.png"
+						Size = [2, 2]
+					}
+				]
+			}
+		}	
+			
+		Turret
+		{
+			Type = TurretWeapon
+			Location = [1, -0.25]// Relative to upper-left corner of unrotated part.
+			Rotation = -90d// Relative to unrotated part.
+			FireInterval = 5
+			FireDelay = 4.75
+			FiringArc = 90d
+			RotateSpeed = 90d
+			FireThresholdAngle = 1d
+			SpawnLoc = [1.9, 0]
+			AmmoStorage = MatterStorage
+			AmmoUsed = 15000
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 400
+			FireModeToggle = FireModeToggle
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<matter_energy_shot.txt>
+			}
+
+			CoverageSectorArc
+			{
+				Texture = &/INDICATORS/Falloff
+				VertexColor = [255, 255, 255, 51]
+				QuadCount = 64
+			}
+		}
+
+		FireEffect
+		{
+			Type = TriggeredEffects
+			ChainedTo = Turret
+			Location = [1.9, 0]
+			AnchorMediaEffects = true
+
+			MediaEffects
+			[
+//				: /PARTICLES/MatterGunShoot
+//				{
+//					Delay = .0
+//				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "small_laser_charge.wav"
+					Volume = .6
+				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "small_laser_fire.wav"
+					Volume = .6
+					Delay = .13
+					SpeedVariation = .25
+				}
+			]
+		}
+
+		CrewLocation
+		{
+			OnlyWhenOperational = false
+			Type = CrewLocation
+			Location = [1, 0.8]
+			Rotation = 180d
+		}
+		PartCrew
+		{
+			Type = PartCrew
+			OnlyWhenOperational = false
+			MinCrew = 1
+			FirstCrewJobPriority = 500
+			AdditionalCrewJobPriority = 500
+			FullCrewJobPriority = 500
+			PrerequisitesBeforeCrewing = [PowerToggle]
+			CrewDestinations
+			[
+				&../../CrewLocation/Location
+			]
+			CrewLocations
+			[
+				CrewLocation
+			]
+		}
+
+		TurretCollider
+		{
+			Type = CircleCollider
+			ChainedTo = Turret
+			Radius = 1.8
+			Density = 1.75
+		}
+
+		WeaponSprite
+		{
+			Type = Sprite
+			ChainedTo = Turret
+			Location = [1, 0]
+			Rotation = 90d
+			Layer = "weapons"
+			ResetAnimationTrigger = Turret
+			AtlasSprite
+			{
+				AnimationFiles
+				[
+					"Gun/turret2.png"
+					"Gun/turret3.png"
+					"Gun/turret4.png"
+					"Gun/turret5.png"
+					"Gun/turret6.png"
+					"Gun/turret7.png"
+					"Gun/turret8.png"
+					"Gun/turret9.png"
+					"Gun/turret10.png"
+					"Gun/turret11.png"
+					"Gun/turret12.png"
+					"Gun/turret13.png"
+					"Gun/turret14.png"
+					"Gun/turret15.png"
+					"Gun/turret16.png"
+					"Gun/turret17.png"
+					"Gun/turret18.png"
+					"Gun/turret19.png"
+					"Gun/turret20.png"
+					"Gun/turret21.png"
+					"Gun/turret22.png"
+					"Gun/turret23.png"
+					"Gun/turret24.png"
+					"Gun/turret25.png"
+					"Gun/turret26.png"
+					"Gun/turret27.png"
+					"Gun/turret28.png"
+					"Gun/turret29.png"
+					"Gun/turret30.png"
+					"Gun/turret31.png"
+					"Gun/turret32.png"
+					"Gun/turret33.png"
+					"Gun/turret34.png"
+					"Gun/turret35.png"
+					"Gun/turret36.png"
+					"Gun/turret37.png"
+					"Gun/turret38.png"
+					"Gun/turret39.png"
+					"Gun/turret40.png"
+					"Gun/turret41.png"
+					"Gun/turret42.png"
+					"Gun/turret43.png"
+					"Gun/turret44.png"
+					"Gun/turret45.png"
+					"Gun/turret46.png"
+					"Gun/turret47.png"
+					"Gun/turret48.png"
+					"Gun/turret49.png"
+					"Gun/turret50.png"
+					"Gun/turret51.png"
+					"Gun/turret52.png"
+					"Gun/turret53.png"
+					"Gun/turret54.png"
+					"Gun/turret55.png"
+					"Gun/turret56.png"
+					"Gun/turret57.png"
+					"Gun/turret58.png"
+					"Gun/turret59.png"
+					"Gun/turret60.png"
+					"Gun/turret61.png"
+					"Gun/turret62.png"
+					"Gun/turret63.png"
+					"Gun/turret64.png"
+					"Gun/turret65.png"
+					"Gun/turret66.png"
+					"Gun/turret67.png"
+					"Gun/turret68.png"
+					"Gun/turret69.png"
+					"Gun/turret70.png"
+					"Gun/turret71.png"
+					"Gun/turret72.png"
+					"Gun/turret73.png"
+					"Gun/turret74.png"
+					"Gun/turret75.png"
+					"Gun/turret76.png"
+					"Gun/turret77.png"
+					"Gun/turret78.png"
+					"Gun/turret79.png"
+					"Gun/turret80.png"
+					"Gun/turret81.png"
+					"Gun/turret82.png"
+					"Gun/turret83.png"
+					"Gun/turret84.png"
+					"Gun/turret85.png"
+					"Gun/turret86.png"
+					"Gun/turret87.png"
+					"Gun/turret88.png"
+					"Gun/turret89.png"
+					"Gun/turret90.png"
+					"Gun/turret91.png"
+					"Gun/turret92.png"
+					"Gun/turret93.png"
+					"Gun/turret94.png"
+					"Gun/turret95.png"
+					"Gun/turret96.png"
+					"Gun/turret97.png"
+					"Gun/turret98.png"
+					"Gun/turret1.png"
+					// Loop back to beginning and clamp there.
+				]
+				Size = [2, 3]
+				AnimationInterval = 0.05
+				AnimationStartTime = MinValue
+				ClampAnimation = true
+			}
+		}
+		
+
+		
+		MatterSprites
+		{
+			Type = AmmoSprites
+			Location = [1, 1]
+			AmmoStorage = MatterStorage
+			Layer = "doodads_high"
+			AmmoLevels
+			[
+				{
+					File = "matter1.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter2.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter3.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter4.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter5.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter6.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter7.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter8.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter9.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter10.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter11.png"
+					Size = [2, 2]
+				}
+				{
+					File = "matter12.png"
+					Size = [2, 2]
+				}
+			]
+		}
+		
+		BatterySprites
+		{
+			Type = AmmoSprites
+			Location = [1, 1]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_high"
+			AmmoLevels
+			[
+				{
+					File = "batteries1.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries2.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries3.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries4.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries5.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries6.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries7.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries8.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries9.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries10.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries11.png"
+					Size = [2, 2]
+				}
+				{
+					File = "batteries12.png"
+					Size = [2, 2]
+				}
+			]
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [1, 1]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [1, 1]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of power.
+				{
+					Source = BatteryStorage
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoPower
+						Size = [1.5, 1.5]
+					}
+				}
+			]
+		}
+	}
+}

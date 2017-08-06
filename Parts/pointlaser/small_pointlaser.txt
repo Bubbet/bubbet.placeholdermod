@@ -1,0 +1,518 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/Smallpointlaser"
+	IconNameKey = "Parts/Smallpointlaser"
+	IDString = small_laser_defense
+	EditorGroup = "Weapons"
+	DescriptionKey = "Parts/SmallpointlaserDesc"
+	Cost = 2000
+	AIValue = 5
+	TypeCategories = [weapon, weapon_using_power]
+	Size = [1, 2]
+	PhysicalRect = [0, 1, 1, 1]
+	SaveRect = &PhysicalRect
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 2000
+	PenetrationResistance = 100
+	ProhibitAbove = 1
+	AllowedDoorLocations
+	[
+		[-1, 1]
+		[1, 1]
+		[0, 2]
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "../../../../Data/Ships/Terran/point_defense/icon.png"
+			SampleMode = Linear
+		}
+		Size = [21.33, 42.66]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "../../../../Data/Ships/Terran/point_defense/blueprints.png"
+			Size = [1, 2]
+			Offset = [0, 0]
+		}
+	]
+	PowerUIStats
+	{
+		Min = .666
+		Ideal = 1.333
+	}
+	CrewUIStats
+	{
+		Min = 1
+		Ideal = 2
+	}
+	Components
+	{
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+
+		FireModeToggle
+		{
+			Type = UIToggle
+			ToggleID = "fire_mode"
+			DefaultToggleValue = 1
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = battery
+			MaxAmmo = 2000
+			LowConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_LowConsume
+			HighConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_HighConsume
+			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_EmptyConsume
+			JobUnassignThreshold = 1000000// Effectively unassignable.
+			ResupplyThreshold = 500
+			RequiredForWholePartOperation = true
+			AmmoDesireToggle = PowerToggle
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [.5, 2]
+			Offset = [0, -0.5]
+			Floor
+			{
+				Layer = "floors"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/floor.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/floor_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/floor_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/doodads on1.png"
+							"g/doodads on2.png"
+							"g/doodads on3.png"
+							"g/doodads on4.png"
+							"g/doodads on5.png"
+							"g/doodads on6.png"
+							"g/doodads on7.png"
+							"g/doodads on8.png"
+						]
+						Size = [1, 1]
+						Offset = [0, -0.5]
+						AnimationInterval = 0.1
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						File = "g/doodads off.png"
+						Size = [1, 1]
+						Offset = [0, -0.5]
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/lights.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/walls.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/walls_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/walls_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/point_defense/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			OperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "g/roof_windows_on.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/roof_windows_on_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/roof_windows_on_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			NonOperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, -0.5]
+				DamageLevels
+				[
+					{
+						File = "g/roof_windows_off.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/roof_windows_off_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "g/roof_windows_off_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		Turret
+		{
+			Type = TurretWeapon
+			Location = [.5, 0.66]// Relative to upper-left corner of unrotated part.
+			Rotation = -90d// Relative to unrotated part.
+			FireInterval = .05
+			FireDelay = .01
+			FiringArc = 200d
+			RotateSpeed = 90d
+			FireThresholdAngle = 1d
+			SpawnLoc = [1.0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 40
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 400
+			FireModeToggle = FireModeToggle
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<small_pointlaser_shot.txt>
+			}
+
+			CoverageSectorArc
+			{
+				Texture = &/INDICATORS/Falloff
+				VertexColor = [255, 255, 255, 51]
+				QuadCount = 64
+			}
+		}
+
+		FireEffect
+		{
+			Type = TriggeredEffects
+			ChainedTo = Turret
+			Location = [1.1, 0]
+			AnchorMediaEffects = true
+
+			MediaEffects
+			[
+				: /PARTICLES/SmallLaserShoot
+				{
+					Delay = .13
+				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_charge.wav"
+					Volume = .6
+				}
+
+				: /SOUNDS/AudioExterior
+				{
+					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_fire.wav"
+					Volume = .6
+					Delay = .13
+					SpeedVariation = .25
+				}
+			]
+		}
+
+		CrewLocation
+		{
+			Type = CrewLocation
+			Location = [.5, 1.75]
+			Rotation = 180d
+		}
+		PartCrew
+		{
+			Type = PartCrew
+			MinCrew = 1
+			FirstCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_FirstCrew
+			AdditionalCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_AdditionalCrew
+			FullCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_FullCrew
+			PrerequisitesBeforeCrewing = [BatteryStorage, PowerToggle]
+			CrewDestinations
+			[
+				&../../CrewLocation/Location
+			]
+			CrewLocations
+			[
+				CrewLocation
+			]
+		}
+
+		TurretCollider
+		{
+			Type = CircleCollider
+			ChainedTo = Turret
+			Radius = .45
+			Density = .75
+		}
+
+		TurretGraphics
+		{
+			Type = Graphics
+			ChainedTo = Turret
+			Location = [.5, 0]
+			Rotation = 90d
+			OperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on1.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on2.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on3.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on4.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on5.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on6.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on7.png"
+							"../../../../Data/Ships/Terran/small_laser/turret doodads on8.png"
+						]
+						Size = [1, 2]
+						AnimationInterval = 0.1
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/small_laser/turret doodads off.png"
+						Size = [1, 2]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						// None.
+					}
+					{
+						File = "../../../../Data/Ships/Terran/small_laser/turret damage_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/small_laser/turret damage_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+		}
+
+		WeaponSprite
+		{
+			Type = Sprite
+			ChainedTo = Turret
+			Location = [.5, 0]
+			Rotation = 90d
+			Layer = "weapons"
+			ResetAnimationTrigger = Turret
+			AtlasSprite
+			{
+				AnimationFiles
+				[
+					"../../../../Data/Ships/Terran/small_laser/weapon2.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon3.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon4.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon5.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon6.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon7.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon8.png"
+					"../../../../Data/Ships/Terran/small_laser/weapon1.png"// Loop back to beginning and clamp there.
+				]
+				Size = [1, 2]
+				AnimationInterval = 0.01
+				AnimationStartTime = MinValue
+				ClampAnimation = true
+			}
+		}
+
+		BatterySprites
+		{
+			Type = AmmoSprites
+			Location = [.5, 1.5]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_high"
+			AmmoLevels
+			[
+				{
+					File = "g/batteries1.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries2.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries3.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries4.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries5.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries6.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries7.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/batteries8.png"
+					Size = [1, 1]
+				}
+			]
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			Location = [.5, 1.5]
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [.5, 1.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 1.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of power.
+				{
+					Source = BatteryStorage
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoPower
+						Size = [1, 1]
+					}
+				}
+
+				// No crew.
+				{
+					Source = PartCrew
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoCrew
+						Size = [1, 1]
+					}
+				}
+			]
+		}
+	}
+}

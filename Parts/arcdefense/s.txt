@@ -2,7 +2,7 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/sArcDefense"
 	IconNameKey = "Parts/sArcDefense"
-	IDString = sarc_defense
+	IDString = bub_sarc_defense
 	EditorGroup = "Defenses"
 	DescriptionKey = "Parts/sArcDefenseDesc"
 	Cost = 3000

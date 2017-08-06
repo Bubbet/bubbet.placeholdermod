@@ -2,7 +2,7 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/sDecoupler"
 	IconNameKey = "Parts/sDecoupler"
-	IDString = sdecoupler
+	IDString = bub_sdecoupler
 	EditorGroup = "Misc"
 	DescriptionKey = "Parts/sDecouplerDesc"
 	Cost = 250

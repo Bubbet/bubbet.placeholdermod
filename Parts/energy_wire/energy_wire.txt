@@ -2,7 +2,7 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/EnergyWire"
 	IconNameKey = "Parts/EnergyWire"
-	IDString = energy_wire
+	IDString = bub_energy_wire
 	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireDesc"
 	Cost = 125

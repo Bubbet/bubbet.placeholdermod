@@ -2,7 +2,7 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/cTeletube"
 	IconNameKey = "Parts/cTeletube"
-	IDString = cteletube
+	IDString = bub_cteletube
 	EditorGroup = "Crew"
 	DescriptionKey = "Parts/cTeletubeDesc"
 	Cost = 500

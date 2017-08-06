@@ -1,4 +1,4 @@
-ID = liquid_energy2
+ID = bub_liquid_energy2
 Range = 150000
 IdealRange = -1
 Speed = 0.5

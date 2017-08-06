@@ -1,4 +1,4 @@
-ID = decouplingshot
+ID = bub_decouplingshot
 Range = 150000
 IdealRange = -1
 Speed = 0.5

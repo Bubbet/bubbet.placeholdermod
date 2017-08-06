@@ -1,4 +1,4 @@
-ID = placeholderbullet01
+ID = bub_placeholderbullet01
 Range = 100
 IdealRange = -1
 Speed = 1000

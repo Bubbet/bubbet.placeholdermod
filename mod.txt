@@ -1,5 +1,5 @@
 Name = "Place Holder Mod"
-Version = 0.0.2
+Version = 0.0.3
 Author = "Bubbet"
 
 
@@ -64,6 +64,7 @@ Actions
 			&<parts/bubbleshield/s.txt>/Part
 			&<parts/bubbleshield/m.txt>/Part
 			&<parts/bubbleshield/l.txt>/Part
+			//&<parts/encaptureshield/m.txt>/Part
 			&<parts/decoupler/s.txt>/Part
 			&<parts/teletube/c.txt>/Part
 			&<parts/arcdefense/s.txt>/Part

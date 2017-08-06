@@ -1,7 +1,7 @@
 Parts
 {
 	sDecoupler = "Decoupler"
-	sDecouplerDesc = "Separates With The Press Of A Button."
+	sDecouplerDesc = "Separates With The Press Of A Button.(The power button when you select the part)"
 	cTeletube = "Teletube"
 	cTeletubeDesc = "Uni-Directional Crew Transportation."
 	sArcDefense = "Arc Defense"

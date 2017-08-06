@@ -59,6 +59,7 @@ Part : /BASE_PART
 			Type = AmmoConsumer
 			AmmoType = battery
 			MaxAmmo = 7000
+			StartingAmmo = 5000
 			PrerequisiteMetAmmo = 6999
 			PrerequisiteUnmetAmmo = 1
 			LowConsumeJobPriority = 0

@@ -16,10 +16,17 @@ Part : /BASE_PART
 	ProhibitAbove = 0
 	BlockedTravelCells
 	[
-		[1, 0]
+		//[1, 0]//top middle
+		//second row
 		[2, 1]
+		[1, 1]
 		[0, 1]
+		//third row
+		[2, 2]
+		[1, 2]
+		[0, 2]
 	]
+	ForceManhattenPathInPart = true
 	AllowedDoorLocations
 	[
 		[0, -1]

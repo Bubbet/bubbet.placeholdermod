@@ -100,6 +100,10 @@ Part : /BASE_PART
 					File = "graphics/tubedistributor4.png"
 					Size = [1, 1]
 				}
+				{
+					File = "graphics/tubedistributor5.png"
+					Size = [1, 1]
+				}
 			]
 		}
 		
@@ -203,7 +207,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 134
+			AmmoUsed = 333
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
@@ -228,7 +232,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 134
+			AmmoUsed = 333
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true

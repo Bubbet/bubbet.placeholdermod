@@ -1,4 +1,4 @@
-ID = bub_liquid_energy2
+ID = bub_liquid_energy4
 Range = 150000
 IdealRange = -1
 Speed = 0.5
@@ -61,7 +61,7 @@ Components
 				{
 					Type = PartAmmoDrain
 					AmmoType = battery
-					Amount = -332
+					Amount = -499
 					AllowFriendlyDrain = true
 				}
 			]

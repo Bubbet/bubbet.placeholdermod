@@ -1,11 +1,11 @@
 Part : /BASE_PART
 {
-	NameKey = "Parts/EnergyWire"
-	IconNameKey = "Parts/EnergyWire"
-	IDString = bub_energy_wire
+	NameKey = "Parts/EnergyWireSplit"
+	IconNameKey = "Parts/EnergyWireSplit"
+	IDString = bub_energy_wire_split
 	EditorGroup = "Power"
-	DescriptionKey = "Parts/EnergyWireDesc"
-	Cost = 125
+	DescriptionKey = "Parts/EnergyWireSplitDesc"
+	Cost = 500
 	TypeCategories = [power, corridor]
 	Size = [1, 1]
 	SelectionPriority = 1
@@ -20,7 +20,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "graphics/icon1.png"
+			File = "graphics/icon2.png"
 			SampleMode = Linear
 		}
 		Size = [32, 32]
@@ -28,7 +28,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "graphics/blueprints1.png"
+			File = "graphics/blueprints3.png"
 			Size = [1, 1]
 			Offset = [0, 0]
 		}
@@ -63,9 +63,10 @@ Part : /BASE_PART
 		{
 			Type = AmmoStorage
 			AmmoType = battery
-			MaxAmmo = 2000
+			MaxAmmo = 4000
 			RequiredForWholePartOperation = true
 		}
+
 		AmmoSprites
 		{
 			Type = AmmoSprites
@@ -76,28 +77,28 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "graphics/tubestraight1.png"
+					File = "graphics/tubedistributor1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "graphics/tubestraight2.png"
+					File = "graphics/tubedistributor2.png"
 					Size = [1, 1]
 				}
 				{
-					File = "graphics/tubestraight3.png"
+					File = "graphics/tubedistributor3.png"
 					Size = [1, 1]
 				}
 				{
-					File = "graphics/tubestraight4.png"
+					File = "graphics/tubedistributor4.png"
 					Size = [1, 1]
 				}
 				{
-					File = "graphics/tubestraight5.png"
+					File = "graphics/tubedistributor5.png"
 					Size = [1, 1]
 				}
 			]
 		}
-
+		
 		Graphics
 		{
 			Type = Graphics
@@ -108,15 +109,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/floorstraight1.png"
+						File = "graphics/floordistributor1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floorstraight2.png"
+						File = "graphics/floordistributor2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floorstraight3.png"
+						File = "graphics/floordistributor3.png"
 						Size = [1, 1]
 					}
 				]
@@ -127,15 +128,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/gratestraight1.png"
+						File = "graphics/gratedistributor1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/gratestraight2.png"
+						File = "graphics/gratedistributor2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/gratestraight3.png"
+						File = "graphics/gratedistributor3.png"
 						Size = [1, 1]
 					}
 				]
@@ -162,7 +163,32 @@ Part : /BASE_PART
 			}
 		}
 
-		Turret
+		Turret1
+		{
+			Type = TurretWeapon
+			Location = [1.5, .5] // Relative to upper-left corner of unrotated part.
+			Rotation = -0d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 500
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet4.txt>
+			}
+		}
+/*
+		Turret2
 		{
 			Type = TurretWeapon
 			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
@@ -174,16 +200,43 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 1000
+			AmmoUsed = 500
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
-			
+
+
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet.txt>
+				Bullet = &<placeholderbullet4.txt>
+			}
+		}
+*/
+		Turret3
+		{
+			Type = TurretWeapon
+			Location = [-0.5, .5] // Relative to upper-left corner of unrotated part.
+			Rotation = -180d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 500
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet4.txt>
 			}
 		}
 

@@ -1,5 +1,5 @@
 Name = "Place Holder Mod"
-Version = 0.0.3
+Version = 0.0.4
 Author = "Bubbet"
 
 
@@ -17,7 +17,8 @@ Description = "My big mod, that includes all of my previous content along with t
 		"- Teletubes\n\n"\
 		"- Small Reactor\n\n"\
 		"- A fast firing 1x1 laser weapon\n\n"\
-              "<green>- Made by Bubbet with sprite help from IVIemories.</green>"
+              "<green>- Made by Bubbet with sprite help from IVIemories.</green>\n"\
+		"p.s. try your best not to steal my content."
 
 // Lang Folder
 StringsFolder = "Strings"
@@ -71,6 +72,8 @@ Actions
 			&<parts/energy_laser/energy_laser.txt>/Part
 			&<parts/energy_wire/energy_wire_start.txt>/Part
 			&<parts/energy_wire/energy_wire.txt>/Part
+			&<parts/energy_wire/energy_wire_under.txt>/Part
+			&<parts/energy_wire/energy_wire_split.txt>/Part
 			&<parts/energy_wire/energy_wire_junc.txt>/Part
 			&<parts/reactor/s.txt>/Part
 			&<parts/ftl/s.txt>/Part

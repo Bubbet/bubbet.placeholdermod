@@ -1,0 +1,251 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/AmmoPipe"
+	IconNameKey = "Parts/AmmoPipe"
+	IDString = bub_ammo_pipe
+	EditorGroup = "Munitions"
+	DescriptionKey = "Parts/AmmoPipeDesc"
+	Cost = 125
+	TypeCategories = [ammo, corridor]
+	Size = [1, 1]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1000
+	CrewSpeedFactor = 0.75
+	PenetrationResistance = 100
+	ProhibitAbove = 0
+	IsWalled = false
+	GeneratorRequiresDoor = false
+	EditorIcon
+	{
+		Texture
+		{
+			File = "g/ic/AmmoPipe.png"
+			SampleMode = Linear
+		}
+		Size = [32, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "g/bp/AmmoPipe.png"
+			Size = [1, 1]
+			Offset = [0, 0]
+		}
+	]
+	BlueprintBlendSprites
+	[
+		: <../../../../Data/Ships/Terran/Walls/blueprint walls.txt>
+		{
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+	]
+	Components
+	{
+		WallsBlend : <../../../../Data/Ships/Terran/Walls/walls.txt>
+		{
+			Type = BlendSprite
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+		
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoStorage
+			AmmoType = bullet
+			MaxAmmo = 8
+			RequiredForWholePartOperation = true
+		}
+		AmmoSprites
+		{
+			Type = AmmoSprites
+			Location = [.5, 0.5]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_low"
+			HasZeroAmmoSprite = true
+			AmmoLevels
+			[
+				{
+					File = "g/s/1.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/s/2.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/s/3.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/s/4.png"
+					Size = [1, 1]
+				}
+				{
+					File = "g/s/5.png"
+					Size = [1, 1]
+				}
+			]
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [.5, 0.5]
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../energy_wire/graphics/floorstraight1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../energy_wire/graphics/floorstraight2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../energy_wire/graphics/floorstraight3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						File = "../energy_wire/graphics/gratestraight1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../energy_wire/graphics/gratestraight2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../energy_wire/graphics/gratestraight3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			NonOperationalDoodad = &OperationalDoodad
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "../../../../data/ships/terran/corridor/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		Turret
+		{
+			Type = TurretWeapon
+			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
+			Rotation = -90d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+			
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet.txt>
+			}
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			Location = [.5, 0.5]
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [.5, 0.5]
+			
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 5000
+					RadiusVsOperational = 4
+					DamageVsStructurePerTile = 500
+					RadiusVsStructure = 4
+					Delay = .05
+					AllowFriendlyDamage = true
+				}
+				{
+					Type = AreaFires
+					FireChancePerTile = .25
+					FireRadius = 4
+					FireFalloff = 0
+					Delay = .05
+					AllowFriendlyFires = true
+				}
+				{
+					Type = AreaImpulse
+					ImpulsePerTile = 10
+					ImpulseRadius = 10
+					Delay = .05
+				}
+			]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 0.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+			]
+		}
+	}
+}

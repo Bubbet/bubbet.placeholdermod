@@ -1,0 +1,277 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/EnergyWireSplit"
+	IconNameKey = "Parts/EnergyWireSplit"
+	IDString = bub_energy_wire_split
+	EditorGroup = "Power"
+	DescriptionKey = "Parts/EnergyWireSplitDesc"
+	Cost = 500
+	TypeCategories = [power, corridor]
+	Size = [1, 1]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1000
+	CrewSpeedFactor = 0.75
+	PenetrationResistance = 100
+	ProhibitAbove = 0
+	IsWalled = false
+	GeneratorRequiresDoor = false
+	EditorIcon
+	{
+		Texture
+		{
+			File = "graphics/icon2.png"
+			SampleMode = Linear
+		}
+		Size = [32, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "graphics/blueprints3.png"
+			Size = [1, 1]
+			Offset = [0, 0]
+		}
+	]
+	BlueprintBlendSprites
+	[
+		: <../../../../Data/Ships/Terran/Walls/blueprint walls.txt>
+		{
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+	]
+	Components
+	{
+		WallsBlend : <../../../../Data/Ships/Terran/Walls/walls.txt>
+		{
+			Type = BlendSprite
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+		
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoStorage
+			AmmoType = battery
+			MaxAmmo = 4000
+			RequiredForWholePartOperation = true
+		}
+
+		AmmoSprites
+		{
+			Type = AmmoSprites
+			Location = [.5, 0.5]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_low"
+			HasZeroAmmoSprite = true
+			AmmoLevels
+			[
+				{
+					File = "graphics/tubedistributor1.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor2.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor3.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor4.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor5.png"
+					Size = [1, 1]
+				}
+			]
+		}
+		
+		Graphics
+		{
+			Type = Graphics
+			Location = [.5, 0.5]
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "graphics/floordistributor1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "graphics/floordistributor2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "graphics/floordistributor3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						File = "graphics/gratedistributor1.png"
+						Size = [1, 1]
+					}
+					{
+						File = "graphics/gratedistributor2.png"
+						Size = [1, 1]
+					}
+					{
+						File = "graphics/gratedistributor3.png"
+						Size = [1, 1]
+					}
+				]
+			}
+			NonOperationalDoodad = &OperationalDoodad
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "../../../../data/ships/terran/corridor/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
+		}
+
+		Turret1
+		{
+			Type = TurretWeapon
+			Location = [1.5, .5] // Relative to upper-left corner of unrotated part.
+			Rotation = -0d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 500
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet4.txt>
+			}
+		}
+/*
+		Turret2
+		{
+			Type = TurretWeapon
+			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
+			Rotation = -90d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 500
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet4.txt>
+			}
+		}
+*/
+		Turret3
+		{
+			Type = TurretWeapon
+			Location = [-0.5, .5] // Relative to upper-left corner of unrotated part.
+			Rotation = -180d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = .05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 500
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet4.txt>
+			}
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			Location = [.5, 0.5]
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [.5, 0.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 0.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+			]
+		}
+	}
+}

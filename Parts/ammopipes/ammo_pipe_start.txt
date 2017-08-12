@@ -1,0 +1,280 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/AmmoPipeStart"
+	IconNameKey = "Parts/AmmoPipeStart"
+	IDString = bub_ammo_pipe_start
+	EditorGroup = "Munitions"
+	DescriptionKey = "Parts/AmmoPipeStartDesc"
+	Cost = 1500
+	TypeCategories = [ammo]
+	Size = [1, 2]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1000
+	CrewSpeedFactor = 0.75
+	PenetrationResistance = 100
+	ProhibitAbove = 0
+//	BlockedTravelCells
+//	[
+//		//[1, 0]//top middle
+//		//second row
+//		[2, 1]
+//		[1, 1]
+//		[0, 1]
+//		//third row
+//		[2, 2]
+//		[1, 2]
+//		[0, 2]
+//	]
+//	ForceManhattenPathInPart = true
+//	AllowedDoorLocations
+//	[
+//		[0, -1]
+//		[2, -1]
+//		[-1, 0]
+//		[3, 0]
+//	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "g/ic/Start.png"
+			SampleMode = Linear
+		}
+		Size = [16, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "g/bp/Start.png"
+			Size = [1, 2]
+			Offset = [0, 0]
+		}
+	]
+//	PowerUIStats
+//	{
+//		Min = 16
+//		Ideal = 24
+//	}
+	CrewUIStats
+	{
+		Min = 1
+		Ideal = 4
+	}
+	Components
+	{	
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = bullet
+			MaxAmmo = 16
+			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_LowConsume
+			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_HighConsume
+			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_EmptyConsume
+			JobUnassignThreshold = 1000000// Effectively unassignable.
+			ResupplyThreshold = 1
+			RequiredForWholePartOperation = true
+			AmmoDesireToggle = PowerToggle
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [0.5, 1]
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../data/ships/terran/corridor/floor.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/floor_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/floor_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+			OperationalDoodad
+			{
+				Layer = "doodads_low"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/st/1.png"
+							"g/st/2.png"
+							"g/st/3.png"
+							"g/st/4.png"
+							"g/st/5.png"
+							"g/st/6.png"
+							"g/st/7.png"
+							"g/st/8.png"
+						]
+						Size = [1, 2]
+						Offset = [0, -0]
+						AnimationInterval = 0.1
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						File = "g/st/8.png"
+						Size = [1, 2]
+						Offset = [0, -0]
+					}
+				]
+			}
+
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "../../../../data/ships/terran/small_laser/walls.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../data/ships/terran/small_laser/walls_33.png"
+						Size = [1, 2]
+						Offset = [0, 0]
+					}
+					{
+						File = "../../../../data/ships/terran/small_laser/walls_66.png"
+						Size = [1, 2]
+						Offset = [0, 0]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "../../../../data/ships/terran/corridor/roof.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_33.png"
+						Size = [1, 2]
+					}
+					{
+						File = "../../../../data/ships/terran/corridor/roof_66.png"
+						Size = [1, 2]
+					}
+				]
+			}
+		}
+
+		Turret
+		{
+			Type = TurretWeapon
+			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
+			Rotation = -90d // Relative to unrotated part.
+			FireInterval = 0.3
+			FireDelay = .15
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 4
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet2.txt>
+			}
+
+		}
+
+//		AmmoSprites
+//		{
+//			Type = AmmoSprites
+//			Location = [1.5, 1.5]
+//			AmmoStorage = BatteryStorage
+//			Layer = "doodads_high"
+//			HasZeroAmmoSprite = false
+//			AmmoLevels
+//			[
+//				{
+//					File = "graphics/battery1.png"
+//					Size = [3, 3]
+//				}
+//				{
+//					File = "graphics/battery2.png"
+//					Size = [3, 3]
+//				}
+//				{
+//					File = "graphics/battery3.png"
+//					Size = [3, 3]
+//				}
+//				{
+//					File = "graphics/battery4.png"
+//					Size = [3, 3]
+//				}
+//			]
+//		}
+
+//		OperationEffects
+//		{
+//			Type = OperationEffects
+//			Location = [1.5, 1.5]
+//			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+//			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+//		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [1.5, 1.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [1.5, 1.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1.5, 1.5]
+					}
+				}
+			]
+		}
+	}
+}

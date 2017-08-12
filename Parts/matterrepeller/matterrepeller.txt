@@ -34,8 +34,8 @@ Part : /BASE_PART
 	[
 		{
 			File = "blueprints.png"
-			Size = [2, 4.15]
-			Offset = [0, -1.075]
+			Size = [2, 5]
+			Offset = [0, -1.5]
 		}
 	]
 	PowerUIStats
@@ -321,11 +321,11 @@ Part : /BASE_PART
 			]
 		}
 		//Graphics
-		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
+		Graphics
 		{
 			Type = Graphics
 			Location = [1, 1]
-			OperationalDoodad
+			Floor
 			{
 				Layer = "floors"
 				DamageLevels
@@ -344,31 +344,6 @@ Part : /BASE_PART
 					}
 				]
 			}
-			NonOperationalDoodad
-			{
-				Layer = "floors"
-				DamageLevels
-				[
-					{
-						File = "floor.png"
-						Size = [2, 2]
-					}
-					{
-						File = "floor_33.png"
-						Size = [2, 2]
-					}
-					{
-						File = "floor_66.png"
-						Size = [2, 2]
-					}
-				]
-			}
-		}
-		
-		GraphicsOther
-		{
-			Type = Graphics
-			Location = [1, 1]
 			OperationalDoodad
 			{
 				Layer = "doodads_low"
@@ -604,7 +579,7 @@ Part : /BASE_PART
 		{
 			Type = CircleCollider
 			ChainedTo = Turret
-			Radius = 1.8
+			Radius = 1
 			Density = 1.75
 		}
 

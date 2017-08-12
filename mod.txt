@@ -65,7 +65,6 @@ Actions
 			&<parts/bubbleshield/s.txt>/Part
 			&<parts/bubbleshield/m.txt>/Part
 			&<parts/bubbleshield/l.txt>/Part
-			//&<parts/encaptureshield/m.txt>/Part
 			&<parts/decoupler/s.txt>/Part
 			&<parts/teletube/c.txt>/Part
 			&<parts/arcdefense/s.txt>/Part
@@ -75,6 +74,11 @@ Actions
 			&<parts/energy_wire/energy_wire_under.txt>/Part
 			&<parts/energy_wire/energy_wire_split.txt>/Part
 			&<parts/energy_wire/energy_wire_junc.txt>/Part
+			&<parts/ammopipes/ammo_pipe_start.txt>/Part
+			&<parts/ammopipes/ammo_pipe.txt>/Part
+			//&<parts/energy_wire/energy_wire_under.txt>/Part
+			//&<parts/energy_wire/energy_wire_split.txt>/Part
+			//&<parts/energy_wire/energy_wire_junc.txt>/Part
 			&<parts/reactor/s.txt>/Part
 			&<parts/ftl/s.txt>/Part
 			&<parts/ftlstorage/s.txt>/Part

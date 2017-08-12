@@ -251,7 +251,7 @@ Part : /BASE_PART
 				}
 				{
 					Type = AreaFires
-					FireChancePerTile = .25
+					FireChancePerTile = .90
 					FireRadius = 4
 					FireFalloff = 0
 					Delay = .05

@@ -14,8 +14,10 @@ Part : /BASE_PART
 	CrewSpeedFactor = 0.75
 	PenetrationResistance = 100
 	ProhibitAbove = 0
-//	BlockedTravelCells
-//	[
+	BlockedTravelCells
+	[
+		[0,0]
+	]
 //		//[1, 0]//top middle
 //		//second row
 //		[2, 1]
@@ -27,13 +29,14 @@ Part : /BASE_PART
 //		[0, 2]
 //	]
 //	ForceManhattenPathInPart = true
-//	AllowedDoorLocations
-//	[
+	AllowedDoorLocations
+	[
 //		[0, -1]
 //		[2, -1]
-//		[-1, 0]
-//		[3, 0]
-//	]
+		[0, 2]
+		[-1, 1]
+		[1, 1]
+	]
 	EditorIcon
 	{
 		Texture
@@ -154,16 +157,16 @@ Part : /BASE_PART
 				[
 					{
 						File = "../../../../data/ships/terran/small_laser/walls.png"
-						Size = [1, 2]
+						Size = [1, 2.05]
 					}
 					{
 						File = "../../../../data/ships/terran/small_laser/walls_33.png"
-						Size = [1, 2]
+						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
 					{
 						File = "../../../../data/ships/terran/small_laser/walls_66.png"
-						Size = [1, 2]
+						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
 				]

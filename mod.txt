@@ -76,9 +76,9 @@ Actions
 			&<parts/energy_wire/energy_wire_junc.txt>/Part
 			&<parts/ammopipes/ammo_pipe_start.txt>/Part
 			&<parts/ammopipes/ammo_pipe.txt>/Part
-			//&<parts/energy_wire/energy_wire_under.txt>/Part
-			//&<parts/energy_wire/energy_wire_split.txt>/Part
-			//&<parts/energy_wire/energy_wire_junc.txt>/Part
+			&<parts/ammopipes/ammo_pipe_under.txt>/Part
+			&<parts/ammopipes/ammo_pipe_split.txt>/Part
+			&<parts/ammopipes/ammo_pipe_junc.txt>/Part
 			&<parts/reactor/s.txt>/Part
 			&<parts/ftl/s.txt>/Part
 			&<parts/ftlstorage/s.txt>/Part

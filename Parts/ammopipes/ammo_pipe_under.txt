@@ -1,12 +1,12 @@
 Part : /BASE_PART
 {
-	NameKey = "Parts/EnergyWireUnder"
-	IconNameKey = "Parts/EnergyWireUnder"
-	IDString = bub_energy_wire_under
-	EditorGroup = "Power"
-	DescriptionKey = "Parts/EnergyWireUnderDesc"
+	NameKey = "Parts/AmmoPipeUnder"
+	IconNameKey = "Parts/AmmoPipeUnder"
+	IDString = bub_ammo_pipe_under
+	EditorGroup = "Munitions"
+	DescriptionKey = "Parts/AmmoPipeUnderDesc"
 	Cost = 300
-	TypeCategories = [power, corridor]
+	TypeCategories = [ammo, corridor]
 	Size = [1, 1]
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
@@ -20,7 +20,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "graphics/icon4.png"
+			File = "g/ic/under.png"
 			SampleMode = Linear
 		}
 		Size = [32, 32]
@@ -28,7 +28,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "graphics/blueprints4.png"
+			File = "g/bp/under.png"
 			Size = [1, 1]
 			Offset = [0, 0]
 		}
@@ -62,8 +62,8 @@ Part : /BASE_PART
 		BatteryStorage
 		{
 			Type = AmmoStorage
-			AmmoType = battery
-			MaxAmmo = 2000
+			AmmoType = bullet
+			MaxAmmo = 8
 			RequiredForWholePartOperation = true
 		}
 		AmmoSprites
@@ -76,23 +76,7 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "graphics/tubeunder1.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubeunder2.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubeunder3.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubeunder4.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubeunder5.png"
+					File = "g/u/1.png"
 					Size = [1, 1]
 				}
 			]
@@ -108,15 +92,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/floorunder1.png"
+						File = "../energy_wire/graphics/floorunder1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floorunder2.png"
+						File = "../energy_wire/graphics/floorunder2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floorunder3.png"
+						File = "../energy_wire/graphics/floorunder3.png"
 						Size = [1, 1]
 					}
 				]
@@ -127,15 +111,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/grateunder1.png"
+						File = "../energy_wire/graphics/grateunder1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/grateunder2.png"
+						File = "../energy_wire/graphics/grateunder2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/grateunder3.png"
+						File = "../energy_wire/graphics/grateunder3.png"
 						Size = [1, 1]
 					}
 				]
@@ -174,7 +158,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 1000
+			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
@@ -183,7 +167,7 @@ Part : /BASE_PART
 			Emitter
 			{
 				Type = Bullet
-				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_energy5 }
+				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo3 }
 			}
 		}
 
@@ -200,6 +184,33 @@ Part : /BASE_PART
 			Type = DeathEffects
 			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
 			Location = [.5, 0.5]
+			
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 5000
+					RadiusVsOperational = 4
+					DamageVsStructurePerTile = 500
+					RadiusVsStructure = 4
+					Delay = .05
+					AllowFriendlyDamage = true
+				}
+				{
+					Type = AreaFires
+					FireChancePerTile = .25
+					FireRadius = 4
+					FireFalloff = 0
+					Delay = .05
+					AllowFriendlyFires = true
+				}
+				{
+					Type = AreaImpulse
+					ImpulsePerTile = 10
+					ImpulseRadius = 10
+					Delay = .05
+				}
+			]
 		}
 
 		Indicators

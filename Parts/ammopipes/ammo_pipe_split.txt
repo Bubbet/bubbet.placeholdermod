@@ -1,12 +1,12 @@
 Part : /BASE_PART
 {
-	NameKey = "Parts/EnergyWireSplit"
-	IconNameKey = "Parts/EnergyWireSplit"
-	IDString = bub_energy_wire_split
-	EditorGroup = "Power"
-	DescriptionKey = "Parts/EnergyWireSplitDesc"
+	NameKey = "Parts/AmmoPipeSplit"
+	IconNameKey = "Parts/AmmoPipeSplit"
+	IDString = bub_ammo_pipe_split
+	EditorGroup = "Munitions"
+	DescriptionKey = "Parts/AmmoPipeSplitDesc"
 	Cost = 500
-	TypeCategories = [power, corridor]
+	TypeCategories = [ammo, corridor]
 	Size = [1, 1]
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
@@ -20,7 +20,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "graphics/icon2.png"
+			File = "g/ic/split.png"
 			SampleMode = Linear
 		}
 		Size = [32, 32]
@@ -28,7 +28,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "graphics/blueprints3.png"
+			File = "g/bp/split.png"
 			Size = [1, 1]
 			Offset = [0, 0]
 		}
@@ -62,8 +62,8 @@ Part : /BASE_PART
 		BatteryStorage
 		{
 			Type = AmmoStorage
-			AmmoType = battery
-			MaxAmmo = 4000
+			AmmoType = bullet
+			MaxAmmo = 8
 			RequiredForWholePartOperation = true
 		}
 
@@ -77,23 +77,7 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "graphics/tubedistributor1.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor2.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor3.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor4.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor5.png"
+					File = "g/sp/1.png"
 					Size = [1, 1]
 				}
 			]
@@ -109,15 +93,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/floordistributor1.png"
+						File = "../energy_wire/graphics/floordistributor1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floordistributor2.png"
+						File = "../energy_wire/graphics/floordistributor2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/floordistributor3.png"
+						File = "../energy_wire/graphics/floordistributor3.png"
 						Size = [1, 1]
 					}
 				]
@@ -128,15 +112,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "graphics/gratedistributor1.png"
+						File = "../energy_wire/graphics/gratedistributor1.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/gratedistributor2.png"
+						File = "../energy_wire/graphics/gratedistributor2.png"
 						Size = [1, 1]
 					}
 					{
-						File = "graphics/gratedistributor3.png"
+						File = "../energy_wire/graphics/gratedistributor3.png"
 						Size = [1, 1]
 					}
 				]
@@ -175,7 +159,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 500
+			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
@@ -184,7 +168,7 @@ Part : /BASE_PART
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet4.txt>
+				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo4 }
 			}
 		}
 /*
@@ -200,7 +184,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 500
+			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
@@ -210,7 +194,7 @@ Part : /BASE_PART
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet4.txt>
+				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo5 }
 			}
 		}
 */
@@ -226,7 +210,7 @@ Part : /BASE_PART
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = BatteryStorage
-			AmmoUsed = 500
+			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
@@ -236,7 +220,7 @@ Part : /BASE_PART
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet4.txt>
+				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo5 }
 			}
 		}
 
@@ -253,6 +237,33 @@ Part : /BASE_PART
 			Type = DeathEffects
 			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
 			Location = [.5, 0.5]
+			
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 5000
+					RadiusVsOperational = 4
+					DamageVsStructurePerTile = 500
+					RadiusVsStructure = 4
+					Delay = .05
+					AllowFriendlyDamage = true
+				}
+				{
+					Type = AreaFires
+					FireChancePerTile = .25
+					FireRadius = 4
+					FireFalloff = 0
+					Delay = .05
+					AllowFriendlyFires = true
+				}
+				{
+					Type = AreaImpulse
+					ImpulsePerTile = 10
+					ImpulseRadius = 10
+					Delay = .05
+				}
+			]
 		}
 
 		Indicators

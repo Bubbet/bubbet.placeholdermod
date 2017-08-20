@@ -9,7 +9,7 @@ Part : /BASE_PART
 	AIValue = 15
 	TypeCategories = [misc]
 	Size = [1, 1]
-
+	CreatePartPerTileWhenGrabbed = ""
 	CreatePartPerTileWhenDestroyed = ""
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
@@ -61,7 +61,7 @@ Part : /BASE_PART
 			AmmoType = battery
 			MaxAmmo = 2000
 			StartingAmmo = 2000
-			RequiredForWholePartOperation = true
+			RequiredForWholePartOperation = false
 		}
 
 		Graphics

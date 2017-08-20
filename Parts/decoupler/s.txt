@@ -9,7 +9,7 @@ Part : /BASE_PART
 	AIValue = 15
 	TypeCategories = [misc]
 	Size = [1, 1]
-
+	CreatePartPerTileWhenGrabbed = ""
 	CreatePartPerTileWhenDestroyed = ""
 	SelectionPriority = 1
 	SelectionTypeByRotation = true

@@ -61,7 +61,7 @@ Components
 				{
 					Type = PartAmmoDrain
 					AmmoType = battery
-					Amount = -499
+					Amount = -500
 					AllowFriendlyDrain = true
 				}
 			]

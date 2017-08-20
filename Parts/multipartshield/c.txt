@@ -1,0 +1,459 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/Bubble"
+	IconNameKey = "Parts/Bubble"
+	IDString = bub_m_shield_core
+	EditorGroup = "Defenses"
+	DescriptionKey = "Parts/BubbleDesc"
+	Cost = 5000
+	AIValue = 30
+	Size = [2, 2]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 4000
+	PenetrationResistance = 1
+	TypeCategories = [defense, shield]
+	ProhibitAbove = 0
+/*
+	AllowedDoorLocations
+	[
+		[-1, 1]
+		[2, 1]
+		[0, 2]
+		[1, 2]
+	]
+*/
+	EditorIcon
+	{
+		Texture
+		{
+			File = "g/icon.png"
+			SampleMode = Linear
+		}
+		Size = [42.66, 42.66]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "g/blueprints.png"
+			Size = [2, 2]
+		}
+	]
+	PowerUIStats
+	{
+		Min = .0666
+		Ideal = 4
+	}
+	CrewUIStats
+	{
+		Min = .1
+		Ideal = 4
+	}
+	Components
+	{
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			DefaultToggleValue = 1
+			RequiredForWholePartOperation = true
+			ToggledOnChoices = [1]
+		}
+		
+		BatteryStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = battery
+			MaxAmmo = 8000
+			PrerequisiteMetAmmo = 7001
+			PrerequisiteUnmetAmmo = -1000
+			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_LowConsume
+            HighConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_HighConsume
+            EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_EmptyConsume
+			//LowConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_LowConsume
+			//HighConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_HighConsume
+			//EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_EmptyConsume
+			JobUnassignThreshold = 1000000// Effectively unassignable.
+			ResupplyThreshold = -1000
+			RequiredForWholePartOperation = true
+			AmmoDesireToggle = PowerToggle
+			DrainOnFtlJump = true
+
+			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+		}
+
+		Turret
+		{
+			Type = TurretWeapon
+			Location = [1, -0.5] // Relative to upper-left corner of unrotated part.
+			Rotation = -90d // Relative to unrotated part.
+			FireInterval = 1.3
+			FireDelay = 1.15
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 100
+			MinAmmoUsed = 1
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet.txt>
+			}
+
+		}
+		Turret2
+		{
+			Type = TurretWeapon
+			Location = [1, 2.5] // Relative to upper-left corner of unrotated part.
+			Rotation = 90d // Relative to unrotated part.
+			FireInterval = 1.3
+			FireDelay = 1.15
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 100
+			MinAmmoUsed = 1
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet.txt>
+			}
+
+		}
+		Turret3
+		{
+			Type = TurretWeapon
+			Location = [-0.5, 1] // Relative to upper-left corner of unrotated part.
+			Rotation = 0d // Relative to unrotated part.
+			FireInterval = 1.3
+			FireDelay = 1.15
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 100
+			MinAmmoUsed = 1
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet.txt>
+			}
+
+		}
+		Turret4
+		{
+			Type = TurretWeapon
+			Location = [2.5, 1] // Relative to upper-left corner of unrotated part.
+			Rotation = 180d // Relative to unrotated part.
+			FireInterval = 1.3
+			FireDelay = 1.15
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 100
+			MinAmmoUsed = 1
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+
+			Emitter
+			{
+				Type = Bullet
+				Bullet = &<placeholderbullet.txt>
+			}
+
+		}
+		
+		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_on_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/floor_off_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+		}
+
+		GraphicsOther
+		{
+			Type = Graphics
+			Location = [1, 1]
+			OperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/doodads_on1.png"
+							"g/doodads_on2.png"
+							"g/doodads_on3.png"
+							"g/doodads_on4.png"
+							"g/doodads_on5.png"
+							"g/doodads_on6.png"
+							"g/doodads_on7.png"
+							"g/doodads_on8.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			NonOperationalDoodad
+			{
+				Layer = "doodads_high"
+				DamageLevels
+				[
+					{
+						File = "g/doodads_off.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			OperationalLighting
+			{
+				Layer = "lights_add"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "g/lights.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "g/walls.png"
+						Size = [2, 2]
+					}
+					{
+						File = "g/walls_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "g/walls_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			OperationalRoofDoodad
+			{
+				Layer = "roof_doodads"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						AnimationFiles
+						[
+							"g/roof_doodads_on1.png"
+							"g/roof_doodads_on2.png"
+							"g/roof_doodads_on3.png"
+							"g/roof_doodads_on4.png"
+							"g/roof_doodads_on5.png"
+							"g/roof_doodads_on6.png"
+							"g/roof_doodads_on7.png"
+							"g/roof_doodads_on8.png"
+						]
+						Size = [2, 2]
+						AnimationInterval = 0.075
+					}
+				]
+			}
+			NonOperationalRoofDoodad
+			{
+				Layer = "roof_doodads"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_doodads_off.png"
+						Size = [2, 2]
+						AnimationInterval = 0.1
+					}
+				]
+			}
+			OperationalRoofWindows
+			{
+				Layer = "roof_windows"
+				Offset = [0, 0]
+				DamageLevels
+				[
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows_33.png"
+						Size = [2, 2]
+					}
+					{
+						File = "../../../../Data/Ships/Terran/Shield_Generator/roof_windows_66.png"
+						Size = [2, 2]
+					}
+				]
+			}
+			NonOperationalRoofWindows = &OperationalRoofWindows
+		}
+
+		BatterySprites
+		{
+			Type = AmmoSprites
+			Location = [1, 1]
+			AmmoStorage = BatteryStorage
+			Layer = "doodads_low"
+			AmmoLevels
+			[
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries1.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries2.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries3.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries4.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries5.png"
+					Size = [2, 2]
+				}
+				{
+					File = "../../../../Data/Ships/Terran/Shield_Generator/batteries6.png"
+					Size = [2, 2]
+				}
+			]
+		}
+
+		OperationEffects
+		{
+			Type = OperationEffects
+			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
+			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [1, 1]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [1, 1]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Source = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+
+				// Out of power.
+				{
+					Source = BatteryStorage
+					AtlasSprite
+					{
+						File = &/INDICATORS/NoPower
+						Size = [1.5, 1.5]
+					}
+				}
+			]
+		}
+	}
+}

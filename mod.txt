@@ -42,6 +42,23 @@ Actions
 		}
 	}
 	{
+		Action = Add
+		AddTo = "<Ammo/ammo.txt>/Ammo"
+		ToAdd
+		{
+				ID = bub_battery2
+				MaxCarried = 1
+				MaxCarriedSprites = 1
+				CarriedSprite
+				{
+					File = "Ammo/physical_energy.png"
+					Size = [1, 1]
+				}
+				CarriedSpriteOffset = [0, .25]
+				AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+		}
+	}
+	{
 		Action = Overrides
 		OverrideIn = <Effects/particles.txt>
 		Overrides
@@ -72,11 +89,13 @@ Actions
 			&<parts/energy_wire/energy_wire_start.txt>/Part
 			&<parts/energy_wire/energy_wire.txt>/Part
 			&<parts/energy_wire/energy_wire_under.txt>/Part
+			&<parts/energy_wire/energy_wire_under2.txt>/Part
 			&<parts/energy_wire/energy_wire_split.txt>/Part
 			&<parts/energy_wire/energy_wire_junc.txt>/Part
 			&<parts/ammopipes/ammo_pipe_start.txt>/Part
 			&<parts/ammopipes/ammo_pipe.txt>/Part
 			&<parts/ammopipes/ammo_pipe_under.txt>/Part
+			&<parts/ammopipes/ammo_pipe_under2.txt>/Part
 			&<parts/ammopipes/ammo_pipe_split.txt>/Part
 			&<parts/ammopipes/ammo_pipe_junc.txt>/Part
 			&<parts/dockingport/s.txt>/Part
@@ -87,6 +106,8 @@ Actions
 			&<parts/pointlaser/small_pointlaser.txt>/Part
 			&<parts/onexone/armor.txt>/Part
 			&<parts/matterrepeller/matterrepeller.txt>/Part
+			&<parts/multipartshield/c.txt>/Part
+			&<parts/multipartshield/p.txt>/Part
 		]
 	}
 	// Allowing the arcdefense to target various weapon bullets

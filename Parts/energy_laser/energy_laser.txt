@@ -94,17 +94,17 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/floor.png"
+						File = "./Data/Ships/Terran/small_laser/floor.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/floor_33.png"
+						File = "./Data/Ships/Terran/small_laser/floor_33.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/floor_66.png"
+						File = "./Data/Ships/Terran/small_laser/floor_66.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
@@ -151,17 +151,17 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/bunk/walls.png"
+						File = "./Data/Ships/Terran/bunk/walls.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/bunk/walls_33.png"
+						File = "./Data/Ships/Terran/bunk/walls_33.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/bunk/walls_66.png"
+						File = "./Data/Ships/Terran/bunk/walls_66.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
@@ -258,7 +258,7 @@ Part : /BASE_PART
 						{
 							Texture = "beam_base.png"
 							_baseColor = [255, 255, 255, 255]
-							Shader = "../../../../Data/Ships/Terran/ion_beam/beam.shader"
+							Shader = "./Data/Ships/Terran/ion_beam/beam.shader"
 							_sizePulseFactor = 0.4//1.2
 							_sizePulseInterval = .35
 							_sizePulseUOffsetFactor = -.03
@@ -291,7 +291,7 @@ Part : /BASE_PART
 
 						: /SOUNDS/AudioExterior
 						{
-							Sound = "../../../../Data/Ships/Terran/ion_beam/hit.wav"
+							Sound = "./Data/Ships/Terran/ion_beam/hit.wav"
 							Volume = .05
 							MaxConcurrent = 1
 							MaxConcurrentVolume = 0.5

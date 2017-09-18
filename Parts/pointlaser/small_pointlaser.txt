@@ -26,7 +26,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "../../../../Data/Ships/Terran/point_defense/icon.png"
+			File = "./Data/Ships/Terran/point_defense/icon.png"
 			SampleMode = Linear
 		}
 		Size = [21.33, 42.66]
@@ -34,7 +34,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "../../../../Data/Ships/Terran/point_defense/blueprints.png"
+			File = "./Data/Ships/Terran/point_defense/blueprints.png"
 			Size = [1, 2]
 			Offset = [0, 0]
 		}
@@ -96,15 +96,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor.png"
+						File = "./Data/Ships/Terran/point_defense/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor_33.png"
+						File = "./Data/Ships/Terran/point_defense/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor_66.png"
+						File = "./Data/Ships/Terran/point_defense/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -151,7 +151,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/lights.png"
+						File = "./Data/Ships/Terran/point_defense/lights.png"
 						Size = [1, 1]
 					}
 				]
@@ -163,15 +163,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls.png"
+						File = "./Data/Ships/Terran/point_defense/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls_33.png"
+						File = "./Data/Ships/Terran/point_defense/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls_66.png"
+						File = "./Data/Ships/Terran/point_defense/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -183,15 +183,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof.png"
+						File = "./Data/Ships/Terran/point_defense/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_33.png"
+						File = "./Data/Ships/Terran/point_defense/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_66.png"
+						File = "./Data/Ships/Terran/point_defense/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -285,13 +285,13 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_charge.wav"
+					Sound = "./Data/Ships/Terran/small_laser/small_laser_charge.wav"
 					Volume = .6
 				}
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_fire.wav"
+					Sound = "./Data/Ships/Terran/small_laser/small_laser_fire.wav"
 					Volume = .6
 					Delay = .13
 					SpeedVariation = .25
@@ -345,14 +345,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on1.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on2.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on3.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on4.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on5.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on6.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on7.png"
-							"../../../../Data/Ships/Terran/small_laser/turret doodads on8.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on1.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on2.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on3.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on4.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on5.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on6.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on7.png"
+							"./Data/Ships/Terran/small_laser/turret doodads on8.png"
 						]
 						Size = [1, 2]
 						AnimationInterval = 0.1
@@ -365,7 +365,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/turret doodads off.png"
+						File = "./Data/Ships/Terran/small_laser/turret doodads off.png"
 						Size = [1, 2]
 					}
 				]
@@ -379,11 +379,11 @@ Part : /BASE_PART
 						// None.
 					}
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/turret damage_33.png"
+						File = "./Data/Ships/Terran/small_laser/turret damage_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/small_laser/turret damage_66.png"
+						File = "./Data/Ships/Terran/small_laser/turret damage_66.png"
 						Size = [1, 2]
 					}
 				]
@@ -402,14 +402,14 @@ Part : /BASE_PART
 			{
 				AnimationFiles
 				[
-					"../../../../Data/Ships/Terran/small_laser/weapon2.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon3.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon4.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon5.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon6.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon7.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon8.png"
-					"../../../../Data/Ships/Terran/small_laser/weapon1.png"// Loop back to beginning and clamp there.
+					"./Data/Ships/Terran/small_laser/weapon2.png"
+					"./Data/Ships/Terran/small_laser/weapon3.png"
+					"./Data/Ships/Terran/small_laser/weapon4.png"
+					"./Data/Ships/Terran/small_laser/weapon5.png"
+					"./Data/Ships/Terran/small_laser/weapon6.png"
+					"./Data/Ships/Terran/small_laser/weapon7.png"
+					"./Data/Ships/Terran/small_laser/weapon8.png"
+					"./Data/Ships/Terran/small_laser/weapon1.png"// Loop back to beginning and clamp there.
 				]
 				Size = [1, 2]
 				AnimationInterval = 0.01

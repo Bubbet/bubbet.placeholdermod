@@ -127,7 +127,7 @@ Part : /BASE_PART
 
 			BlueprintArcSprite
 			{
-				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [0, 0, 255, 127]
 			}
@@ -135,7 +135,7 @@ Part : /BASE_PART
 
 			CoverageArcSprite
 			{
-				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [255, 255, 255, 127]
 			}
@@ -151,11 +151,11 @@ Part : /BASE_PART
 					Arc = 20d
 					ArcSprite
 					{
-						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
-						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "./Data/Ships/Terran/shield_generator/shield.shader"
 						_waveTex
 						{
-							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							File = "./Data/Ships/Terran/shield_generator/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = -2
@@ -176,7 +176,7 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_hit.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_hit.wav"
 					Volume = 1
 					Speed = 1
 					IgnoreIntensity = true
@@ -204,11 +204,11 @@ Part : /BASE_PART
 					FadeFromScale = .8
 					ArcSprite
 					{
-						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
-						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "./Data/Ships/Terran/shield_generator/shield.shader"
 						_waveTex
 						{
-							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							File = "./Data/Ships/Terran/shield_generator/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = 1
@@ -228,7 +228,7 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExteriorDetail
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_loop.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_loop.wav"
 					Volume = .15
 					Speed = .5
 					MaxConcurrent = 1
@@ -260,12 +260,12 @@ Part : /BASE_PART
 					FadeOutTime = .25
 					ArcSprite
 					{
-						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+						Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
 						UVRect = [0, 1, 1, -1]
-						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						Shader = "./Data/Ships/Terran/shield_generator/shield.shader"
 						_waveTex
 						{
-							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							File = "./Data/Ships/Terran/shield_generator/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = -1
@@ -285,7 +285,7 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExteriorDetail
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_emitter_loop.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_emitter_loop.wav"
 					Volume = .2
 					Speed = 1
 					MaxConcurrent = 1
@@ -303,7 +303,7 @@ Part : /BASE_PART
 			[
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_activate.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_activate.wav"
 					Volume = .5
 					Speed = 1
 					IgnoreIntensity = true
@@ -313,7 +313,7 @@ Part : /BASE_PART
 			[
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_deactivate.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_deactivate.wav"
 					Volume = .5
 					Speed = 1
 					IgnoreIntensity = true

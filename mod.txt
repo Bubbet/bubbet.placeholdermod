@@ -106,8 +106,8 @@ Actions
 			&<parts/pointlaser/small_pointlaser.txt>/Part
 			&<parts/onexone/armor.txt>/Part
 			&<parts/matterrepeller/matterrepeller.txt>/Part
-			&<parts/multipartshield/c.txt>/Part
-			&<parts/multipartshield/p.txt>/Part
+			//&<parts/multipartshield/c.txt>/Part
+			//&<parts/multipartshield/p.txt>/Part
 		]
 	}
 	// Allowing the arcdefense to target various weapon bullets

@@ -1,21 +1,10 @@
-Part : /BASE_PART
+Part : &<t/p.txt>/Part
 {
 	NameKey = "Parts/EnergyWireUnder2"
 	IconNameKey = "Parts/EnergyWireUnder2"
 	IDString = bub_energy_wire_under2
-	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireUnder2Desc"
 	Cost = 700
-	TypeCategories = [power, corridor]
-	Size = [1, 1]
-	SelectionPriority = 1
-	SelectionTypeByRotation = true
-	MaxHealth = 1000
-	CrewSpeedFactor = 0.75
-	PenetrationResistance = 100
-	ProhibitAbove = 0
-	IsWalled = false
-	GeneratorRequiresDoor = false
 	EditorIcon
 	{
 		Texture
@@ -33,39 +22,8 @@ Part : /BASE_PART
 			Offset = [0, 0]
 		}
 	]
-	BlueprintBlendSprites
-	[
-		: <../../../../Data/Ships/Terran/Walls/blueprint walls.txt>
-		{
-			Location = [.5, .5]
-			BlendsWithCategories = [corridor]
-		}
-	]
-	Components
+	Components : &<t/c.txt>/Components
 	{
-		WallsBlend : <../../../../Data/Ships/Terran/Walls/walls.txt>
-		{
-			Type = BlendSprite
-			Location = [.5, .5]
-			BlendsWithCategories = [corridor]
-		}
-		
-		PowerToggle
-		{
-			Type = UIToggle
-			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
-			ToggledOnChoices = [1]
-		}
-
-		BatteryStorage
-		{
-			Type = AmmoStorage
-			AmmoType = battery
-			MaxAmmo = 2000
-			RequiredForWholePartOperation = true
-		}
 		AmmoSprites
 		{
 			Type = AmmoSprites
@@ -95,13 +53,36 @@ Part : /BASE_PART
 					File = "graphics/tubeunder5.png"
 					Size = [1, 1]
 				}
+				{
+					File = "graphics/tubeunder6.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubeunder7.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubeunder8.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubeunder9.png"
+					Size = [1, 1]
+				}
+				{
+					AnimationFiles
+					[
+						"graphics/tubeunder10.png"
+						"graphics/tubeunder11.png"
+					]
+					Size = [1, 1]
+					AnimationInterval = 0.075
+				}
 			]
 		}
 
-		Graphics
+		Graphics : &<t/g.txt>/Graphics
 		{
-			Type = Graphics
-			Location = [.5, 0.5]
 			Floor
 			{
 				Layer = "floors"
@@ -141,84 +122,19 @@ Part : /BASE_PART
 				]
 			}
 			NonOperationalDoodad = &OperationalDoodad
-			Roof
-			{
-				Layer = "roofs"
-				DamageLevels
-				[
-					{
-						File = "../../../../data/ships/terran/corridor/roof.png"
-						Size = [1, 1]
-					}
-					{
-						File = "../../../../data/ships/terran/corridor/roof_33.png"
-						Size = [1, 1]
-					}
-					{
-						File = "../../../../data/ships/terran/corridor/roof_66.png"
-						Size = [1, 1]
-					}
-				]
-			}
 		}
 
-		Turret
+		Turret : &<t/t.txt>/Turret
 		{
-			Type = TurretWeapon
 			Location = [.5, -2.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
-			FireInterval = 0.1
-			FireDelay = .05
-			FiringArc = 0d
-			RotateSpeed = 0d
-			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
 			AmmoUsed = 1000
-			TargetSearchTriesPerFrame = 1
-			AIFirepowerRating = 600
-			AllowFireWithBlockedLOS = true
-			CanBeGivenExplicitTarget = false
 			
 			Emitter
 			{
 				Type = Bullet
 				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_energy6 }
 			}
-		}
-
-		OperationEffects
-		{
-			Type = OperationEffects
-			Location = [.5, 0.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
-		}
-
-		DestroyedEffects
-		{
-			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
-			Location = [.5, 0.5]
-		}
-
-		Indicators
-		{
-			Type = IndicatorSprites
-			Location = [.5, 0.5]
-			Layer = "indicators"
-			Indicators
-			[
-				// Turned off.
-				{
-					Source = PowerToggle
-					AtlasSprite
-					{
-						File = &/INDICATORS/PowerOff
-						Size = [1, 1]
-					}
-				}
-			]
 		}
 	}
 }

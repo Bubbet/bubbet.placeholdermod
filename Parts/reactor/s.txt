@@ -18,7 +18,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "../../../../Data/Ships/Terran/reactor/icon.png"
+			File = "./Data/Ships/Terran/reactor/icon.png"
 			SampleMode = Linear
 		}
 		Size = [44, 44]
@@ -26,7 +26,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "../../../../Data/Ships/Terran/reactor/blueprints.png"
+			File = "./Data/Ships/Terran/reactor/blueprints.png"
 			Size = [1, 1]
 		}
 	]
@@ -64,15 +64,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/reactor/floor.png"
+						File = "./Data/Ships/Terran/reactor/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/floor_33.png"
+						File = "./Data/Ships/Terran/reactor/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/floor_66.png"
+						File = "./Data/Ships/Terran/reactor/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -85,14 +85,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/reactor/lights1.png"
-							"../../../../Data/Ships/Terran/reactor/lights2.png"
-							"../../../../Data/Ships/Terran/reactor/lights3.png"
-							"../../../../Data/Ships/Terran/reactor/lights4.png"
-							"../../../../Data/Ships/Terran/reactor/lights5.png"
-							"../../../../Data/Ships/Terran/reactor/lights6.png"
-							"../../../../Data/Ships/Terran/reactor/lights7.png"
-							"../../../../Data/Ships/Terran/reactor/lights8.png"
+							"./Data/Ships/Terran/reactor/lights1.png"
+							"./Data/Ships/Terran/reactor/lights2.png"
+							"./Data/Ships/Terran/reactor/lights3.png"
+							"./Data/Ships/Terran/reactor/lights4.png"
+							"./Data/Ships/Terran/reactor/lights5.png"
+							"./Data/Ships/Terran/reactor/lights6.png"
+							"./Data/Ships/Terran/reactor/lights7.png"
+							"./Data/Ships/Terran/reactor/lights8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.025
@@ -105,15 +105,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/reactor/walls.png"
+						File = "./Data/Ships/Terran/reactor/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/walls_33.png"
+						File = "./Data/Ships/Terran/reactor/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/walls_66.png"
+						File = "./Data/Ships/Terran/reactor/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -124,15 +124,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof.png"
+						File = "./Data/Ships/Terran/reactor/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof_33.png"
+						File = "./Data/Ships/Terran/reactor/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof_66.png"
+						File = "./Data/Ships/Terran/reactor/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -145,14 +145,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/reactor/roof_doodads1.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads2.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads3.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads4.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads5.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads6.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads7.png"
-							"../../../../Data/Ships/Terran/reactor/roof_doodads8.png"
+							"./Data/Ships/Terran/reactor/roof_doodads1.png"
+							"./Data/Ships/Terran/reactor/roof_doodads2.png"
+							"./Data/Ships/Terran/reactor/roof_doodads3.png"
+							"./Data/Ships/Terran/reactor/roof_doodads4.png"
+							"./Data/Ships/Terran/reactor/roof_doodads5.png"
+							"./Data/Ships/Terran/reactor/roof_doodads6.png"
+							"./Data/Ships/Terran/reactor/roof_doodads7.png"
+							"./Data/Ships/Terran/reactor/roof_doodads8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.05
@@ -165,15 +165,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof_windows.png"
+						File = "./Data/Ships/Terran/reactor/roof_windows.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof_windows_33.png"
+						File = "./Data/Ships/Terran/reactor/roof_windows_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/reactor/roof_windows_66.png"
+						File = "./Data/Ships/Terran/reactor/roof_windows_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -189,7 +189,7 @@ Part : /BASE_PART
 			[
 				: /SOUNDS/AudioInterior
 				{
-					Sound = "../../../../Data/Ships/Terran/reactor/reactor_operating.wav"
+					Sound = "./Data/Ships/Terran/reactor/reactor_operating.wav"
 					Volume = .25
 					Speed = .75
 					MaxConcurrent = 1
@@ -211,39 +211,39 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "../../../../Data/Ships/Terran/reactor/reactor0.png"
+					File = "./Data/Ships/Terran/reactor/reactor0.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/reactor/reactor1.png"
+					File = "./Data/Ships/Terran/reactor/reactor1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/reactor/reactor2.png"
+					File = "./Data/Ships/Terran/reactor/reactor2.png"
 					Size = [1, 1]
 				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor3.png"
+//					File = "./Data/Ships/Terran/reactor/reactor3.png"
 //					Size = [1, 1]
 //				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor4.png"
+//					File = "./Data/Ships/Terran/reactor/reactor4.png"
 //					Size = [1, 1]
 //				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor5.png"
+//					File = "./Data/Ships/Terran/reactor/reactor5.png"
 //					Size = [1, 1]
 //				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor6.png"
+//					File = "./Data/Ships/Terran/reactor/reactor6.png"
 //					Size = [1, 1]
 //				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor7.png"
+//					File = "./Data/Ships/Terran/reactor/reactor7.png"
 //					Size = [1, 1]
 //				}
 //				{
-//					File = "../../../../Data/Ships/Terran/reactor/reactor8.png"
+//					File = "./Data/Ships/Terran/reactor/reactor8.png"
 //					Size = [1, 1]
 //				}
 			]

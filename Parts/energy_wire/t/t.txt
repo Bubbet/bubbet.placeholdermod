@@ -1,0 +1,15 @@
+Turret
+		{
+			Type = TurretWeapon
+			FireInterval = 0.05
+			FireDelay = .025
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = BatteryStorage
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 0
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+		}

@@ -21,7 +21,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "../../../../Data/Ships/Terran/armor/icon.png"
+			File = "./Data/Ships/Terran/armor/icon.png"
 			SampleMode = Linear
 		}
 		Size = [22.66, 22.66]
@@ -29,7 +29,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "../../../../Data/Ships/Terran/armor/blueprints.png"
+			File = "./Data/Ships/Terran/armor/blueprints.png"
 			Size = [1, 1]
 		}
 	]
@@ -103,7 +103,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/shield_generator/floor_on.png"
+						File = "./Data/Ships/Terran/shield_generator/floor_on.png"
 						Size = [1, 1]
 					}
 				]
@@ -114,7 +114,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/shield_generator/floor_off.png"
+						File = "./Data/Ships/Terran/shield_generator/floor_off.png"
 						Size = [1, 1]
 					}
 				]
@@ -147,15 +147,15 @@ Part : /BASE_PART
 				AmmoLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/armor/roof_66.png"
+						File = "./Data/Ships/Terran/armor/roof_66.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/armor/roof_33.png"
+						File = "./Data/Ships/Terran/armor/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/armor/roof.png"
+						File = "./Data/Ships/Terran/armor/roof.png"
 						Size = [1, 1]
 					}
 				]	
@@ -170,27 +170,27 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries1.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries2.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries2.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries3.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries3.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries4.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries4.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries5.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries5.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/shield_generator/batteries6.png"
+					File = "./Data/Ships/Terran/shield_generator/batteries6.png"
 					Size = [1, 1]
 				}
 			]

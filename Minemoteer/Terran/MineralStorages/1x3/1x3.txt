@@ -1,0 +1,309 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/MS1x3"
+	IconNameKey = "Parts/MS1x3"
+	IDString = bub_1x3mineralstorage
+	EditorGroup = "Minemoteer"
+	DescriptionKey = "Parts/MS1x3D"
+	Cost = 1000
+	AIValue = 10
+	Size = [3, 1]
+	MaxHealth = 4000
+	PenetrationResistance = 1
+	TypeCategories = [ammo]
+	AllowedDoorLocations
+	[
+		[1, -1]
+		[1, 1]
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "icon.png"
+			SampleMode = Linear
+		}
+		Size = [96, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "blueprints.png"
+			Size = [3, 1]
+		}
+	]
+	Components
+	{
+		Mineral1Storage : ~/MineralStorage {}
+		Mineral2Storage : ~/MineralStorage {AmmoType = bub_mineral2}
+		Mineral3Storage : ~/MineralStorage {AmmoType = bub_mineral3}
+		Mineral4Storage : ~/MineralStorage {AmmoType = bub_mineral4}
+		Mineral5Storage : ~/MineralStorage {AmmoType = bub_mineral5}
+		Mineral6Storage : ~/MineralStorage {AmmoType = bub_mineral6}
+
+		Graphics
+		{
+			Type = Graphics
+			Location = [1.5, 0.5]
+			Floor
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [3, 1]
+					}
+					{
+						File = "floor_33.png"
+						Size = [3, 1]
+					}
+					{
+						File = "floor_66.png"
+						Size = [3, 1]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "walls.png"
+						Size = [3, 1]
+					}
+					{
+						File = "walls_33.png"
+						Size = [3, 1]
+					}
+					{
+						File = "walls_66.png"
+						Size = [3, 1]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "roof.png"
+						Size = [3, 1]
+					}
+					{
+						File = "roof_33.png"
+						Size = [3, 1]
+					}
+					{
+						File = "roof_66.png"
+						Size = [3, 1]
+					}
+				]
+			}
+		}
+
+		Mineral1Sprites : ~/MineralSprites 
+		{
+			AmmoStorage = Mineral1Storage
+			AmmoLevels
+			[
+				{
+					File = "M1 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M1 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M1 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M1 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+		Mineral2Sprites: ~/MineralSprites 
+		{
+			AmmoStorage = Mineral2Storage
+			AmmoLevels
+			[
+				{
+					File = "M2 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M2 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M2 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M2 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+		Mineral3Sprites: ~/MineralSprites 
+		{
+			AmmoStorage = Mineral3Storage
+			AmmoLevels
+			[
+				{
+					File = "M3 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M3 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M3 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M3 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+		Mineral4Sprites: ~/MineralSprites 
+		{
+			AmmoStorage = Mineral4Storage
+			AmmoLevels
+			[
+				{
+					File = "M4 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M4 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M4 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M4 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+		Mineral5Sprites: ~/MineralSprites 
+		{
+			AmmoStorage = Mineral5Storage
+			AmmoLevels
+			[
+				{
+					File = "M5 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M5 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M5 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M5 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+		Mineral6Sprites: ~/MineralSprites 
+		{
+			AmmoStorage = Mineral6Storage
+			AmmoLevels
+			[
+				{
+					File = "M6 1.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M6 2.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M6 3.png"
+					Size = [3, 1]
+				}
+				{
+					File = "M6 4.png"
+					Size = [3, 1]
+				}
+			]
+		}
+/*
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			Location = [1, 1]
+
+			FactorHitEffectsWith = AmmoStorage
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = 2000
+					RadiusVsOperational = 4
+					DamageVsStructurePerTile = 1000
+					RadiusVsStructure = 3
+					Delay = .05
+					AllowFriendlyDamage = true
+				}
+				{
+					Type = AreaFires
+					FireChancePerTile = .25
+					FireRadius = 4
+					FireFalloff = 0
+					Delay = .05
+					AllowFriendlyFires = true
+				}
+			]
+		}
+*/
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [1, 1]
+			Layer = "indicators"
+			Indicators
+			[
+			]
+		}
+	}
+}
+
+MineralStorage
+{
+	Type = AmmoConsumer
+	AmmoType = bub_mineral1
+	MaxAmmo = 4
+	StartingAmmo = 0
+	SuppliesAmmo = true
+	LowConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_LowConsume
+	HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_HighConsume
+	EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_EmptyConsume
+	JobUnassignThreshold = 1000000// Effectively unassignable.
+	RequiredForWholePartOperation = false
+
+	ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/AmmoDeliver
+}
+MineralSprites
+{
+	Type = AmmoSprites
+	Location = [1.5, 0.5]
+	AmmoStorage = Mineral1Storage
+	Layer = "doodads_low"
+	HasZeroAmmoSprite = false
+}

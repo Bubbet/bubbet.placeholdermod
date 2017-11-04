@@ -16,7 +16,7 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "../../../../Data/Ships/Terran/ftl_drive/icon.png"
+			File = "./Data/Ships/Terran/ftl_drive/icon.png"
 			SampleMode = Linear
 		}
 		Size = [44, 44]
@@ -24,7 +24,7 @@ Part : /BASE_PART
 	BlueprintSprites
 	[
 		{
-			File = "../../../../Data/Ships/Terran/ftl_drive/blueprints.png"
+			File = "./Data/Ships/Terran/ftl_drive/blueprints.png"
 			Size = [1, 1]
 		}
 	]
@@ -90,15 +90,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/floor.png"
+						File = "./Data/Ships/Terran/ftl_drive/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/floor_33.png"
+						File = "./Data/Ships/Terran/ftl_drive/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/floor_66.png"
+						File = "./Data/Ships/Terran/ftl_drive/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -111,14 +111,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on1.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on2.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on3.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on4.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on5.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on6.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on7.png"
-							"../../../../Data/Ships/Terran/ftl_drive/doodads_on8.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on1.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on2.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on3.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on4.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on5.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on6.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on7.png"
+							"./Data/Ships/Terran/ftl_drive/doodads_on8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -131,7 +131,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/doodads_off.png"
+						File = "./Data/Ships/Terran/ftl_drive/doodads_off.png"
 						Size = [1, 1]
 					}
 				]
@@ -144,14 +144,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/ftl_drive/lights1.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights2.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights3.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights4.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights5.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights6.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights7.png"
-							"../../../../Data/Ships/Terran/ftl_drive/lights8.png"
+							"./Data/Ships/Terran/ftl_drive/lights1.png"
+							"./Data/Ships/Terran/ftl_drive/lights2.png"
+							"./Data/Ships/Terran/ftl_drive/lights3.png"
+							"./Data/Ships/Terran/ftl_drive/lights4.png"
+							"./Data/Ships/Terran/ftl_drive/lights5.png"
+							"./Data/Ships/Terran/ftl_drive/lights6.png"
+							"./Data/Ships/Terran/ftl_drive/lights7.png"
+							"./Data/Ships/Terran/ftl_drive/lights8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -164,15 +164,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/walls.png"
+						File = "./Data/Ships/Terran/ftl_drive/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/walls_33.png"
+						File = "./Data/Ships/Terran/ftl_drive/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/walls_66.png"
+						File = "./Data/Ships/Terran/ftl_drive/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -183,15 +183,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_33.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_66.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -204,14 +204,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on1.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on2.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on3.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on4.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on5.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on6.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on7.png"
-							"../../../../Data/Ships/Terran/ftl_drive/roof_doodads_on8.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on1.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on2.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on3.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on4.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on5.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on6.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on7.png"
+							"./Data/Ships/Terran/ftl_drive/roof_doodads_on8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -224,7 +224,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_doodads_off.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_doodads_off.png"
 						Size = [1, 1]
 						AnimationInterval = 0.015
 					}
@@ -236,15 +236,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_on.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_on_33.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_on_66.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -255,15 +255,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_off.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_off_33.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/ftl_drive/roof_windows_off_66.png"
+						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -279,67 +279,67 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power1.png"
+					File = "./Data/Ships/Terran/ftl_drive/power1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power2.png"
+					File = "./Data/Ships/Terran/ftl_drive/power2.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power3.png"
+					File = "./Data/Ships/Terran/ftl_drive/power3.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power4.png"
+					File = "./Data/Ships/Terran/ftl_drive/power4.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power5.png"
+					File = "./Data/Ships/Terran/ftl_drive/power5.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power6.png"
+					File = "./Data/Ships/Terran/ftl_drive/power6.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power7.png"
+					File = "./Data/Ships/Terran/ftl_drive/power7.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power8.png"
+					File = "./Data/Ships/Terran/ftl_drive/power8.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power9.png"
+					File = "./Data/Ships/Terran/ftl_drive/power9.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power10.png"
+					File = "./Data/Ships/Terran/ftl_drive/power10.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power11.png"
+					File = "./Data/Ships/Terran/ftl_drive/power11.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power12.png"
+					File = "./Data/Ships/Terran/ftl_drive/power12.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power13.png"
+					File = "./Data/Ships/Terran/ftl_drive/power13.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power14.png"
+					File = "./Data/Ships/Terran/ftl_drive/power14.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power15.png"
+					File = "./Data/Ships/Terran/ftl_drive/power15.png"
 					Size = [1, 1]
 				}
 				{
-					File = "../../../../Data/Ships/Terran/ftl_drive/power16.png"
+					File = "./Data/Ships/Terran/ftl_drive/power16.png"
 					Size = [1, 1]
 				}
 			]

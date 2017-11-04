@@ -1,0 +1,24 @@
+Graphics
+		{
+			Type = Graphics
+			Location = [.5, 0.5]
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "./data/ships/terran/corridor/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./data/ships/terran/corridor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./data/ships/terran/corridor/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}	
+		}

@@ -1,0 +1,67 @@
+Rubble1 : <./Data/Ships/base part.txt>
+{
+	NameKey = "Parts/Mineral1"
+	IDString = bub_mineral5
+	EditorGroup = "Misc"
+	Cost = 1000
+	Size = [1, 1]
+	Density = 10
+	MaxHealth = 5000
+	Flammable = false
+	PenetrationResistance = .5
+	TypeCategories = [reactor]
+	CreatePartPerTileWhenDestroyed = ""
+	CreatePartPerTileWhenGrabbed = ""
+	AllowedDoorLocations = []
+	SelectionTypeID = "rubble"
+	EditorIcon
+	{
+		Texture
+		{
+			File = "5.png"
+			SampleMode = Point
+		}
+		Size = [32, 32]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "blueprints.png"
+			Size = [1, 1]
+		}
+	]
+	Components
+	{
+		Rubble
+		{
+			Type = Sprite
+			Location = [0.5, 0.5]
+			RandomUVRotation = true
+			AtlasSprite
+			{
+				File = "5.png"
+				Size = [1, 1]
+			}
+			Layer = "asteroid"
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			Location = [0.5, 0.5]
+
+			HitEffects
+			[
+				{
+   			                 Type = PartAreaAmmoDrain
+   			                 AmmoType = bub_rmineral5
+     			            	 AmountPerPart = -1
+        			         Radius = 30
+          			         Falloff = 0
+      			                 Delay = 0
+         		                 AllowFriendlyDrain = true
+           			}
+			]
+		}
+	}
+}

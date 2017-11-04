@@ -92,15 +92,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor.png"
+						File = "./Data/Ships/Terran/point_defense/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor_33.png"
+						File = "./Data/Ships/Terran/point_defense/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/floor_66.png"
+						File = "./Data/Ships/Terran/point_defense/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -152,7 +152,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/lights.png"
+						File = "./Data/Ships/Terran/point_defense/lights.png"
 						Size = [1, 1]
 					}
 				]
@@ -163,15 +163,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls.png"
+						File = "./Data/Ships/Terran/point_defense/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls_33.png"
+						File = "./Data/Ships/Terran/point_defense/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/walls_66.png"
+						File = "./Data/Ships/Terran/point_defense/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -182,15 +182,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof.png"
+						File = "./Data/Ships/Terran/point_defense/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_33.png"
+						File = "./Data/Ships/Terran/point_defense/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_66.png"
+						File = "./Data/Ships/Terran/point_defense/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -201,15 +201,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_window.png"
+						File = "./Data/Ships/Terran/point_defense/roof_window.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_window_33.png"
+						File = "./Data/Ships/Terran/point_defense/roof_window_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "../../../../Data/Ships/Terran/point_defense/roof_window_66.png"
+						File = "./Data/Ships/Terran/point_defense/roof_window_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -297,7 +297,7 @@ Part : /BASE_PART
 
 			BlueprintArcSprite
 			{
-				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [20, 20, 255, 127]
 			}
@@ -305,7 +305,7 @@ Part : /BASE_PART
 
 			CoverageArcSprite
 			{
-				Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
+				Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [255, 255, 255, 127]
 			}
@@ -321,11 +321,11 @@ Part : /BASE_PART
 					Arc = 360d
 					ArcSprite
 					{
-						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
-						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "./Data/Ships/Terran/shield_generator/shield.shader"
 						_waveTex
 						{
-							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							File = "./Data/Ships/Terran/shield_generator/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = -2
@@ -346,7 +346,7 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_hit.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_hit.wav"
 					Volume = 1
 					Speed = 1
 					IgnoreIntensity = true
@@ -373,11 +373,11 @@ Part : /BASE_PART
 					FadeFromScale = .8
 					ArcSprite
 					{
-						Texture = "../../../../Data/Ships/Terran/shield_generator/shield_energy.png"
-						Shader = "../../../../Data/Ships/Terran/shield_generator/shield.shader"
+						Texture = "./Data/Ships/Terran/shield_generator/shield_energy.png"
+						Shader = "./Data/Ships/Terran/shield_generator/shield.shader"
 						_waveTex
 						{
-							File = "../../../../Data/Ships/Terran/shield_generator/shield_energy_wave.png"
+							File = "./Data/Ships/Terran/shield_generator/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = 1
@@ -397,7 +397,7 @@ Part : /BASE_PART
 
 				: /SOUNDS/AudioExteriorDetail
 				{
-					Sound = "../../../../Data/Ships/Terran/shield_generator/shield_loop.wav"
+					Sound = "./Data/Ships/Terran/shield_generator/shield_loop.wav"
 					Volume = .15
 					Speed = .5
 					MaxConcurrent = 1

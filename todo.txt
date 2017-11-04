@@ -1,0 +1,10 @@
+Multipart shield
+Docking Clamp // Strong low range -impulse
+Multipart weapons
+energy wire 2 way out //done
+energy wire underground spawning a bullet 2 blocks ahead instead of one //done
+ammo pipes chain reacting with minor self aoe
+Encaptureshield
+arcbomb
+energy repulser
+little drones that are linked to the mother ship using the area ammo drain controller and a special ammo type

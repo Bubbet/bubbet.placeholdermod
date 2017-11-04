@@ -67,7 +67,7 @@ Part : /BASE_PART
 	]
 	BlueprintBlendSprites
 	[
-		: <../../../../Data/Ships/Terran/Walls/blueprint walls.txt>
+		: <./Data/Ships/Terran/Walls/blueprint walls.txt>
 		{
 			Location = [.5, .5]
 			BlendsWithCategories = [tube, corridor]
@@ -75,7 +75,7 @@ Part : /BASE_PART
 	]
 	Components
 	{
-		WallsBlend : <../../../../Data/Ships/Terran/Walls/walls.txt>
+		WallsBlend : <./Data/Ships/Terran/Walls/walls.txt>
 		{
 			Type = BlendSprite
 			Location = [.5, .5]

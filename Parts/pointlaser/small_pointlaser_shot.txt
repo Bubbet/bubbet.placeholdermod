@@ -25,7 +25,7 @@ Components
 		{
 			AtlasSprite
 			{
-				Texture = "../../../../Data/Ships/Terran/small_laser/laser.png"
+				Texture = "./Data/Ships/Terran/small_laser/laser.png"
 				Size = [1.75, 1.75]
 			}
 			FrameCount = 8
@@ -88,7 +88,7 @@ Components
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_hit.wav"
+					Sound = "./Data/Ships/Terran/small_laser/small_laser_hit.wav"
 					Volume = .4
 					SpeedVariation = .4
 				}
@@ -120,7 +120,7 @@ Components
 
 				: /SOUNDS/AudioExterior
 				{
-					Sound = "../../../../Data/Ships/Terran/small_laser/small_laser_hit.wav"
+					Sound = "./Data/Ships/Terran/small_laser/small_laser_hit.wav"
 					Volume = .3
 					SpeedVariation = .4
 				}

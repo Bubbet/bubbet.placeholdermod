@@ -1,0 +1,226 @@
+RMineral1
+{
+	ID = bub_rmineral1
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral1.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral1
+{
+	ID = bub_mineral1
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral1.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+
+Processor
+{
+	ID = bub_processor
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "processor.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Metal_Plate
+{
+	ID = bub_metal_plate
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "metal_plate.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+RMineral2
+{
+	ID = bub_rmineral2
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral2.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral2
+{
+	ID = bub_mineral2
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral2.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+
+RMineral3
+{
+	ID = bub_rmineral3
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral3.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral3
+{
+	ID = bub_mineral3
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral3.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+
+RMineral4
+{
+	ID = bub_rmineral4
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral4.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral4
+{
+	ID = bub_mineral4
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral4.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+
+RMineral5
+{
+	ID = bub_rmineral5
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral5.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral5
+{
+	ID = bub_mineral5
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral5.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+
+RMineral6
+{
+	ID = bub_rmineral6
+	MaxCarried = 1
+	CarriesMultiple = 1
+	CarriedSprite
+	{
+		File = "mineral6.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+Mineral6
+{
+	ID = bub_mineral6
+	MaxCarried = 4
+	CarriesMultiple = 4
+	CarriedSprite
+	{
+		File = "mineral6.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+BubEnergy2
+{
+		ID = bub_battery2
+		MaxCarried = 1
+		MaxCarriedSprites = 1
+		CarriedSprite
+		{
+			File = "metal_plate.png"
+			Size = [1, 1]
+		}
+		CarriedSpriteOffset = [0, .25]
+		AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+ChargedMatter
+{
+		ID = bub_charged_matter
+		MaxCarried = 1
+		MaxCarriedSprites = 1
+		CarriedSprite
+		{
+			File = "metal_plate.png"
+			Size = [1, 1]
+		}
+		CarriedSpriteOffset = [0, .25]
+		AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}
+EnergyWire
+{
+	ID = bub_energywire
+	MaxCarried = 1
+	MaxCarriedSprites = 1
+	CarriedSprite
+	{
+		File = "metal_plate.png"
+		Size = [1, 1]
+	}
+	CarriedSpriteOffset = [0, .25]
+	AdditionalCarriedSpriteCumulativeOffset = [0, .15]
+}

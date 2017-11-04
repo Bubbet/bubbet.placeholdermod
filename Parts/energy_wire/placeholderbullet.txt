@@ -1,4 +1,4 @@
-ID = bub_liquid_energy
+ID = bub_liquid_energy1
 Range = 150000
 IdealRange = -1
 Speed = 0.5
@@ -60,7 +60,7 @@ Components
 			[
 				{
 					Type = PartAmmoDrain
-					AmmoType = battery
+					AmmoType = bub_energywire
 					Amount = -1000
 					AllowFriendlyDrain = true
 				}

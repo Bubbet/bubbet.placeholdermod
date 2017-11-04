@@ -1,0 +1,69 @@
+//Wiki Page!
+-For all the information you need to know, like what buildable structures need, what you can trade, how to get sertain items.
+Where you can find trade stations, etc. etc.
+
+//Terran Parts
+
+
+- Mining Laser
+Damage levels
+
+- Mass Storage for all trade items and scrap
+Sprites
+Code
+
+- Construction Sites
+Takes ammo 1 per ammo storage, each with their own ammo sprite, then a multiprereq that has all storages, followed by a weapon tbat shoots the part with a crazy amount of damage to kill the crazy health and really low penetration resistance. Limit construction sites to like 2 once part is killed make normal part in its place.
+
+- Bullet Factory  <- Put together by trading items
+Sprites
+Code
+
+- Trading Station
+Sprites
+Code
+takes x resource from trading part, gives y speical trading item.
+many different trading blocks.
+stations use special ai that doesnt attack back, also has speical -health blocks making it invincible(look at using references to easily do this) -done
+
+- Weapon that if it hits the enemy, does damage to whole ship
+Spriting
+Code
+
+- Drone heat weapon
+has a larger radius aoe hit self, that spreads fires in enemy ship
+when it gets closer, using another smaller radius self shot, it destorys itself
+death effects of a big explosion.
+
+-Weapon that shoots a 10x1 arc shockwave to the enemy
+Spriting
+Code
+
+- Docking part that shoots minirals (In trading station and mothership?)
+Code
+3 tall x 5 wide shoots out middle of 5
+uses code from energywires to move resources out, each with their own toggle.
+a low priority storage for speical trading items each would require their own storage.
+low priority storage for use of mining ship dumping into mother ships cargo
+
+- More Storage types (6x3, 1x1)
+Sprites
+Code
+
+//Astroids
+
+-Some costum astroids maybe adding rare minerals
+-Rare Mineral?Just 1, or not, maybe not neseccary
+
+//Ships
+
+- Designing trading stations
+
+//Broken/Deserted ships
+
+- Control room
+Code, sprite already done
+
+-ALL normal ship parts
+Sprites
+Code

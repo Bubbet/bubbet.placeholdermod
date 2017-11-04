@@ -60,7 +60,7 @@ Components
 			[
 				{
 					Type = PartAmmoDrain
-					AmmoType = battery
+					AmmoType = bub_energywire
 					Amount = -500
 					AllowFriendlyDrain = true
 				}

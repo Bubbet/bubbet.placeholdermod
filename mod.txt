@@ -1,63 +1,44 @@
 Name = "Place Holder Mod"
-Version = 0.0.4
-Author = "Bubbet"
-
-
-// A longer description of what your mod does to the game. This is optional.
-Description = "My big mod, that includes all of my previous content along with the additon of:\n\n"\
-		"- Energy Wires\n\n"\
-		"- Energy Lasers\n\n"\
-		"- Arc Defenses\n\n"\
-		"- A Bed\n\n"\
-		"- Bubble Shields\n\n"\
-		"- A Decoupler\n\n"\
-		"- Smaller Ftl and Storage\n\n"\
-		"- Regenerative Armor\n\n"\
-		"- Matter Repeller\n\n"\
-		"- Teletubes\n\n"\
-		"- Small Reactor\n\n"\
-		"- A fast firing 1x1 laser weapon\n\n"\
-              "<green>- Made by Bubbet with sprite help from IVIemories.</green>\n"\
-		"p.s. try your best not to steal my content."
-
-// Lang Folder
+Version = 0.1.0
+Author = "Bubbet & Namek"
+Description = "\n\n"\
+        "<green></green>\n"\
+CompatibleGameVersions = ["0.12.12"]
 StringsFolder = "Strings"
-Actions
+ShipLibraries
 [
 	{
-		Action = Add
-		AddTo = "<Ammo/ammo.txt>/Ammo"
-		ToAdd
-		{
-				ID = charged_matter
-				MaxCarried = 1
-				MaxCarriedSprites = 1
-				CarriedSprite
-				{
-					File = "Ammo/physical_energy.png"
-					Size = [1, 1]
-				}
-				CarriedSpriteOffset = [0, .25]
-				AdditionalCarriedSpriteCumulativeOffset = [0, .15]
-		}
+	Folder = "Minemoteer/Astroids"
+	NameKey = "Astroids"
 	}
+]
+Actions
+[
+	//Ammo
 	{
-		Action = Add
+		Action = AddMany
 		AddTo = "<Ammo/ammo.txt>/Ammo"
-		ToAdd
-		{
-				ID = bub_battery2
-				MaxCarried = 1
-				MaxCarriedSprites = 1
-				CarriedSprite
-				{
-					File = "Ammo/physical_energy.png"
-					Size = [1, 1]
-				}
-				CarriedSpriteOffset = [0, .25]
-				AdditionalCarriedSpriteCumulativeOffset = [0, .15]
-		}
+		ManyToAdd = [
+			&<Ammo/ammo.txt>/RMineral1
+			&<Ammo/ammo.txt>/Mineral1
+			&<Ammo/ammo.txt>/RMineral2
+			&<Ammo/ammo.txt>/Mineral2
+			&<Ammo/ammo.txt>/RMineral3
+			&<Ammo/ammo.txt>/Mineral3
+			&<Ammo/ammo.txt>/RMineral4
+			&<Ammo/ammo.txt>/Mineral4
+			&<Ammo/ammo.txt>/RMineral5
+			&<Ammo/ammo.txt>/Mineral5
+			&<Ammo/ammo.txt>/RMineral6
+			&<Ammo/ammo.txt>/Mineral6
+			&<Ammo/ammo.txt>/Processor
+			&<Ammo/ammo.txt>/Metal_Plate
+			&<Ammo/ammo.txt>/BubEnergy2
+			&<Ammo/ammo.txt>/ChargedMatter
+			&<Ammo/ammo.txt>/EnergyWire
+		]
 	}
+	//Particles
 	{
 		Action = Overrides
 		OverrideIn = <Effects/particles.txt>
@@ -71,12 +52,10 @@ Actions
 			MatterGunSparks = &<Effects/Particles/matter_laser_sparks.txt>
 		}
 	}	
-	{	Action = AddMany
-
-		// This is the [] list to which we want to add data fields.
+	//Terran Parts
+	{	
+		Action = AddMany
 		AddTo = "<Ships/Terran/terran.txt>/Terran/Parts"
-
-		// These are the data fields we want to add to the [] list.
 		ManyToAdd
 		[
 			&<parts/bubbleshield/s.txt>/Part
@@ -88,6 +67,7 @@ Actions
 			&<parts/energy_laser/energy_laser.txt>/Part
 			&<parts/energy_wire/energy_wire_start.txt>/Part
 			&<parts/energy_wire/energy_wire.txt>/Part
+			&<parts/energy_wire/energy_wire_converter.txt>/Part
 			&<parts/energy_wire/energy_wire_under.txt>/Part
 			&<parts/energy_wire/energy_wire_under2.txt>/Part
 			&<parts/energy_wire/energy_wire_split.txt>/Part
@@ -106,8 +86,23 @@ Actions
 			&<parts/pointlaser/small_pointlaser.txt>/Part
 			&<parts/onexone/armor.txt>/Part
 			&<parts/matterrepeller/matterrepeller.txt>/Part
-			//&<parts/multipartshield/c.txt>/Part
-			//&<parts/multipartshield/p.txt>/Part
+			&<parts/multipartshield/c.txt>/Part
+			&<parts/multipartshield/p.txt>/Part
+			&<parts/healthbeacon/healthbeacon.txt>/Part
+			
+			//Minemoteer Terran Parts
+			&<Minemoteer/Terran/MineralStorages/1x3/1x3.txt>/Part
+			&<Minemoteer/Terran/MiningTools/MiningLaser/MiningLaser.txt>/Part
+			&<Minemoteer/Terran/TradingDock/tradingdock.txt>/Part
+			&<Minemoteer/Terran/Factorys/BulletFactory/bulletfactory_0.txt>/Part
+			
+			//Station Parts
+			&<Minemoteer/Terran/stationparts.txt>/reactor
+			&<Minemoteer/Terran/stationparts.txt>/armor
+			&<Minemoteer/Terran/stationparts.txt>/small_laser
+			&<Minemoteer/Terran/stationparts.txt>/cockpit
+			&<Minemoteer/Terran/stationparts.txt>/corridor
+			&<Minemoteer/Terran/stationparts.txt>/quarters
 		]
 	}
 	// Allowing the arcdefense to target various weapon bullets
@@ -210,5 +205,521 @@ Actions
 				}
 			}
 		}
+	}
+	
+	//Minemoteer Stuff
+	//Terran Stuff
+	//Catagory Limits
+	{
+		Action = Overrides
+		OverrideIn = "<Ships/Terran/terran.txt>/Terran/"
+		Overrides
+		{
+			CategoryLimits
+			[
+				{
+					Category = "mininglaser"
+					//Min = 1
+					Max = 4
+				}
+			]
+		}
+	}
+	
+	//Gui
+	//Editor Groups
+	{
+		Action = Add
+		AddTo = "<Gui/editor groups.txt>"
+		Name = "Minemoteer"
+		ToAdd
+		{
+			NameKey = "EditorGroups/Minemoteer"
+			Icon
+			{
+				Texture = "Minemoteer/Gui/Minemoteer.png"
+			}
+		}
+	}
+	//UI Toggles
+	{
+		Action = AddMany
+		AddTo = "<Gui/game gui.txt>/PartToggles"
+		ManyToAdd = 
+		[
+			{
+				ToggleID = "mineral1"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral1_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/mineral1_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral1_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral1.png"
+						}
+					}
+				]
+			}
+			{
+				ToggleID = "mineral2"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral2_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral2_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral2_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral2.png"
+						}
+					}
+				]
+			}
+			{
+				ToggleID = "mineral3"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral3_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral3_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral3_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral3.png"
+						}
+					}
+				]
+			}
+			{
+				ToggleID = "mineral4"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral4_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral4_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral4_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral4.png"
+						}
+					}
+				]
+			}
+			{
+				ToggleID = "mineral5"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral5_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral5_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral5_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral5.png"
+						}
+					}
+				]
+			}
+			{
+				ToggleID = "mineral6"
+				Style = CycledButton
+				DefaultHotkey = []
+				Choices
+				[
+					// Off
+					{
+						ButtonToolTipKey = "PartToggles/Mineral6_Off"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral6_off.png"
+						}
+					}
+		
+					// On
+					{
+						ButtonToolTipKey = "PartToggles/Mineral6_On"
+						ButtonSprite
+						{
+							Texture = "Ammo/Mineral6.png"
+						}
+					}
+				]
+			}
+		]
+	}
+
+	//Asteroid Stuff
+	//Parts
+	{
+	Action = AddMany;
+	AddTo = "<Ships/Asteroids/asteroids.txt>/Asteroids/Parts"
+	ManyToAdd
+		[
+		//&<Minemoteer/Astroids Parts/NormalAstroid/reactor.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/GoldAstroid/goldastroid.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/GoldAstroid/goldastroid2.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/IceAstroid/iceastroid1.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/FireAstroid/fireastroid1.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/NormalAstroid/hole1.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/NormalAstroid/hole2.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/HalfAstroid/half1.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/HalfAstroid/half2.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/HalfAstroid/half3.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral1.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral2.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral3.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral4.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral5.txt>/Rubble1
+		&<Minemoteer/Astroids Parts/MineralAstroid/mineral6.txt>/Rubble1
+		&<Minemoteer/Black Hole/blackhole.txt>/Rubble1		
+		]
+	}
+	
+	//Bounty Hunter Stuff
+	//Tiers
+	{
+		Action = Replace
+		Replace = "<Bounty Mode/bounty mode.txt>/Tiers"
+
+		With
+		[
+			// 0
+			{
+				MinBountyBaseValue = 0
+				MaxBountyBasevalue = 55000
+			}
+		
+			// 1
+			{
+				MinBountyBaseValue = 55001
+				MaxBountyBasevalue = 75000
+			}
+		
+			// 2
+			{
+				MinBountyBaseValue = 75001
+				MaxBountyBasevalue = 110000
+			}
+		
+			// 3
+			{
+				MinBountyBaseValue = 110001
+				MaxBountyBasevalue = 165000
+			}
+		
+			// 4
+			{
+				MinBountyBaseValue = 165001
+				MaxBountyBasevalue = 250000
+			}
+		
+			// 5
+			{
+				MinBountyBaseValue = 250001
+				MaxBountyBasevalue = 375000
+			}
+		
+			// 6
+			{
+				MinBountyBaseValue = 375001
+				MaxBountyBasevalue = 550000
+			}
+		
+			// 7
+			{
+				MinBountyBaseValue = 550001
+				MaxBountyBasevalue = 825000
+			}
+		
+			// 8
+			{
+				MinBountyBaseValue = 825001
+				MaxBountyBasevalue = 1200000
+			}
+		
+			// 9
+			{
+				MinBountyBaseValue = 1200001
+				MaxBountyBasevalue = 2500000
+			}
+		
+			//10 Asteroids
+			{
+			MinBountyBaseValue = 123456700
+			MaxBountyBasevalue = 123456800
+			}
+			
+			//11 Stations
+			{
+			MinBountyBaseValue = 123456900
+			MaxBountyBasevalue = 123456900
+			}
+		]
+	}
+	
+	//Bounties
+	{
+		Action = AddMany;
+		AddTo = "<Bounty Mode/bounty mode.txt>/Bounties"
+		ManyToAdd
+		[
+			/*
+			{
+				BaseValue = 123456789
+				DesignedShip = "Astroids/Astroid.ship.png"
+			}
+			*/
+			{
+				BaseValue = 123456789
+				RandomShip = &<Minemoteer/Astroids/Ore_Asteroid_Med.generator.txt>
+			}
+			{
+				BaseValue = 123456900
+				DesignedShip = "Terran/Stations/Station1.ship.png"
+			}
+		]
+	}
+	
+	//Easy
+	
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/0/ThreatLevels/0"
+    	Overrides
+    	{
+                TiersToSpawn = [0, 0, 1, 1, 10, 10]
+                TiersToSpawnIfStartingNode = [11, 11, 11]
+                RewardMoneyAsFractionOfShipValue = .5
+                RewardFuelAsFractionOfShipMass = .5
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/0/ThreatLevels/1"
+    	Overrides
+    	{
+                TiersToSpawn = [1, 2, 2, 3, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .5
+                RewardFuelAsFractionOfShipMass = .5
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/0/ThreatLevels/2"
+    	Overrides
+    	{
+                TiersToSpawn = [3, 4, 4, 5, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .5
+                RewardFuelAsFractionOfShipMass = .5
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/0/ThreatLevels/3"
+    	Overrides
+    	{
+                TiersToSpawn = [5, 6, 7, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .5
+                RewardFuelAsFractionOfShipMass = .5
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/0/ThreatLevels/4"
+    	Overrides
+    	{
+                TiersToSpawn = [8, 9, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .5
+                RewardFuelAsFractionOfShipMass = .5
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+
+	//Medium
+	
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/1/ThreatLevels/0"
+    	Overrides
+    	{
+                TiersToSpawn = [0, 0, 1, 1, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                TiersToSpawnIfStartingNode = [0, 0, 0]
+                RewardMoneyAsFractionOfShipValue = .25
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrain"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/1/ThreatLevels/1"
+    	Overrides
+    	{
+                TiersToSpawn = [1, 2, 2, 3, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .25
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/1/ThreatLevels/2"
+    	Overrides
+    	{
+                TiersToSpawn = [3, 4, 4, 5, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .25
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .3
+		MaxShipsInFleet = 2
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/1/ThreatLevels/3"
+    	Overrides
+    	{
+                TiersToSpawn = [5, 6, 7, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .25
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .3
+		MaxShipsInFleet = 3
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/1/ThreatLevels/4"
+    	Overrides
+    	{
+                TiersToSpawn = [8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .25
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .3
+		MaxShipsInFleet = 4
+    	}
+	}
+	
+	//Hard
+	
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/2/ThreatLevels/0"
+    	Overrides
+    	{
+                TiersToSpawn = [1, 1, 1, 2, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                TiersToSpawnIfStartingNode = [0, 0, 0]
+                RewardMoneyAsFractionOfShipValue = .125
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/2/ThreatLevels/1"
+    	Overrides
+    	{
+                TiersToSpawn = [2, 3, 3, 4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .125
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .3
+		MaxShipsInFleet = 2
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/2/ThreatLevels/2"
+    	Overrides
+    	{
+                TiersToSpawn = [4, 5, 5, 6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .125
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .5
+		MaxShipsInFleet = 2
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/2/ThreatLevels/3"
+    	Overrides
+    	{
+                TiersToSpawn = [6, 7, 8, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .125
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .5
+		MaxShipsInFleet = 3
+    	}
+	}
+	{
+    	Action = Overrides
+		OverrideIn = "<Bounty Mode/bounty mode.txt>/DifficultyLevels/2/ThreatLevels/4"
+    	Overrides
+    	{
+                TiersToSpawn = [9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+                RewardMoneyAsFractionOfShipValue = .125
+                RewardFuelAsFractionOfShipMass = .25
+                BountyShipAI = "BountyBrainHard"
+		FleetChance = .5
+		MaxShipsInFleet = 4
+    	}
 	}
 ]

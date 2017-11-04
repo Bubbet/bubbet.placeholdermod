@@ -210,7 +210,7 @@ Part : /BASE_PART
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet3.txt>
+				Bullet = &<placeholderbullet2.txt>
 			}
 
 		}

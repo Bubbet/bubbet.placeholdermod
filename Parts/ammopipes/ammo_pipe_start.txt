@@ -101,15 +101,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/ships/terran/corridor/floor.png"
+						File = "./data/ships/terran/corridor/floor.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./Data/ships/terran/corridor/floor_33.png"
+						File = "./data/ships/terran/corridor/floor_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./Data/ships/terran/corridor/floor_66.png"
+						File = "./data/ships/terran/corridor/floor_66.png"
 						Size = [1, 2]
 					}
 				]
@@ -156,16 +156,16 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/ships/terran/small_laser/walls.png"
+						File = "./data/ships/terran/small_laser/walls.png"
 						Size = [1, 2.05]
 					}
 					{
-						File = "./Data/ships/terran/small_laser/walls_33.png"
+						File = "./data/ships/terran/small_laser/walls_33.png"
 						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
 					{
-						File = "./Data/ships/terran/small_laser/walls_66.png"
+						File = "./data/ships/terran/small_laser/walls_66.png"
 						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
@@ -177,15 +177,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/ships/terran/corridor/roof.png"
+						File = "./data/ships/terran/corridor/roof.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./Data/ships/terran/corridor/roof_33.png"
+						File = "./data/ships/terran/corridor/roof_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./Data/ships/terran/corridor/roof_66.png"
+						File = "./data/ships/terran/corridor/roof_66.png"
 						Size = [1, 2]
 					}
 				]

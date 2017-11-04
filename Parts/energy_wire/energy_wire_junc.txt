@@ -1,21 +1,10 @@
-Part : /BASE_PART
+Part : &<t/p.txt>/Part
 {
 	NameKey = "Parts/EnergyWireJunc"
 	IconNameKey = "Parts/EnergyWireJunc"
 	IDString = bub_energy_wire_junc
-	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireJuncDesc"
 	Cost = 750
-	TypeCategories = [power, corridor]
-	Size = [1, 1]
-	SelectionPriority = 1
-	SelectionTypeByRotation = true
-	MaxHealth = 1000
-	CrewSpeedFactor = 0.75
-	PenetrationResistance = 100
-	ProhibitAbove = 0
-	IsWalled = false
-	GeneratorRequiresDoor = false
 	EditorIcon
 	{
 		Texture
@@ -29,52 +18,10 @@ Part : /BASE_PART
 	[
 		{
 			File = "graphics/blueprints2.png"
-			Size = [1, 1]
-			Offset = [0, 0]
 		}
 	]
-	BlueprintBlendSprites
-	[
-		: <./Data/Ships/Terran/Walls/blueprint walls.txt>
-		{
-			Location = [.5, .5]
-			BlendsWithCategories = [corridor]
-		}
-	]
-	Components
+	Components : &<t/c.txt>/Components
 	{
-		WallsBlend : <./Data/Ships/Terran/Walls/walls.txt>
-		{
-			Type = BlendSprite
-			Location = [.5, .5]
-			BlendsWithCategories = [corridor]
-		}
-		
-		PowerToggle
-		{
-			Type = UIToggle
-			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
-			ToggledOnChoices = [1]
-		}
-
-//		FireModeToggle
-//		{
-//			Type = UIToggle
-//			ToggleID = "fire_mode"
-//			DefaultToggleValue = 1
-//			ToggledOnChoices = [1]
-//		}
-
-		BatteryStorage
-		{
-			Type = AmmoStorage
-			AmmoType = battery
-			MaxAmmo = 4000
-			RequiredForWholePartOperation = true
-		}
-
 		AmmoSprites
 		{
 			Type = AmmoSprites
@@ -104,13 +51,36 @@ Part : /BASE_PART
 					File = "graphics/tubedistributor5.png"
 					Size = [1, 1]
 				}
+				{
+					File = "graphics/tubedistributor6.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor7.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor8.png"
+					Size = [1, 1]
+				}
+				{
+					File = "graphics/tubedistributor9.png"
+					Size = [1, 1]
+				}
+				{
+					AnimationFiles
+					[
+						"graphics/tubedistributor10.png"
+						"graphics/tubedistributor11.png"
+					]
+					Size = [1, 1]
+					AnimationInterval = 0.075
+				}
 			]
 		}
 		
-		Graphics
+		Graphics : &<t/g.txt>/Graphics
 		{
-			Type = Graphics
-			Location = [.5, 0.5]
 			Floor
 			{
 				Layer = "floors"
@@ -150,134 +120,43 @@ Part : /BASE_PART
 				]
 			}
 			NonOperationalDoodad = &OperationalDoodad
-			Roof
-			{
-				Layer = "roofs"
-				DamageLevels
-				[
-					{
-						File = "./Data/ships/terran/corridor/roof.png"
-						Size = [1, 1]
-					}
-					{
-						File = "./Data/ships/terran/corridor/roof_33.png"
-						Size = [1, 1]
-					}
-					{
-						File = "./Data/ships/terran/corridor/roof_66.png"
-						Size = [1, 1]
-					}
-				]
-			}
 		}
 
-		Turret1
+		Turret1 : &<t/t.txt>/Turret
 		{
-			Type = TurretWeapon
 			Location = [1.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -0d // Relative to unrotated part.
-			FireInterval = 0.1
-			FireDelay = .05
-			FiringArc = 0d
-			RotateSpeed = 0d
-			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
 			AmmoUsed = 333
-			TargetSearchTriesPerFrame = 1
-			AIFirepowerRating = 600
-			AllowFireWithBlockedLOS = true
-			CanBeGivenExplicitTarget = false
 
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet2.txt>
+				Bullet = &<placeholderbullet3.txt>
 			}
 		}
-		Turret2
+		Turret2 : &<t/t.txt>/Turret
 		{
-			Type = TurretWeapon
 			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
-			FireInterval = 0.1
-			FireDelay = .05
-			FiringArc = 0d
-			RotateSpeed = 0d
-			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
 			AmmoUsed = 333
-			TargetSearchTriesPerFrame = 1
-			AIFirepowerRating = 600
-			AllowFireWithBlockedLOS = true
-			CanBeGivenExplicitTarget = false
-
 
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet2.txt>
+				Bullet = &<placeholderbullet3.txt>
 			}
 		}
-		Turret3
+		Turret3 : &<t/t.txt>/Turret
 		{
-			Type = TurretWeapon
 			Location = [-0.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -180d // Relative to unrotated part.
-			FireInterval = 0.1
-			FireDelay = .05
-			FiringArc = 0d
-			RotateSpeed = 0d
-			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
 			AmmoUsed = 333
-			TargetSearchTriesPerFrame = 1
-			AIFirepowerRating = 600
-			AllowFireWithBlockedLOS = true
-			CanBeGivenExplicitTarget = false
-
 
 			Emitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet2.txt>
+				Bullet = &<placeholderbullet3.txt>
 			}
-		}
-
-		OperationEffects
-		{
-			Type = OperationEffects
-			Location = [.5, 0.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
-		}
-
-		DestroyedEffects
-		{
-			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
-			Location = [.5, 0.5]
-		}
-
-		Indicators
-		{
-			Type = IndicatorSprites
-			Location = [.5, 0.5]
-			Layer = "indicators"
-			Indicators
-			[
-				// Turned off.
-				{
-					Source = PowerToggle
-					AtlasSprite
-					{
-						File = &/INDICATORS/PowerOff
-						Size = [1, 1]
-					}
-				}
-			]
 		}
 	}
 }

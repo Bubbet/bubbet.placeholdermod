@@ -1,0 +1,103 @@
+ID = bub_healshot
+Range = 150000
+IdealRange = -1
+Speed = 0.5
+
+Components
+{
+	Physics
+	{
+		Type = CirclePhysics
+		Radius = 0.01
+		Density = 0.1
+	}
+
+	Death
+	{
+		Type = DeathByLifetime
+		Lifetime = 0.5
+		// Lifetime will be auto-calculated based on range and speed.
+	}
+
+	Sprite
+	{
+		Type = AnimatedSprite
+		Animation
+		{
+			AtlasSprite
+			{
+				Texture = "../g/placeholderbullet.png"// Just re-use the medium cannon's bullet.
+				Size = [3, 3]
+			}
+			FrameCount = 16
+			FrameSize = [128, 128]
+			FramesPerRow = 4
+			FramesPerSecond = 60
+		}
+	}
+
+
+	MediaEffects
+	{
+		Type = MediaEffects
+		InheritVelocityFrom = Physics
+		MediaEffects
+		[
+		]
+	}
+
+	Hit
+	{
+		Type = PenetratingHit
+		PhysicsComponent = Physics
+
+		HitShield
+		{
+		}
+		HitOperational
+		{
+			HitEffects
+			[
+				{
+					Type = PartAreaDamage
+					DamageVsOperationalPerTile = -16000
+					RadiusVsOperational = 40
+					DamageVsStructurePerTile = -12000
+					RadiusVsStructure = 40
+					AllowFriendlyDamage = True
+				}
+				{
+                    Type = PartAreaAmmoDrain
+                    AmmoType = battery
+                    AmountPerPart = -9000
+                    Radius = 100
+                    Falloff = 1
+                    Delay = 0
+                    AllowFriendlyDrain = true
+                }
+			]
+			MediaEffects
+			[
+			]
+		}
+		HitStructural
+		{
+		}
+		PenetratingOperational
+		{
+			// No effect.
+		}
+		PenetratingStructural
+		{
+			// No effect.
+		}
+		FinishedPenetratingOperational
+		{
+			// No effect.
+		}
+		FinishedPenetratingStructural
+		{
+			// No effect.
+		}
+	}
+}

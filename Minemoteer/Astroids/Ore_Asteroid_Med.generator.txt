@@ -57,13 +57,20 @@ Stages
 			rubble1
 			rubble2
 			bub_mineral1
+			bub_mineral1
+			bub_mineral2
 			bub_mineral2
 			bub_mineral3
+			bub_mineral3
+			bub_mineral4
 			bub_mineral4
 			bub_mineral5
+			bub_mineral5
+			bub_mineral6
+			bub_mineral6
 			bub_mineral6
 		]
 		MinParts = 10
-		MaxParts = 30
+		MaxParts = 50
 	}
 ]

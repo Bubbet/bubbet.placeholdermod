@@ -185,7 +185,7 @@ Part : /BASE_PART
 			{
 				Type = Beam
 				Range = 10
-				IdealRange = 7
+				IdealRange = -1
 				Duration = .5
 				HitInterval = .1
 

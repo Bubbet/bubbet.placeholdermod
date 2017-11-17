@@ -8,7 +8,7 @@ Part : /BASE_PART
 	Cost = 300
 	Size = [5, 3]
 	SelectionTypeID = "Minemoteer"
-	MaxHealth = 4000
+	MaxHealth = 4000000
 	AreaDamageBlockFactor = .25
 	Flammable = false
 	PenetrationResistance = 5

@@ -41,6 +41,7 @@ Part : /BASE_PART
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_EmptyConsume
 			JobUnassignThreshold = 1000000// Effectively unassignable.
+			RequiredForWholePartOperation = true
 		}
 
 		AmmoStorage2
@@ -52,6 +53,7 @@ Part : /BASE_PART
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_EmptyConsume
 			JobUnassignThreshold = 1000000// Effectively unassignable.
+			RequiredForWholePartOperation = true
 		}
 		AmmoStorage3
 		{
@@ -62,6 +64,7 @@ Part : /BASE_PART
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_EmptyConsume
 			JobUnassignThreshold = 1000000// Effectively unassignable.
+			RequiredForWholePartOperation = true
 		}
 		AmmoStorage4
 		{
@@ -72,6 +75,7 @@ Part : /BASE_PART
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoStorage_EmptyConsume
 			JobUnassignThreshold = 1000000// Effectively unassignable.
+			RequiredForWholePartOperation = true
 		}
 		
 		BuiltPrereq
@@ -180,25 +184,25 @@ Part : /BASE_PART
 			]
 		}
 
-		Turret
+		TurretBase
 		{
+			//Storage = mineral1
 			Type = TurretWeapon
 			Location = [1, 1] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
 			FireInterval = 0.1
-			FireDelay = .05
+			FireDelay = 0.05
 			FiringArc = 0d
-			RotateSpeed = 10d
+			RotateSpeed = 0d
 			FireThresholdAngle = 360d
 			SpawnLoc = [0, 0]
 			AmmoStorage = AmmoStorage
 			AmmoUsed = 1
-			TargetSearchTriesPerFrame = 1
+			TargetSearchTriesPerFrame = 1000
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
-			AutoFire = True
-
+			AutoFire = true
 			Emitter
 			{
 				Type = Bullet

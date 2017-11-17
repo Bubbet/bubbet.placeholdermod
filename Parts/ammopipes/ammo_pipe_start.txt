@@ -87,8 +87,6 @@ Part : /BASE_PART
 			ResupplyThreshold = 1
 			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
-
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
 		}
 
 		Graphics

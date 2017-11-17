@@ -84,8 +84,6 @@ Part : /BASE_PART
 			ResupplyThreshold = 1
 			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
-
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
 		}
 
 		Graphics
@@ -241,14 +239,6 @@ Part : /BASE_PART
 					Size = [3, 3]
 				}
 			]
-		}
-
-		OperationEffects
-		{
-			Type = OperationEffects
-			Location = [1.5, 1.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
 		}
 
 		DestroyedEffects

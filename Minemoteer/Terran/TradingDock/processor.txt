@@ -1,0 +1,460 @@
+Part : /BASE_PART
+{
+	NameKey = "Parts/TradeProcessor"
+	IconNameKey = "Parts/TradeProcessor"
+	IDString = bub_trade_processor
+	EditorGroup = "Minemoteer"
+	DescriptionKey = "Parts/TradeProcessorDesc"
+	Cost = 300
+	Size = [5, 3]
+	SelectionTypeID = "Minemoteer"
+	MaxHealth = 4000
+	AreaDamageBlockFactor = .25
+	Flammable = false
+	PenetrationResistance = 5
+	CreatePartPerTileWhenGrabbed = ""
+	//CrewSpeedFactor = 0
+	Density = 2
+	IsRotateable = true
+	IsWalled = true
+	//AllowedDoorLocations = []
+	GeneratorRequiresDoor = false
+	CustomCollider
+	[
+		[0,4]
+		[0,1]
+		[1,0]
+		[4,0]
+		[5,1]
+		[5,4]
+	]
+	ExternalWallsByCell
+	[
+		{
+			Key = [4, 0]
+			Value = [BottomRight, TopLeft]
+		}
+		{
+			Key = [0, 0]
+			Value = [BottomLeft, TopRight]
+		}
+	]
+	EditorIcon
+	{
+		Texture
+		{
+			File = "icon.png"
+			SampleMode = Linear
+		}
+		Size = [96, 64]
+	}
+	BlueprintSprites
+	[
+		{
+			File = "blueprints.png"
+			Size = [5, 4]
+			Offset = [0, -0.5]
+		}
+	]
+	Components
+	{
+		Graphics
+		{
+			Type = Graphics
+			Location = [2.5, 1]
+			Floor // This is needed so that armor shows up in ship ghosts.
+			{
+				Layer = "floors"
+				DamageLevels
+				[
+					{
+						File = "floor.png"
+						Size = [5, 4]
+					}
+					{
+						File = "floor_33.png"
+						Size = [5, 4]
+					}
+					{
+						File = "floor_66.png"
+						Size = [5, 4]
+					}
+				]
+			}
+			Walls
+			{
+				Layer = "walls"
+				DamageLevels
+				[
+					{
+						File = "walls.png"
+						Size = [5, 4]
+					}
+					{
+						File = "walls_33.png"
+						Size = [5, 4]
+					}
+					{
+						File = "walls_66.png"
+						Size = [5, 4]
+					}
+				]
+			}
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "roof.png"
+						Size = [5, 4]
+					}
+					{
+						File = "roof_33.png"
+						Size = [5, 4]
+					}
+					{
+						File = "roof_66.png"
+						Size = [5, 4]
+					}
+				]
+			}
+			OperationalRoofDoodad
+			{
+				Layer = "roof_doodads"
+				DamageLevels
+				[
+					
+					{
+						File = "Processor/roof_doodads.png"
+						Size = [5, 4]
+					}
+					
+				]
+			}
+			NonOperationalRoofDoodad = &OperationalRoofDoodad
+		}
+		
+		//Tradingstuff
+		
+		ProcessorStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = bub_processor
+			MaxAmmo = 5
+			StartingAmmo = 5
+			SuppliesAmmo = false
+		}
+		ActiveProcessorStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = bub_processor
+			MaxAmmo = 5
+			StartingAmmo = 0
+			SuppliesAmmo = false
+		}
+		Mineral1Storage
+		{
+			Type = AmmoConsumer
+			AmmoType = bub_mineral1
+			MaxAmmo = 2
+			StartingAmmo = 0
+			SuppliesAmmo = false
+			PrerequisiteMetAmmo = 2
+			//PrerequisiteUnmetAmmo = 0
+			RequiredForWholePartOperation = true
+		}
+		Mineral5Storage
+		{
+			Type = AmmoConsumer
+			AmmoType = bub_mineral5
+			MaxAmmo = 1
+			StartingAmmo = 0
+			SuppliesAmmo = false
+			RequiredForWholePartOperation = true
+		}
+	
+		//TradePrereq
+		//{
+		//	Type = MultiOperationalPrerequisite
+		//	Prerequisites = [Mineral1Storage, Mineral5Storage]
+		//	Mode = All
+		//}
+
+		Empty1
+		{
+			Type = AmmoConverter
+			Location = [1, 1]
+			FromStorage = Mineral1Storage
+			FromQuantity = 2
+			Interval = 0.12
+			InitialDelay = 0.2
+			ConvertAmmoMediaEffects[]
+		}
+		Empty5
+		{
+			Type = AmmoConverter
+			Location = [1, 1]
+			FromStorage = Mineral5Storage
+			FromQuantity = 1
+			Interval = 0.12
+			InitialDelay = 0.2
+			ConvertAmmoMediaEffects[]
+		}
+		
+		Mineral1AmmoSprites
+		{
+			Type = AmmoSprites
+			Location = [2.5, 1]
+			Layer = "doodads_low"
+			HasZeroAmmoSprite = true
+			AmmoStorage = Mineral1Storage
+			AmmoLevels
+			[
+				{
+					File = "Processor/Ammo1 0.png"
+					Size = [5, 4]
+				}
+				{
+					File = "Processor/Ammo1 1.png"
+					Size = [5, 4]
+				}
+				{
+					File = "Processor/Ammo1 2.png"
+					Size = [5, 4]
+				}
+			]
+		}
+		Mineral5AmmoSprites
+		{
+			Type = AmmoSprites
+			Location = [2.5, 1]
+			Layer = "doodads_low"
+			HasZeroAmmoSprite = true
+			AmmoStorage = Mineral5Storage
+			AmmoLevels
+			[
+				{
+					File = "Processor/Ammo2 0.png"
+					Size = [5, 4]
+				}
+				{
+					File = "Processor/Ammo2 1.png"
+					Size = [5, 4]
+				}
+			]
+		}
+		FuckoffAmmoSprites
+		{
+			Type = AmmoSprites
+			Location = [4.75, 1]
+			Layer = "doodads_low"
+			HasZeroAmmoSprite = true
+			AmmoStorage = ProcessorStorage
+			AmmoLevels
+			[
+				{
+					File = "Processor/Ammo2 0.png"
+					Size = [5, 4]
+				}
+				{
+					File = "Processor/Ammo2 1.png"
+					Size = [5, 4]
+				}
+			]
+		}
+		
+		TurretBase
+		{
+			//Storage = mineral1
+			Type = TurretWeapon
+			Location = [2.5, -0.5] // Relative to upper-left corner of unrotated part.
+			Rotation = -90d // Relative to unrotated part.
+			FireInterval = 0.1
+			FireDelay = 0.05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			SpawnLoc = [0, 0]
+			AmmoStorage = ProcessorStorage
+			AmmoUsed = 1
+			TargetSearchTriesPerFrame = 1000
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
+			AutoFire = true
+			Emitter
+			{
+				Type = Bullet
+				Bullet
+				{
+					ID = bub_processor
+					Range = 150000
+					IdealRange = -1
+					Speed = 0.5
+					Components
+					{
+						Physics
+						{
+							Type = CirclePhysics
+							Radius = 0.1
+							Density = 0.1
+						}
+						
+						Death
+						{
+							Type = DeathByLifetime
+							Lifetime = 0.5
+							// Lifetime will be auto-calculated based on range and speed.
+						}
+						
+						Sprite
+						{
+							Type = AnimatedSprite
+							Animation
+							{
+								AtlasSprite
+								{
+									Texture = "blank.png"// Just re-use the medium cannon's bullet.
+									Size = [3, 3]
+								}
+								FrameCount = 16
+								FrameSize = [128, 128]
+								FramesPerRow = 4
+								FramesPerSecond = 60
+							}
+						}
+						
+						
+						MediaEffects
+						{
+							Type = MediaEffects
+							InheritVelocityFrom = Physics
+							MediaEffects
+							[
+							]
+						}
+						
+						Hit
+						{
+							Type = PenetratingHit
+							PhysicsComponent = Physics
+							
+							HitShield
+							{
+							}
+							HitStructural
+							{
+							}
+							PenetratingOperational
+							{
+								// No effect.
+							}
+							PenetratingStructural
+							{
+								// No effect.
+							}
+							FinishedPenetratingOperational
+							{
+								// No effect.
+							}
+							FinishedPenetratingStructural
+							{
+								// No effect.
+							}
+							HitOperational
+							{
+								HitEffects
+								[
+									{
+										Type = PartAmmoDrain
+										AmmoType = bub_processor
+										Amount = -1
+										AllowFriendlyDrain = true
+									}
+								]
+								MediaEffects
+								[
+								]
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/EFFECT_PREFABS/SmallPartDestroyedDry
+			Location = [.5, .5]
+		}
+	}
+}
+
+MineralStorage
+{
+	Type = AmmoConsumer
+	AmmoType = bub_mineral1
+	MaxAmmo = 8
+	StartingAmmo = 0
+	SuppliesAmmo = false
+	LowConsumeJobPriority = 999
+	HighConsumeJobPriority = 999
+	EmptyConsumeJobPriority = 999
+	JobUnassignThreshold = 1000000// Effectively unassignable.
+	RequiredForWholePartOperation = false
+
+	ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/AmmoDeliver
+}
+
+MineralSprites
+{
+	Type = AmmoSprites
+	Location = [1.3515625, 2.0546875]
+	Layer = "doodads_low"
+	HasZeroAmmoSprite = false
+	AmmoStorage = Mineral1Storage
+}
+
+ToggleBase
+{
+	Type = UIToggle
+	ToggleID = "on_off"
+	DefaultToggleValue = 0
+	RequiredForWholePartOperation = false
+	ToggledOnChoices = [1]
+}
+
+TurretBase
+{
+	//Storage = mineral1
+	Type = TurretWeapon
+	Location = [2.5, -0.5] // Relative to upper-left corner of unrotated part.
+	Rotation = -90d // Relative to unrotated part.
+	FireInterval = 0.5
+	FireDelay = .01
+	FiringArc = 0d
+	RotateSpeed = 0d
+	FireThresholdAngle = 360d
+	SpawnLoc = [0, 0]
+	AmmoStorage = Mineral1Storage1
+	AmmoUsed = 1
+	TargetSearchTriesPerFrame = 1
+	AIFirepowerRating = 600
+	AllowFireWithBlockedLOS = true
+	CanBeGivenExplicitTarget = false
+}
+
+ConvBase
+{
+	Type = AmmoConverter
+	Location = [1, 1]
+	FromStorage = BatteryStorage
+	ToStorage = AmmoStorage
+	FromQuantity = 1
+	ToQuantity = 1
+	Interval = .5
+
+	ConvertAmmoMediaEffects[]
+}

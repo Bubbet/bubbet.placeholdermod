@@ -1,10 +1,10 @@
 Part : /BASE_PART
 {
-	NameKey = "Parts/Armor"
-	IconNameKey = "Parts/ArmorIcon"
-	IDString = bub_armor3
+	NameKey = "Parts/Trade"
+	IconNameKey = "Parts/Trade"
+	IDString = bub_trade
 	EditorGroup = "Minemoteer"
-	DescriptionKey = "Parts/ArmorDesc"
+	DescriptionKey = "Parts/TradeDesc"
 	Cost = 300
 	Size = [5, 3]
 	SelectionTypeID = "armor"
@@ -72,12 +72,12 @@ Part : /BASE_PART
 						Size = [5, 4]
 					}
 					{
-						File = "armor_33.png"
-						Size = [1, 1]
+						File = "floor_33.png"
+						Size = [5, 4]
 					}
 					{
-						File = "armor_66.png"
-						Size = [1, 1]
+						File = "floor_66.png"
+						Size = [5, 4]
 					}
 				]
 			}
@@ -91,12 +91,12 @@ Part : /BASE_PART
 						Size = [5, 4]
 					}
 					{
-						File = "armor_33.png"
-						Size = [1, 1]
+						File = "walls_33.png"
+						Size = [5, 4]
 					}
 					{
-						File = "armor_66.png"
-						Size = [1, 1]
+						File = "walls_66.png"
+						Size = [5, 4]
 					}
 				]
 			}
@@ -111,15 +111,26 @@ Part : /BASE_PART
 					}
 					{
 						File = "roof_33.png"
-						Size = [1, 1]
+						Size = [5, 4]
 					}
 					{
 						File = "roof_66.png"
-						Size = [1, 1]
+						Size = [5, 4]
 					}
 				]
 			}
 		}
+		
+		//Traded Resources
+		ProcessorStorage
+		{
+			Type = AmmoConsumer
+			AmmoType = bub_processor
+			MaxAmmo = 5
+			StartingAmmo = 0
+			SuppliesAmmo = true
+		}
+
 		//Mineral1
 		Mineral1Storage1 : ~/MineralStorage 
 		{
@@ -1218,7 +1229,7 @@ TurretBase
 	Type = TurretWeapon
 	Location = [2.5, -0.5] // Relative to upper-left corner of unrotated part.
 	Rotation = -90d // Relative to unrotated part.
-	FireInterval = 0.5
+	FireInterval = 0.75
 	FireDelay = .01
 	FiringArc = 0d
 	RotateSpeed = 0d

@@ -95,6 +95,7 @@ Actions
 			&<Minemoteer/Terran/MiningTools/MiningLaser/MiningLaser.txt>/Part
 			&<Minemoteer/Terran/TradingDock/tradingdock.txt>/Part
 			&<Minemoteer/Terran/Factorys/BulletFactory/bulletfactory_0.txt>/Part
+			&<Minemoteer/Terran/Factorys/MetalPlate/metalplatefactory.txt>/Part
 			
 			//Station Parts
 			&<Minemoteer/Terran/stationparts.txt>/reactor
@@ -103,6 +104,8 @@ Actions
 			&<Minemoteer/Terran/stationparts.txt>/cockpit
 			&<Minemoteer/Terran/stationparts.txt>/corridor
 			&<Minemoteer/Terran/stationparts.txt>/quarters
+			
+			&<Minemoteer/Terran/TradingDock/processor.txt>/Part
 		]
 	}
 	// Allowing the arcdefense to target various weapon bullets
@@ -518,7 +521,7 @@ Actions
 			/*
 			{
 				BaseValue = 123456789
-				DesignedShip = "Astroids/Astroid.ship.png"
+				DesignedShip = "Minemoteer/Astroids/Astroid.ship.png"
 			}
 			*/
 			{
@@ -527,7 +530,7 @@ Actions
 			}
 			{
 				BaseValue = 123456900
-				DesignedShip = "Terran/Stations/Station1.ship.png"
+				DesignedShip = "Minemoteer/Terran/Stations/Station1.ship.png"
 			}
 		]
 	}

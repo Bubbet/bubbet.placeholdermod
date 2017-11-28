@@ -71,7 +71,7 @@ Part : /BASE_PART
 		{
 			Type = AmmoConsumer
 			AmmoType = battery
-			MaxAmmo = 2000
+			MaxAmmo = 1000
 			LowConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_LowConsume
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_EmptyConsume
@@ -87,7 +87,7 @@ Part : /BASE_PART
 		{
 			Type = AmmoConsumer
 			AmmoType = bub_mineral6
-			MaxAmmo = 4
+			MaxAmmo = 10
 			LowConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_LowConsume
 			HighConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_HighConsume
 			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/AmmoFactory_EmptyConsume
@@ -105,9 +105,9 @@ Part : /BASE_PART
 			Location = [1, 1]
 			FromStorage = RawMetalStorage
 			ToStorage = AmmoStorage
-			FromQuantity = 1
+			FromQuantity = 3
 			ToQuantity = 1
-			Interval = .5
+			Interval = 2
 
 			ConvertAmmoMediaEffects
 			[
@@ -118,7 +118,7 @@ Part : /BASE_PART
 		{
 			Type = AmmoConverter
 			FromStorage = BatteryStorage
-			FromQuantity = 100
+			FromQuantity = 50
 			Interval = .5
 		}
 
@@ -156,6 +156,36 @@ Part : /BASE_PART
 							"doodads on1.png"
 							"doodads on2.png"
 							"doodads on3.png"
+							"doodads_on4.png"
+							"doodads_on5.png"
+							"doodads_on6.png"
+							"doodads_on7.png"
+							"doodads_on8.png"
+							"doodads_on9.png"
+							"doodads_on10.png"
+							"doodads_on11.png"
+							"doodads_on12.png"
+							"doodads_on13.png"
+							"doodads_on14.png"
+							"doodads_on15.png"
+							"doodads_on16.png"
+							"doodads_on17.png"
+							"doodads_on18.png"
+							"doodads_on19.png"
+							"doodads_on20.png"
+							"doodads_on21.png"
+							"doodads_on22.png"
+							"doodads_on23.png"
+							"doodads_on24.png"
+							"doodads_on25.png"
+							"doodads_on26.png"
+							"doodads_on27.png"
+							"doodads_on28.png"
+							"doodads_on29.png"
+							"doodads_on30.png"
+							"doodads_on31.png"
+							"doodads_on32.png"
+							"doodads_on33.png"
 						]
 						Size = [2, 2]
 						AnimationInterval = 0.1
@@ -245,10 +275,6 @@ Part : /BASE_PART
 					File = "batteries1.png"
 					Size = [2, 2]
 				}
-				{
-					File = "batteries2.png"
-					Size = [2, 2]
-				}
 			]
 		}
 
@@ -274,6 +300,30 @@ Part : /BASE_PART
 				}
 				{
 					File = "bullets4.png"
+					Size = [2, 2]
+				}
+								{
+					File = "bullets5.png"
+					Size = [2, 2]
+				}
+				{
+					File = "bullets6.png"
+					Size = [2, 2]
+				}
+				{
+					File = "bullets7.png"
+					Size = [2, 2]
+				}
+				{
+					File = "bullets8.png"
+					Size = [2, 2]
+				}
+								{
+					File = "bullets9.png"
+					Size = [2, 2]
+				}
+				{
+					File = "bullets10.png"
 					Size = [2, 2]
 				}
 			]

@@ -1,4 +1,5 @@
-ID = bub_placeholderbullet01
+ID = bubbet.bub_placeholderbullet01
+OtherIDs = ["bub_placeholderbullet01"]
 Range = 100
 IdealRange = -1
 Speed = 1000

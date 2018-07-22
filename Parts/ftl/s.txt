@@ -2,56 +2,64 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/Smallftl"
 	IconNameKey = "Parts/Smallftl"
-	IDString = ftl_drive_small
+	IDString = bubbet.ftl_drive_small
+	OtherIDs = ["ftl_drive_small"]
 	EditorGroup = "Flight"
 	DescriptionKey = "Parts/SmallftlDesc"
 	Cost = 5000
 	Size = [1, 1]
 	SelectionPriority = 0
 	MaxHealth = 1000
-	PenetrationResistance = 1
+	InitialPenetrationResistance = 1
 	AutoDoorMaxPathLength = 5
 	TypeCategories = [ftl]// This is a magic category that allows the FTL overlay to efficiently find FTL drives.
 	EditorIcon
 	{
 		Texture
 		{
-			File = "./Data/Ships/Terran/ftl_drive/icon.png"
+			File = "./Data/ships/terran/ftl_drive/icon.png"
 			SampleMode = Linear
 		}
 		Size = [44, 44]
 	}
-	BlueprintSprites
-	[
-		{
-			File = "./Data/Ships/Terran/ftl_drive/blueprints.png"
-			Size = [1, 1]
-		}
-	]
-	PowerUIStats
-	{
-		Min = 1
-		Ideal = 1
-	}
-	CrewUIStats
-	{
-		Min = 0
-		Ideal = 2
-	}
 	Components
 	{
+		
+		
+		BlueprintSprite0
+		{
+			File = "./Data/ships/terran/ftl_drive/blueprints.png"
+			Size = [1, 1]
+		Type=BlueprintSprite;}
+		PowerUIStats
+		{
+			Min = 1
+			Ideal = 1
+			Type = UIStats
+			Stat = Power
+		}
+		CrewUIStats
+		{
+			Min = 0
+			Ideal = 2
+			Type = UIStats
+			Stat = Crew
+		}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+			]
+			Mode = All
+		}
 		PowerToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
-		}
-
-		ReadyToggle
-		{
-			Type = Toggle
 		}
 
 		BatteryStorage
@@ -60,22 +68,23 @@ Part : /BASE_PART
 			AmmoType = battery
 			MaxAmmo = 16000
 			InitToMaxAmmo = 0
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/Ftl_Consume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/Ftl_Consume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/Ftl_Consume
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
+			LowConsumeJobPriority = &/PRIORITIES/Ftl_Supply/Empty
+			HighConsumeJobPriority = &/PRIORITIES/Ftl_Supply/Empty
+			EmptyConsumeJobPriority = &/PRIORITIES/Ftl_Supply/Empty
 			JobUnassignThreshold = 1000000// Effectively unassignable.
 			ResupplyThreshold = 0
-			AmmoDesireToggle = ReadyToggle
+			AmmoDesireToggle = FtlDrive
 			AllowMinPriorityUndesiredAmmo = false
 
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		FtlDrive
 		{
 			Type = FtlDrive
+			OperationalToggle = IsOperational,
 			AmmoStorage = BatteryStorage
-			ReadyToggle = ReadyToggle
 			SpinDownDuration = 7.5
 			JumpEfficiencyDistanceRange = [5, 12.5]
 			FuelCapacity = 25
@@ -84,6 +93,7 @@ Part : /BASE_PART
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [0.5, 0.5]
 			AnimationSpeedFactor = FtlDrive
 			Floor
@@ -92,15 +102,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/floor.png"
+						File = "./Data/ships/terran/ftl_drive/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/floor_33.png"
+						File = "./Data/ships/terran/ftl_drive/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/floor_66.png"
+						File = "./Data/ships/terran/ftl_drive/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -113,14 +123,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"./Data/Ships/Terran/ftl_drive/doodads_on1.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on2.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on3.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on4.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on5.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on6.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on7.png"
-							"./Data/Ships/Terran/ftl_drive/doodads_on8.png"
+							"./Data/ships/terran/ftl_drive/doodads_on1.png"
+							"./Data/ships/terran/ftl_drive/doodads_on2.png"
+							"./Data/ships/terran/ftl_drive/doodads_on3.png"
+							"./Data/ships/terran/ftl_drive/doodads_on4.png"
+							"./Data/ships/terran/ftl_drive/doodads_on5.png"
+							"./Data/ships/terran/ftl_drive/doodads_on6.png"
+							"./Data/ships/terran/ftl_drive/doodads_on7.png"
+							"./Data/ships/terran/ftl_drive/doodads_on8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -133,7 +143,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/doodads_off.png"
+						File = "./Data/ships/terran/ftl_drive/doodads_off.png"
 						Size = [1, 1]
 					}
 				]
@@ -146,14 +156,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"./Data/Ships/Terran/ftl_drive/lights1.png"
-							"./Data/Ships/Terran/ftl_drive/lights2.png"
-							"./Data/Ships/Terran/ftl_drive/lights3.png"
-							"./Data/Ships/Terran/ftl_drive/lights4.png"
-							"./Data/Ships/Terran/ftl_drive/lights5.png"
-							"./Data/Ships/Terran/ftl_drive/lights6.png"
-							"./Data/Ships/Terran/ftl_drive/lights7.png"
-							"./Data/Ships/Terran/ftl_drive/lights8.png"
+							"./Data/ships/terran/ftl_drive/lights1.png"
+							"./Data/ships/terran/ftl_drive/lights2.png"
+							"./Data/ships/terran/ftl_drive/lights3.png"
+							"./Data/ships/terran/ftl_drive/lights4.png"
+							"./Data/ships/terran/ftl_drive/lights5.png"
+							"./Data/ships/terran/ftl_drive/lights6.png"
+							"./Data/ships/terran/ftl_drive/lights7.png"
+							"./Data/ships/terran/ftl_drive/lights8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -166,15 +176,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/walls.png"
+						File = "./Data/ships/terran/ftl_drive/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/walls_33.png"
+						File = "./Data/ships/terran/ftl_drive/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/walls_66.png"
+						File = "./Data/ships/terran/ftl_drive/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -185,15 +195,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof.png"
+						File = "./Data/ships/terran/ftl_drive/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_33.png"
+						File = "./Data/ships/terran/ftl_drive/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_66.png"
+						File = "./Data/ships/terran/ftl_drive/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -206,14 +216,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on1.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on2.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on3.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on4.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on5.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on6.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on7.png"
-							"./Data/Ships/Terran/ftl_drive/roof_doodads_on8.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on1.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on2.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on3.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on4.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on5.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on6.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on7.png"
+							"./Data/ships/terran/ftl_drive/roof_doodads_on8.png"
 						]
 						Size = [1, 1]
 						AnimationInterval = 0.0075
@@ -226,7 +236,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_doodads_off.png"
+						File = "./Data/ships/terran/ftl_drive/roof_doodads_off.png"
 						Size = [1, 1]
 						AnimationInterval = 0.015
 					}
@@ -238,15 +248,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_on.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on_33.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_on_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_on_66.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_on_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -257,15 +267,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_off.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off_33.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_off_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/ftl_drive/roof_windows_off_66.png"
+						File = "./Data/ships/terran/ftl_drive/roof_windows_off_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -277,12 +287,12 @@ Part : /BASE_PART
 			Type = ContinuousEffects
 			Location = [0.5, 0.5]
 			FactorMediaEffectsSpeedWith = FtlDrive
-			OnlyWhenOperational = true
+			OperationalToggle = IsOperational
 			MediaEffects
 			[
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/ftl_drive/ftl_spin.wav"
+					Sound = "./Data/ships/terran/ftl_drive/ftl_spin.wav"
 					Volume = 1
 					Speed = 3.5
 					MaxConcurrent = 0
@@ -299,67 +309,67 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power1.png"
+					File = "./Data/ships/terran/ftl_drive/power1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power2.png"
+					File = "./Data/ships/terran/ftl_drive/power2.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power3.png"
+					File = "./Data/ships/terran/ftl_drive/power3.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power4.png"
+					File = "./Data/ships/terran/ftl_drive/power4.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power5.png"
+					File = "./Data/ships/terran/ftl_drive/power5.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power6.png"
+					File = "./Data/ships/terran/ftl_drive/power6.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power7.png"
+					File = "./Data/ships/terran/ftl_drive/power7.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power8.png"
+					File = "./Data/ships/terran/ftl_drive/power8.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power9.png"
+					File = "./Data/ships/terran/ftl_drive/power9.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power10.png"
+					File = "./Data/ships/terran/ftl_drive/power10.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power11.png"
+					File = "./Data/ships/terran/ftl_drive/power11.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power12.png"
+					File = "./Data/ships/terran/ftl_drive/power12.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power13.png"
+					File = "./Data/ships/terran/ftl_drive/power13.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power14.png"
+					File = "./Data/ships/terran/ftl_drive/power14.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power15.png"
+					File = "./Data/ships/terran/ftl_drive/power15.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/ftl_drive/power16.png"
+					File = "./Data/ships/terran/ftl_drive/power16.png"
 					Size = [1, 1]
 				}
 			]
@@ -367,16 +377,17 @@ Part : /BASE_PART
 
 		OperationEffects
 		{
-			Type = OperationEffects
+			Type = ToggleEffects
+			Toggle = IsOperational,
 			Location = [0.5, 0.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [0.5, 0.5]
 		}
 
@@ -389,7 +400,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff

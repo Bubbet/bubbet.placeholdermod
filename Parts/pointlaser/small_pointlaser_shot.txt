@@ -1,4 +1,5 @@
-ID = small_pointlaser_shot
+ID = bubbet.small_pointlaser_shot
+OtherIDs = ["small_pointlaser_shot"]
 Range = 75
 IdealRange = 50
 Speed = 100
@@ -25,7 +26,7 @@ Components
 		{
 			AtlasSprite
 			{
-				Texture = "./Data/Ships/Terran/small_laser/laser.png"
+				Texture = "./Data/shots/laser_bolt_small/laser_bolt_small.png"
 				Size = [1.75, 1.75]
 			}
 			FrameCount = 8
@@ -41,7 +42,7 @@ Components
 		InheritVelocityFrom = Physics
 		MediaEffects
 		[
-			&/PARTICLES/SmallLaserShotGlow
+			&<./Data/shots/laser_bolt_small/particles/laser_bolt_small_glow.txt>
 		]
 	}
 
@@ -82,18 +83,18 @@ Components
 
 			MediaEffects
 			[
-				&/PARTICLES/SmallLaserHit
-				&/PARTICLES/SmallLaserFlash
-				&/PARTICLES/SmallLaserSparks
+				&<./Data/shots/laser_bolt_small/particles/laser_bolt_small_hit.txt>
+				&<./Data/shots/laser_bolt_small/particles/laser_bolt_small_flash.txt>
+				&<./Data/shots/laser_bolt_small/particles/laser_bolt_small_sparks.txt>
 
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/small_laser/small_laser_hit.wav"
+					Sound = "./Data/shots/laser_bolt_small/hit.wav"
 					Volume = .4
 					SpeedVariation = .4
 				}
 
-				: /SHAKES/Shake
+				: /BASE_SHAKE
 				{
 					ShakeAmount = .03
 					Duration = .3
@@ -116,11 +117,11 @@ Components
 
 			MediaEffects
 			[
-				&/PARTICLES/SmallLaserHitStruct
+				&<./Data/shots/laser_bolt_small/particles/laser_bolt_small_hit_struct.txt>
 
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/small_laser/small_laser_hit.wav"
+					Sound = "./Data/shots/laser_bolt_small/hit.wav"
 					Volume = .3
 					SpeedVariation = .4
 				}

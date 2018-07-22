@@ -1,10 +1,22 @@
-Part : &<t/p.txt>/Part
+Part : /BASE_PART
 {
 	NameKey = "Parts/EnergyWire"
 	IconNameKey = "Parts/EnergyWire"
-	IDString = bub_energy_wire
+	IDString = bubbet.bub_energy_wire
+	OtherIDs = ["bub_energy_wire"]
+	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireDesc"
 	Cost = 125
+	TypeCategories = [power, corridor]
+	Size = [1, 1]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1000
+	CrewSpeedFactor = 0.75
+	InitialPenetrationResistance = 100
+	ProhibitAbove = 0
+	IsWalled = false
+	GeneratorRequiresDoor = false
 	EditorIcon
 	{
 		Texture
@@ -14,16 +26,51 @@ Part : &<t/p.txt>/Part
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		BlueprintSprite0
 		{
 			File = "graphics/blueprints1.png"
 			Size = [1, 1]
 			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		BlueprintBlendSprite0
+		: <./Data/ships/terran/Walls/blueprint walls.txt>
+		{
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
 		}
-	]
-	Components : &<t/c.txt>/Components
-	{
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+			]
+			Mode = All
+		}
+		WallsBlend : <./Data/ships/terran/Walls/walls.txt>
+		{
+			Type = BlendSprite
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+		
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			Default = 1
+			ToggledOnChoices = [1]
+		}
+
+		BatteryStorage
+		{
+			Type = AmmoStorage
+			AmmoType = battery
+			MaxAmmo = 4000
+			}
 		AmmoSprites
 		{
 			Type = AmmoSprites
@@ -53,36 +100,14 @@ Part : &<t/p.txt>/Part
 					File = "graphics/tubestraight5.png"
 					Size = [1, 1]
 				}
-				{
-					File = "graphics/tubestraight6.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubestraight7.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubestraight8.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubestraight9.png"
-					Size = [1, 1]
-				}
-				{
-					AnimationFiles
-					[
-						"graphics/tubestraight10.png"
-						"graphics/tubestraight11.png"
-					]
-					Size = [1, 1]
-					AnimationInterval = 0.075
-				}
 			]
 		}
 
-		Graphics : &<t/g.txt>/Graphics
+		Graphics
 		{
+			Type = Graphics
+			OperationalToggle = IsOperational,
+			Location = [.5, 0.5]
 			Floor
 			{
 				Layer = "floors"
@@ -122,19 +147,100 @@ Part : &<t/p.txt>/Part
 				]
 			}
 			NonOperationalDoodad = &OperationalDoodad
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "./Data/ships/terran/corridor/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./Data/ships/terran/corridor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./Data/ships/terran/corridor/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
 		}
 
-		Turret : &<t/t.txt>/Turret
-		{			
+		Turret
+		{
+			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
-			AmmoUsed = 1000
+			FireInterval = 0.05
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
 			
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
 				Bullet = &<placeholderbullet.txt>
 			}
+		Emitter = TurretEmitter
+		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = .025
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1000
+		}
+
+		OperationEffects
+		{
+			Type = ToggleEffects
+			Toggle = IsOperational,
+			Location = [.5, 0.5]
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
+			Location = [.5, 0.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 0.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Toggle = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+			]
 		}
 	}
 }

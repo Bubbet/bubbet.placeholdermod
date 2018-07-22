@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/EnergyWireStart"
 	IconNameKey = "Parts/EnergyWireStart"
-	IDString = bub_energy_wire_start
+	IDString = bubbet.bub_energy_wire_start
+	OtherIDs = ["bub_energy_wire_start"]
 	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireStartDesc"
 	Cost = 1500
@@ -12,7 +13,7 @@ Part : /BASE_PART
 	SelectionTypeByRotation = true
 	MaxHealth = 1000
 	CrewSpeedFactor = 0.75
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 0
 	BlockedTravelCells
 	[
@@ -43,32 +44,45 @@ Part : /BASE_PART
 		}
 		Size = [64, 64]
 	}
-	BlueprintSprites
-	[
+	Components
+	{	
+		
+		
+		BlueprintSprite0
 		{
 			File = "graphics/blueprints.png"
 			Size = [3, 3]
 			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		PowerUIStats
+		{
+			Min = 16
+			Ideal = 24
+			Type = UIStats
+			Stat = Power
 		}
-	]
-	PowerUIStats
-	{
-		Min = 16
-		Ideal = 24
-	}
-	CrewUIStats
-	{
-		Min = 12
-		Ideal = 24
-	}
-	Components
-	{	
+		CrewUIStats
+		{
+			Min = 12
+			Ideal = 24
+			Type = UIStats
+			Stat = Crew
+		}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+			]
+			Mode = All
+		}
 		PowerToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -77,18 +91,21 @@ Part : /BASE_PART
 			Type = AmmoConsumer
 			AmmoType = battery
 			MaxAmmo = 16000
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_LowConsume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_HighConsume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_EmptyConsume
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
+			LowConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Low
+			HighConsumeJobPriority = &/PRIORITIES/Weapon_Supply/High
+			EmptyConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Empty
 			JobUnassignThreshold = 1000000// Effectively unassignable.
 			ResupplyThreshold = 1
-			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
+
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [1.5, 1.5]
 			Floor
 			{
@@ -190,27 +207,42 @@ Part : /BASE_PART
 		Turret
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [1.5, -0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
 			FireInterval = 0.3
-			FireDelay = .15
 			FiringArc = 0d
 			RotateSpeed = 0d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 1000
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet2.txt>
+				Bullet = &<placeholderbullet3.txt>
 			}
 
+		Emitter = TurretEmitter
+		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = .15
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1000
 		}
 
 		AmmoSprites
@@ -241,10 +273,19 @@ Part : /BASE_PART
 			]
 		}
 
+		OperationEffects
+		{
+			Type = ToggleEffects
+			Toggle = IsOperational,
+			Location = [1.5, 1.5]
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
+		}
+
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [1.5, 1.5]
 		}
 
@@ -257,7 +298,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff

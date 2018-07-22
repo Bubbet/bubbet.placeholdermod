@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/sDecoupler"
 	IconNameKey = "Parts/sDecoupler"
-	IDString = bub_sdecoupler
+	IDString = bubbet.bub_sdecoupler
+	OtherIDs = ["bub_sdecoupler"]
 	EditorGroup = "Misc"
 	DescriptionKey = "Parts/sDecouplerDesc"
 	Cost = 250
@@ -14,7 +15,7 @@ Part : /BASE_PART
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
 	MaxHealth = 1000
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 0
 	CrewSpeedFactor = .3
 	IsExternal = true
@@ -36,21 +37,28 @@ Part : /BASE_PART
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{	
+		BlueprintSprite0
 		{
 			File = "g/s/blueprints.png"
 			Size = [1, 1]
 			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				BatteryStorage
+			]
+			Mode = All
 		}
-	]
-	Components
-	{	
 		FireModeToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 0
+			Default = 0
 			RequiredForWholePartOperation = false
 			ToggledOnChoices = [1]
 		}
@@ -61,12 +69,12 @@ Part : /BASE_PART
 			AmmoType = battery
 			MaxAmmo = 2000
 			StartingAmmo = 2000
-			RequiredForWholePartOperation = true
-		}
+			}
 
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [.5, 0.5]
 			Floor
 			{
@@ -92,33 +100,48 @@ Part : /BASE_PART
 		Turret
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [.5, 0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
 			FireInterval = 0.1
-			FireDelay = .05
 			FiringArc = 0d
 			RotateSpeed = 10d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 1000
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
 			FireModeToggle = FireModeToggle
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
 				Bullet = &<placeholderbullet.txt>
 			}
+		Emitter = TurretEmitter
+		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1000
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [.5, 0.5]
 		}
 	}

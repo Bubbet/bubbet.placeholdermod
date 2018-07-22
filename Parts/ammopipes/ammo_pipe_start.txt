@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/AmmoPipeStart"
 	IconNameKey = "Parts/AmmoPipeStart"
-	IDString = bub_ammo_pipe_start
+	IDString = bubbet.bub_ammo_pipe_start
+	OtherIDs = ["bub_ammo_pipe_start"]
 	EditorGroup = "Munitions"
 	DescriptionKey = "Parts/AmmoPipeStartDesc"
 	Cost = 1500
@@ -12,7 +13,7 @@ Part : /BASE_PART
 	SelectionTypeByRotation = true
 	MaxHealth = 1000
 	CrewSpeedFactor = 0.75
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 0
 	BlockedTravelCells
 	[
@@ -46,32 +47,37 @@ Part : /BASE_PART
 		}
 		Size = [16, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{	
+		
+		BlueprintSprite0
 		{
 			File = "g/bp/Start.png"
 			Size = [1, 2]
 			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		CrewUIStats
+		{
+			Min = 1
+			Ideal = 4
+			Type = UIStats
+			Stat = Crew
 		}
-	]
-//	PowerUIStats
-//	{
-//		Min = 16
-//		Ideal = 24
-//	}
-	CrewUIStats
-	{
-		Min = 1
-		Ideal = 4
-	}
-	Components
-	{	
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+			]
+			Mode = All
+		}
 		PowerToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -80,18 +86,21 @@ Part : /BASE_PART
 			Type = AmmoConsumer
 			AmmoType = bullet
 			MaxAmmo = 16
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_LowConsume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_HighConsume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_EmptyConsume
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
+			LowConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Low
+			HighConsumeJobPriority = &/PRIORITIES/Weapon_Supply/High
+			EmptyConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Empty
 			JobUnassignThreshold = 1000000// Effectively unassignable.
 			ResupplyThreshold = 1
-			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
+
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [0.5, 1]
 			Floor
 			{
@@ -99,15 +108,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./data/ships/terran/corridor/floor.png"
+						File = "./Data/ships/terran/corridor/floor.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./data/ships/terran/corridor/floor_33.png"
+						File = "./Data/ships/terran/corridor/floor_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./data/ships/terran/corridor/floor_66.png"
+						File = "./Data/ships/terran/corridor/floor_66.png"
 						Size = [1, 2]
 					}
 				]
@@ -154,16 +163,16 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./data/ships/terran/small_laser/walls.png"
+						File = "./Data/ships/terran/laser_blaster_small/walls.png"
 						Size = [1, 2.05]
 					}
 					{
-						File = "./data/ships/terran/small_laser/walls_33.png"
+						File = "./Data/ships/terran/laser_blaster_small/walls_33.png"
 						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
 					{
-						File = "./data/ships/terran/small_laser/walls_66.png"
+						File = "./Data/ships/terran/laser_blaster_small/walls_66.png"
 						Size = [1, 2.05]
 						Offset = [0, 0]
 					}
@@ -175,15 +184,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./data/ships/terran/corridor/roof.png"
+						File = "./Data/ships/terran/corridor/roof.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./data/ships/terran/corridor/roof_33.png"
+						File = "./Data/ships/terran/corridor/roof_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./data/ships/terran/corridor/roof_66.png"
+						File = "./Data/ships/terran/corridor/roof_66.png"
 						Size = [1, 2]
 					}
 				]
@@ -193,27 +202,25 @@ Part : /BASE_PART
 		Turret
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
 			FireInterval = 0.3
-			FireDelay = .15
 			FiringArc = 0d
 			RotateSpeed = 0d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 4
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
 				Bullet = &<placeholderbullet2.txt>
 			}
 
+		Emitter = TurretEmitter
 		}
 
 //		AmmoSprites
@@ -248,14 +255,31 @@ Part : /BASE_PART
 //		{
 //			Type = OperationEffects
 //			Location = [1.5, 1.5]
-//			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-//			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+//			BecameOperationalMediaEffects = &/COMMON_EFFECTS/PowerOn
+//			BecameNonOperationalMediaEffects = &/COMMON_EFFECTS/PowerOff
 //		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = .15
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 4
+		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [1.5, 1.5]
 		}
 
@@ -268,7 +292,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff

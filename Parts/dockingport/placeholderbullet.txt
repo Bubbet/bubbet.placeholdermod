@@ -1,4 +1,5 @@
-ID = bbub_liquid_succ
+ID = bubbet.bbub_liquid_succ
+OtherIDs = ["bbub_liquid_succ"]
 Range = 150000
 IdealRange = -1
 Speed = 100

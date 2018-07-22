@@ -1,4 +1,5 @@
-ID = bub_liquid_ammo2
+ID = bubbet.bub_liquid_ammo2
+OtherIDs = ["bub_liquid_ammo2"]
 Range = 150000
 IdealRange = -1
 Speed = 0.5

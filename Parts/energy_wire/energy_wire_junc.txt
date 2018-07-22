@@ -1,10 +1,22 @@
-Part : &<t/p.txt>/Part
+Part : /BASE_PART
 {
 	NameKey = "Parts/EnergyWireJunc"
 	IconNameKey = "Parts/EnergyWireJunc"
-	IDString = bub_energy_wire_junc
+	IDString = bubbet.bub_energy_wire_junc
+	OtherIDs = ["bub_energy_wire_junc"]
+	EditorGroup = "Power"
 	DescriptionKey = "Parts/EnergyWireJuncDesc"
 	Cost = 750
+	TypeCategories = [power, corridor]
+	Size = [1, 1]
+	SelectionPriority = 1
+	SelectionTypeByRotation = true
+	MaxHealth = 1000
+	CrewSpeedFactor = 0.75
+	InitialPenetrationResistance = 100
+	ProhibitAbove = 0
+	IsWalled = false
+	GeneratorRequiresDoor = false
 	EditorIcon
 	{
 		Texture
@@ -14,14 +26,60 @@ Part : &<t/p.txt>/Part
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		BlueprintSprite0
 		{
 			File = "graphics/blueprints2.png"
+			Size = [1, 1]
+			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		BlueprintBlendSprite0
+		: <./Data/ships/terran/Walls/blueprint walls.txt>
+		{
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
 		}
-	]
-	Components : &<t/c.txt>/Components
-	{
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+			]
+			Mode = All
+		}
+		WallsBlend : <./Data/ships/terran/Walls/walls.txt>
+		{
+			Type = BlendSprite
+			Location = [.5, .5]
+			BlendsWithCategories = [corridor]
+		}
+		
+		PowerToggle
+		{
+			Type = UIToggle
+			ToggleID = "on_off"
+			Default = 1
+			ToggledOnChoices = [1]
+		}
+
+//		FireModeToggle
+//		{
+//			Type = UIToggle
+//			ToggleID = "fire_mode"
+//			DefaultToggleValue = 1
+//			ToggledOnChoices = [1]
+//		}
+
+		BatteryStorage
+		{
+			Type = AmmoStorage
+			AmmoType = battery
+			MaxAmmo = 4000
+			}
+
 		AmmoSprites
 		{
 			Type = AmmoSprites
@@ -51,36 +109,14 @@ Part : &<t/p.txt>/Part
 					File = "graphics/tubedistributor5.png"
 					Size = [1, 1]
 				}
-				{
-					File = "graphics/tubedistributor6.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor7.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor8.png"
-					Size = [1, 1]
-				}
-				{
-					File = "graphics/tubedistributor9.png"
-					Size = [1, 1]
-				}
-				{
-					AnimationFiles
-					[
-						"graphics/tubedistributor10.png"
-						"graphics/tubedistributor11.png"
-					]
-					Size = [1, 1]
-					AnimationInterval = 0.075
-				}
 			]
 		}
 		
-		Graphics : &<t/g.txt>/Graphics
+		Graphics
 		{
+			Type = Graphics
+			OperationalToggle = IsOperational,
+			Location = [.5, 0.5]
 			Floor
 			{
 				Layer = "floors"
@@ -120,43 +156,180 @@ Part : &<t/p.txt>/Part
 				]
 			}
 			NonOperationalDoodad = &OperationalDoodad
+			Roof
+			{
+				Layer = "roofs"
+				DamageLevels
+				[
+					{
+						File = "./Data/ships/terran/corridor/roof.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./Data/ships/terran/corridor/roof_33.png"
+						Size = [1, 1]
+					}
+					{
+						File = "./Data/ships/terran/corridor/roof_66.png"
+						Size = [1, 1]
+					}
+				]
+			}
 		}
 
-		Turret1 : &<t/t.txt>/Turret
+		Turret1
 		{
+			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [1.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -0d // Relative to unrotated part.
-			AmmoUsed = 333
+			FireInterval = 0.1
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet3.txt>
+				Bullet = &<placeholderbullet2.txt>
 			}
+		Emitter = Turret1Emitter
 		}
-		Turret2 : &<t/t.txt>/Turret
+		Turret1Emitter: Turret1/OldEmitter
 		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret1
+			FireTrigger = Turret1
+			GetTargetFrom = Turret1
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 333
+		}
+
+		Turret2
+		{
+			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [.5, -0.5] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
-			AmmoUsed = 333
+			FireInterval = 0.1
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
 
-			Emitter
+
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet3.txt>
+				Bullet = &<placeholderbullet2.txt>
 			}
+		Emitter = Turret2Emitter
 		}
-		Turret3 : &<t/t.txt>/Turret
+		Turret2Emitter: Turret2/OldEmitter
 		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret2
+			FireTrigger = Turret2
+			GetTargetFrom = Turret2
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 333
+		}
+
+		Turret3
+		{
+			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [-0.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -180d // Relative to unrotated part.
-			AmmoUsed = 333
+			FireInterval = 0.1
+			FiringArc = 0d
+			RotateSpeed = 0d
+			FireThresholdAngle = 360d
+			TargetSearchTriesPerFrame = 1
+			AIFirepowerRating = 600
+			AllowFireWithBlockedLOS = true
+			CanBeGivenExplicitTarget = false
 
-			Emitter
+
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet = &<placeholderbullet3.txt>
+				Bullet = &<placeholderbullet2.txt>
 			}
+		Emitter = Turret3Emitter
+		}
+
+		Turret3Emitter: Turret3/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret3
+			FireTrigger = Turret3
+			GetTargetFrom = Turret3
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 333
+		}
+
+		OperationEffects
+		{
+			Type = ToggleEffects
+			Toggle = IsOperational,
+			Location = [.5, 0.5]
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
+		}
+
+		DestroyedEffects
+		{
+			Type = DeathEffects
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
+			Location = [.5, 0.5]
+		}
+
+		Indicators
+		{
+			Type = IndicatorSprites
+			Location = [.5, 0.5]
+			Layer = "indicators"
+			Indicators
+			[
+				// Turned off.
+				{
+					Toggle = PowerToggle
+					AtlasSprite
+					{
+						File = &/INDICATORS/PowerOff
+						Size = [1, 1]
+					}
+				}
+			]
 		}
 	}
 }

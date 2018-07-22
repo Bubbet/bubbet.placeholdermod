@@ -67,16 +67,16 @@ Part : /BASE_PART
 			MaxAmmo = 6000
 			PrerequisiteMetAmmo = 5001
 			PrerequisiteUnmetAmmo = 1
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_LowConsume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_HighConsume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ShieldGenerator_EmptyConsume
+			LowConsumeJobPriority = &/PRIORITIES/Defense_Supply/Low
+			HighConsumeJobPriority = &/PRIORITIES/Defense_Supply/High
+			EmptyConsumeJobPriority = &/PRIORITIES/Defense_Supply/Empty
 			JobUnassignThreshold = 0// Effectively unassignable.
 			ResupplyThreshold = 7000
 			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
 			DrainOnFtlJump = true
 
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 /*
 		PowerDrain
@@ -99,7 +99,7 @@ Part : /BASE_PART
 
 			BlueprintArcSprite
 			{
-				Texture = "./Data/Ships/Terran/Shield_Generator/shield_energy.png"
+				Texture = "./Data/ships/terran/shield_gen_small/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [0, 0, 255, 127]
 			}
@@ -107,7 +107,7 @@ Part : /BASE_PART
 
 			CoverageArcSprite
 			{
-				Texture = "./Data/Ships/Terran/Shield_Generator/shield_energy.png"
+				Texture = "./Data/ships/terran/shield_gen_small/shield_energy.png"
 				Size = [0, 1.5]
 				Color = [255, 255, 255, 127]
 			}
@@ -123,11 +123,11 @@ Part : /BASE_PART
 					Arc = 20d
 					ArcSprite
 					{
-						Texture = "./Data/Ships/Terran/Shield_Generator/shield_energy.png"
-						Shader = "./Data/Ships/Terran/Shield_Generator/shield.shader"
+						Texture = "./Data/ships/terran/shield_gen_small/shield_energy.png"
+						Shader = "./Data/ships/terran/shield_gen_small/shield.shader"
 						_waveTex
 						{
-							File = "./Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							File = "./Data/ships/terran/shield_gen_small/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = -2
@@ -146,9 +146,9 @@ Part : /BASE_PART
 					Bucket = Upper3
 				}
 
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/Shield_Generator/shield_hit.wav"
+					Sound = "./Data/ships/terran/shield_gen_small/shield_hit.wav"
 					Volume = 1
 					Speed = 1
 					IgnoreIntensity = true
@@ -185,11 +185,11 @@ Part : /BASE_PART
 					FadeFromScale = .8
 					ArcSprite
 					{
-						Texture = "./Data/Ships/Terran/Shield_Generator/shield_energy.png"
-						Shader = "./Data/Ships/Terran/Shield_Generator/shield.shader"
+						Texture = "./Data/ships/terran/shield_gen_small/shield_energy.png"
+						Shader = "./Data/ships/terran/shield_gen_small/shield.shader"
 						_waveTex
 						{
-							File = "./Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							File = "./Data/ships/terran/shield_gen_small/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = 1
@@ -207,9 +207,9 @@ Part : /BASE_PART
 					Bucket = Lower1
 				}
 
-				: /SOUNDS/AudioExteriorDetail
+				: /BASE_SOUNDS/AudioExteriorDetail
 				{
-					Sound = "./Data/Ships/Terran/Shield_Generator/shield_loop.wav"
+					Sound = "./Data/ships/terran/shield_gen_small/shield_loop.wav"
 					Volume = .15
 					Speed = .5
 					MaxConcurrent = 1
@@ -241,12 +241,12 @@ Part : /BASE_PART
 					FadeOutTime = .25
 					ArcSprite
 					{
-						Texture = "./Data/Ships/Terran/Shield_Generator/shield_energy.png"
+						Texture = "./Data/ships/terran/shield_gen_small/shield_energy.png"
 						UVRect = [0, 1, 1, -1]
-						Shader = "./Data/Ships/Terran/Shield_Generator/shield.shader"
+						Shader = "./Data/ships/terran/shield_gen_small/shield.shader"
 						_waveTex
 						{
-							File = "./Data/Ships/Terran/Shield_Generator/shield_energy_wave.png"
+							File = "./Data/ships/terran/shield_gen_small/shield_energy_wave.png"
 							UVMode = Wrap
 						}
 						_waveSpeed = -1
@@ -264,9 +264,9 @@ Part : /BASE_PART
 					Bucket = Lower1
 				}
 
-				: /SOUNDS/AudioExteriorDetail
+				: /BASE_SOUNDS/AudioExteriorDetail
 				{
-					Sound = "./Data/Ships/Terran/Shield_Generator/shield_emitter_loop.wav"
+					Sound = "./Data/ships/terran/shield_gen_small/shield_emitter_loop.wav"
 					Volume = .2
 					Speed = 1
 					MaxConcurrent = 1
@@ -282,9 +282,9 @@ Part : /BASE_PART
 			ChainedTo = ArcShieldEffect
 			BecameOperationalMediaEffects
 			[
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/Shield_Generator/shield_activate.wav"
+					Sound = "./Data/ships/terran/shield_gen_small/activate.wav"
 					Volume = .5
 					Speed = 1
 					IgnoreIntensity = true
@@ -292,9 +292,9 @@ Part : /BASE_PART
 			]
 			BecameNonOperationalMediaEffects
 			[
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/Shield_Generator/shield_deactivate.wav"
+					Sound = "./Data/ships/terran/shield_gen_small/deactivate.wav"
 					Volume = .5
 					Speed = 1
 					IgnoreIntensity = true
@@ -312,15 +312,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_on.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_on.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_on_33.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_on_33.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_on_66.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_on_66.png"
 						Size = [2, 2]
 					}
 				]
@@ -331,15 +331,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_off.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_off.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_off_33.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_off_33.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/floor_off_66.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_off_66.png"
 						Size = [2, 2]
 					}
 				]
@@ -421,15 +421,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof.png"
+						File = "./Data/ships/terran/shield_gen_small/roof.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_33.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_33.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_66.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_66.png"
 						Size = [2, 2]
 					}
 				]
@@ -464,7 +464,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_doodads_off.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_doodads_off.png"
 						Size = [2, 2]
 						AnimationInterval = 0.1
 					}
@@ -477,15 +477,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_windows.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_windows.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_windows_33.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_windows_33.png"
 						Size = [2, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/Shield_Generator/roof_windows_66.png"
+						File = "./Data/ships/terran/shield_gen_small/roof_windows_66.png"
 						Size = [2, 2]
 					}
 				]
@@ -502,27 +502,27 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries1.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries1.png"
 					Size = [2, 2]
 				}
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries2.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries2.png"
 					Size = [2, 2]
 				}
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries3.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries3.png"
 					Size = [2, 2]
 				}
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries4.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries4.png"
 					Size = [2, 2]
 				}
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries5.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries5.png"
 					Size = [2, 2]
 				}
 				{
-					File = "./Data/Ships/Terran/Shield_Generator/batteries6.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries6.png"
 					Size = [2, 2]
 				}
 			]
@@ -531,14 +531,14 @@ Part : /BASE_PART
 		OperationEffects
 		{
 			Type = OperationEffects
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+			BecameOperationalMediaEffects = &/COMMON_EFFECTS/PowerOn
+			BecameNonOperationalMediaEffects = &/COMMON_EFFECTS/PowerOff
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [1, 1]
 		}
 

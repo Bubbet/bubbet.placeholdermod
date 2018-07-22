@@ -1,4 +1,5 @@
-ID = bub_decouplingshot
+ID = bubbet.bub_decouplingshot
+OtherIDs = ["bub_decouplingshot"]
 Range = 150000
 IdealRange = -1
 Speed = 0.5

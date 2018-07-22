@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/onexone"
 	IconNameKey = "Parts/onexone"
-	IDString = armor_regen_onexone
+	IDString = bubbet.armor_regen_onexone
+	OtherIDs = ["armor_regen_onexone"]
 	EditorGroup = "Defenses"
 	DescriptionKey = "Parts/onexoneDesc"
 	Cost = 500
@@ -11,7 +12,7 @@ Part : /BASE_PART
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
 	MaxHealth = 1
-	PenetrationResistance = 1
+	InitialPenetrationResistance = 1
 	TypeCategories = [defense, shield]
 	ProhibitAbove = 0
 	AllowedDoorLocations
@@ -21,30 +22,43 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "./Data/Ships/Terran/armor/icon.png"
+			File = "./Data/ships/terran/armor/icon.png"
 			SampleMode = Linear
 		}
 		Size = [22.66, 22.66]
 	}
-	BlueprintSprites
-	[
-		{
-			File = "./Data/Ships/Terran/armor/blueprints.png"
-			Size = [1, 1]
-		}
-	]
-	PowerUIStats
-	{
-		Min = 0
-		Ideal = 0
-	}
-	CrewUIStats
-	{
-		Min = 0
-		Ideal = 0
-	}
 	Components
 	{		
+		
+		
+		BlueprintSprite0
+		{
+			File = "./Data/ships/terran/armor/blueprints.png"
+			Size = [1, 1]
+		Type=BlueprintSprite;}
+		PowerUIStats
+		{
+			Min = 0
+			Ideal = 0
+			Type = UIStats
+			Stat = Power
+		}
+		CrewUIStats
+		{
+			Min = 0
+			Ideal = 0
+			Type = UIStats
+			Stat = Crew
+		}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				BatteryStorage
+			]
+			Mode = All
+		}
 		BatteryProducer
 		{
 			Type = AmmoConverter
@@ -62,23 +76,25 @@ Part : /BASE_PART
 			StartingAmmo = 5000
 			PrerequisiteMetAmmo = 6999
 			PrerequisiteUnmetAmmo = 1
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
 			LowConsumeJobPriority = 0
 			HighConsumeJobPriority = 0
 			EmptyConsumeJobPriority = 0
 			JobUnassignThreshold = 0// Effectively unassignable.
 			ResupplyThreshold = 1000000
-			RequiredForWholePartOperation = true
 			DrainOnFtlJump = false
 
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		ArcShield
 		{
 			Type = ArcShield
+			OperationalToggle = IsOperational,
 			Radius = 1.25
 			Arc = 365d
 			DrainAmmoFrom = BatteryStorage
+			PenetrationResistance = [8, 0]
 			AmmoDrainPerDamage = 2
 			Rotation = -90d
 			Location = [0.5, 0.5]
@@ -96,6 +112,7 @@ Part : /BASE_PART
 		GraphicsFloor // Hack: We want different floor sprites depending on the operational state.
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [0.5, 0.5]
 			OperationalDoodad
 			{
@@ -103,7 +120,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/shield_generator/floor_on.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_on.png"
 						Size = [1, 1]
 					}
 				]
@@ -114,7 +131,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/shield_generator/floor_off.png"
+						File = "./Data/ships/terran/shield_gen_small/floor_off.png"
 						Size = [1, 1]
 					}
 				]
@@ -124,6 +141,7 @@ Part : /BASE_PART
 		GraphicsOther
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [0.5, 0.5]
 			Walls
 			{
@@ -147,15 +165,15 @@ Part : /BASE_PART
 				AmmoLevels
 				[
 					{
-						File = "./Data/Ships/Terran/armor/roof_66.png"
+						File = "./Data/ships/terran/armor/roof_66.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/armor/roof_33.png"
+						File = "./Data/ships/terran/armor/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/armor/roof.png"
+						File = "./Data/ships/terran/armor/roof.png"
 						Size = [1, 1]
 					}
 				]	
@@ -170,27 +188,27 @@ Part : /BASE_PART
 			AmmoLevels
 			[
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries1.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries1.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries2.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries2.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries3.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries3.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries4.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries4.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries5.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries5.png"
 					Size = [1, 1]
 				}
 				{
-					File = "./Data/Ships/Terran/shield_generator/batteries6.png"
+					File = "./Data/ships/terran/shield_gen_small/batteries6.png"
 					Size = [1, 1]
 				}
 			]
@@ -199,7 +217,7 @@ Part : /BASE_PART
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [0.5, 0.5]
 		}
 	}

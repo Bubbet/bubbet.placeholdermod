@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/cTeletube"
 	IconNameKey = "Parts/cTeletube"
-	IDString = bub_cteletube
+	IDString = bubbet.bub_cteletube
+	OtherIDs = ["bub_cteletube"]
 	EditorGroup = "Crew"
 	DescriptionKey = "Parts/cTeletubeDesc"
 	Cost = 500
@@ -10,7 +11,7 @@ Part : /BASE_PART
 	PhysicalRect = [0, 0, 1, 1]
 	SaveRect = &PhysicalRect
 	MaxHealth = 1000
-	PenetrationResistance = .5
+	InitialPenetrationResistance = .5
 	AllowedDoorLocations
 	[
 		[0, -1]
@@ -58,24 +59,20 @@ Part : /BASE_PART
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		BlueprintSprite0
 		{
 			File = "g/c/blueprints.png"
 			Size = [1, 1]
-		}
-	]
-	BlueprintBlendSprites
-	[
-		: <./Data/Ships/Terran/Walls/blueprint walls.txt>
+		Type=BlueprintSprite;}
+		BlueprintBlendSprite0
+		: <./Data/ships/terran/Walls/blueprint walls.txt>
 		{
 			Location = [.5, .5]
 			BlendsWithCategories = [tube, corridor]
 		}
-	]
-	Components
-	{
-		WallsBlend : <./Data/Ships/Terran/Walls/walls.txt>
+		WallsBlend : <./Data/ships/terran/Walls/walls.txt>
 		{
 			Type = BlendSprite
 			Location = [.5, .5]
@@ -130,7 +127,7 @@ Part : /BASE_PART
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/SmallPartDestroyedDry
+			MediaEffects = &/COMMON_EFFECTS/SmallPartDestroyedDry
 			Location = [.5, .5]
 		}
 	}

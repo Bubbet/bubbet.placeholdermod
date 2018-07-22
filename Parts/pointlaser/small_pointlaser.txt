@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/Smallpointlaser"
 	IconNameKey = "Parts/Smallpointlaser"
-	IDString = small_laser_defense
+	IDString = bubbet.small_laser_defense
+	OtherIDs = ["small_laser_defense"]
 	EditorGroup = "Weapons"
 	DescriptionKey = "Parts/SmallpointlaserDesc"
 	Cost = 2000
@@ -14,7 +15,7 @@ Part : /BASE_PART
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
 	MaxHealth = 2000
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 1
 	AllowedDoorLocations
 	[
@@ -26,37 +27,51 @@ Part : /BASE_PART
 	{
 		Texture
 		{
-			File = "./Data/Ships/Terran/point_defense/icon.png"
+			File = "./Data/ships/terran/point_defense/icon.png"
 			SampleMode = Linear
 		}
 		Size = [21.33, 42.66]
 	}
-	BlueprintSprites
-	[
-		{
-			File = "./Data/Ships/Terran/point_defense/blueprints.png"
-			Size = [1, 2]
-			Offset = [0, 0]
-		}
-	]
-	PowerUIStats
-	{
-		Min = .666
-		Ideal = 1.333
-	}
-	CrewUIStats
-	{
-		Min = 1
-		Ideal = 2
-	}
 	Components
 	{
+		
+		
+		BlueprintSprite0
+		{
+			File = "./Data/ships/terran/point_defense/blueprints.png"
+			Size = [1, 2]
+			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		PowerUIStats
+		{
+			Min = .666
+			Ideal = 1.333
+			Type = UIStats
+			Stat = Power
+		}
+		CrewUIStats
+		{
+			Min = 1
+			Ideal = 2
+			Type = UIStats
+			Stat = Crew
+		}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+				PartCrew
+			]
+			Mode = All
+		}
 		PowerToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -64,7 +79,7 @@ Part : /BASE_PART
 		{
 			Type = UIToggle
 			ToggleID = "fire_mode"
-			DefaultToggleValue = 1
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -73,20 +88,21 @@ Part : /BASE_PART
 			Type = AmmoConsumer
 			AmmoType = battery
 			MaxAmmo = 2000
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_LowConsume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_HighConsume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/SmallLaser_EmptyConsume
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
+			LowConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Low
+			HighConsumeJobPriority = &/PRIORITIES/Weapon_Supply/High
+			EmptyConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Empty
 			JobUnassignThreshold = 1000000// Effectively unassignable.
 			ResupplyThreshold = 500
-			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
 
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [.5, 2]
 			Offset = [0, -0.5]
 			Floor
@@ -96,15 +112,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/point_defense/floor.png"
+						File = "./Data/ships/terran/point_defense/floor.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/floor_33.png"
+						File = "./Data/ships/terran/point_defense/floor_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/floor_66.png"
+						File = "./Data/ships/terran/point_defense/floor_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -151,7 +167,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/point_defense/lights.png"
+						File = "./Data/ships/terran/point_defense/lights.png"
 						Size = [1, 1]
 					}
 				]
@@ -163,15 +179,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/point_defense/walls.png"
+						File = "./Data/ships/terran/point_defense/walls.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/walls_33.png"
+						File = "./Data/ships/terran/point_defense/walls_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/walls_66.png"
+						File = "./Data/ships/terran/point_defense/walls_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -183,15 +199,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/point_defense/roof.png"
+						File = "./Data/ships/terran/point_defense/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/roof_33.png"
+						File = "./Data/ships/terran/point_defense/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./Data/Ships/Terran/point_defense/roof_66.png"
+						File = "./Data/ships/terran/point_defense/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -241,21 +257,18 @@ Part : /BASE_PART
 		Turret
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [.5, 0.66]// Relative to upper-left corner of unrotated part.
 			Rotation = -90d// Relative to unrotated part.
 			FireInterval = .05
-			FireDelay = .01
 			FiringArc = 200d
 			RotateSpeed = 90d
 			FireThresholdAngle = 1d
-			SpawnLoc = [1.0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 40
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 400
 			FireModeToggle = FireModeToggle
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
 				Bullet = &<small_pointlaser_shot.txt>
@@ -263,35 +276,54 @@ Part : /BASE_PART
 
 			CoverageSectorArc
 			{
-				Texture = &/INDICATORS/Falloff
+				Texture = &/INDICATORS/VerticalGradient
 				VertexColor = [255, 255, 255, 51]
 				QuadCount = 64
 			}
+		Emitter = TurretEmitter
+		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				1.0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = .01
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 40
 		}
 
 		FireEffect
 		{
 			Type = TriggeredEffects
 			ChainedTo = Turret
+			Trigger = TurretEmitter
 			Location = [1.1, 0]
 			AnchorMediaEffects = true
 
 			MediaEffects
 			[
-				: /PARTICLES/SmallLaserShoot
+				: <./Data/ships/terran/laser_blaster_small/particles/laser_blaster_small_shoot.txt>
 				{
 					Delay = .13
 				}
 
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/small_laser/small_laser_charge.wav"
+					Sound = "./Data/ships/terran/laser_blaster_small/charge.wav"
 					Volume = .6
 				}
 
-				: /SOUNDS/AudioExterior
+				: /BASE_SOUNDS/AudioExterior
 				{
-					Sound = "./Data/Ships/Terran/small_laser/small_laser_fire.wav"
+					Sound = "./Data/ships/terran/laser_blaster_small/shoot.wav"
 					Volume = .6
 					Delay = .13
 					SpeedVariation = .25
@@ -308,10 +340,11 @@ Part : /BASE_PART
 		PartCrew
 		{
 			Type = PartCrew
-			MinCrew = 1
-			FirstCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_FirstCrew
-			AdditionalCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_AdditionalCrew
-			FullCrewJobPriority = &/TERRAN_PRIORITIES/SmallLaser_FullCrew
+			Crew = 1
+			Priorities = { First=&../FirstCrewJobPriority; Additional=&../AdditionalCrewJobPriority; Full=&../FullCrewJobPriority }
+			FirstCrewJobPriority = &/PRIORITIES/Weapon_Crew/First
+			AdditionalCrewJobPriority = &/PRIORITIES/Weapon_Crew/Additional
+			FullCrewJobPriority = &/PRIORITIES/Weapon_Crew/Full
 			PrerequisitesBeforeCrewing = [BatteryStorage, PowerToggle]
 			CrewDestinations
 			[
@@ -334,6 +367,7 @@ Part : /BASE_PART
 		TurretGraphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			ChainedTo = Turret
 			Location = [.5, 0]
 			Rotation = 90d
@@ -345,14 +379,14 @@ Part : /BASE_PART
 					{
 						AnimationFiles
 						[
-							"./Data/Ships/Terran/small_laser/turret doodads on1.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on2.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on3.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on4.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on5.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on6.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on7.png"
-							"./Data/Ships/Terran/small_laser/turret doodads on8.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on1.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on2.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on3.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on4.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on5.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on6.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on7.png"
+							"./Data/ships/terran/laser_blaster_small/turret_doodads_on8.png"
 						]
 						Size = [1, 2]
 						AnimationInterval = 0.1
@@ -365,7 +399,7 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/small_laser/turret doodads off.png"
+						File = "./Data/ships/terran/laser_blaster_small/turret_doodads_off.png"
 						Size = [1, 2]
 					}
 				]
@@ -379,11 +413,11 @@ Part : /BASE_PART
 						// None.
 					}
 					{
-						File = "./Data/Ships/Terran/small_laser/turret damage_33.png"
+						File = "./Data/ships/terran/laser_blaster_small/turret_damage_33.png"
 						Size = [1, 2]
 					}
 					{
-						File = "./Data/Ships/Terran/small_laser/turret damage_66.png"
+						File = "./Data/ships/terran/laser_blaster_small/turret_damage_66.png"
 						Size = [1, 2]
 					}
 				]
@@ -397,19 +431,19 @@ Part : /BASE_PART
 			Location = [.5, 0]
 			Rotation = 90d
 			Layer = "weapons"
-			ResetAnimationTrigger = Turret
+			ResetAnimationTrigger = TurretEmitter
 			AtlasSprite
 			{
 				AnimationFiles
 				[
-					"./Data/Ships/Terran/small_laser/weapon2.png"
-					"./Data/Ships/Terran/small_laser/weapon3.png"
-					"./Data/Ships/Terran/small_laser/weapon4.png"
-					"./Data/Ships/Terran/small_laser/weapon5.png"
-					"./Data/Ships/Terran/small_laser/weapon6.png"
-					"./Data/Ships/Terran/small_laser/weapon7.png"
-					"./Data/Ships/Terran/small_laser/weapon8.png"
-					"./Data/Ships/Terran/small_laser/weapon1.png"// Loop back to beginning and clamp there.
+					"./Data/ships/terran/laser_blaster_small/weapon2.png"
+					"./Data/ships/terran/laser_blaster_small/weapon3.png"
+					"./Data/ships/terran/laser_blaster_small/weapon4.png"
+					"./Data/ships/terran/laser_blaster_small/weapon5.png"
+					"./Data/ships/terran/laser_blaster_small/weapon6.png"
+					"./Data/ships/terran/laser_blaster_small/weapon7.png"
+					"./Data/ships/terran/laser_blaster_small/weapon8.png"
+					"./Data/ships/terran/laser_blaster_small/weapon1.png"// Loop back to beginning and clamp there.
 				]
 				Size = [1, 2]
 				AnimationInterval = 0.01
@@ -463,16 +497,17 @@ Part : /BASE_PART
 
 		OperationEffects
 		{
-			Type = OperationEffects
+			Type = ToggleEffects
+			Toggle = IsOperational,
 			Location = [.5, 1.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [.5, 1.5]
 		}
 
@@ -485,7 +520,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff
@@ -495,7 +530,7 @@ Part : /BASE_PART
 
 				// Out of power.
 				{
-					Source = BatteryStorage
+					Toggle = BatteryStorage
 					AtlasSprite
 					{
 						File = &/INDICATORS/NoPower
@@ -505,7 +540,7 @@ Part : /BASE_PART
 
 				// No crew.
 				{
-					Source = PartCrew
+					Toggle = PartCrew
 					AtlasSprite
 					{
 						File = &/INDICATORS/NoCrew

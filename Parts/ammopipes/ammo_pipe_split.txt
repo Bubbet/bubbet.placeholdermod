@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/AmmoPipeSplit"
 	IconNameKey = "Parts/AmmoPipeSplit"
-	IDString = bub_ammo_pipe_split
+	IDString = bubbet.bub_ammo_pipe_split
+	OtherIDs = ["bub_ammo_pipe_split"]
 	EditorGroup = "Munitions"
 	DescriptionKey = "Parts/AmmoPipeSplitDesc"
 	Cost = 500
@@ -12,7 +13,7 @@ Part : /BASE_PART
 	SelectionTypeByRotation = true
 	MaxHealth = 1000
 	CrewSpeedFactor = 0.75
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 0
 	IsWalled = false
 	GeneratorRequiresDoor = false
@@ -25,25 +26,31 @@ Part : /BASE_PART
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		BlueprintSprite0
 		{
 			File = "g/bp/split.png"
 			Size = [1, 1]
 			Offset = [0, 0]
-		}
-	]
-	BlueprintBlendSprites
-	[
-		: <./Data/Ships/Terran/Walls/blueprint walls.txt>
+		Type=BlueprintSprite;}
+		BlueprintBlendSprite0
+		: <./Data/ships/terran/Walls/blueprint walls.txt>
 		{
 			Location = [.5, .5]
 			BlendsWithCategories = [corridor]
 		}
-	]
-	Components
-	{
-		WallsBlend : <./Data/Ships/Terran/Walls/walls.txt>
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+			]
+			Mode = All
+		}
+		WallsBlend : <./Data/ships/terran/Walls/walls.txt>
 		{
 			Type = BlendSprite
 			Location = [.5, .5]
@@ -54,8 +61,7 @@ Part : /BASE_PART
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -64,8 +70,7 @@ Part : /BASE_PART
 			Type = AmmoStorage
 			AmmoType = bullet
 			MaxAmmo = 8
-			RequiredForWholePartOperation = true
-		}
+			}
 
 		AmmoSprites
 		{
@@ -86,6 +91,7 @@ Part : /BASE_PART
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [.5, 0.5]
 			Floor
 			{
@@ -132,15 +138,15 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./data/ships/terran/corridor/roof.png"
+						File = "./Data/ships/terran/corridor/roof.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./data/ships/terran/corridor/roof_33.png"
+						File = "./Data/ships/terran/corridor/roof_33.png"
 						Size = [1, 1]
 					}
 					{
-						File = "./data/ships/terran/corridor/roof_66.png"
+						File = "./Data/ships/terran/corridor/roof_66.png"
 						Size = [1, 1]
 					}
 				]
@@ -150,26 +156,25 @@ Part : /BASE_PART
 		Turret1
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [1.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -0d // Relative to unrotated part.
 			FireInterval = 0.1
-			FireDelay = .05
 			FiringArc = 0d
 			RotateSpeed = 0d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo4 }
+				Bullet : &<placeholderbullet.txt> { ID = bubbet.bub_liquid_ammo4, OtherIDs = ["bub_liquid_ammo4"]
+}
 			}
+		Emitter = Turret1Emitter
 		}
 /*
 		Turret2
@@ -198,44 +203,78 @@ Part : /BASE_PART
 			}
 		}
 */
+		Turret1Emitter: Turret1/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret1
+			FireTrigger = Turret1
+			GetTargetFrom = Turret1
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1
+		}
+
 		Turret3
 		{
 			Type = TurretWeapon
+			OperationalToggle = IsOperational,
 			Location = [-0.5, .5] // Relative to upper-left corner of unrotated part.
 			Rotation = -180d // Relative to unrotated part.
 			FireInterval = 0.1
-			FireDelay = .05
 			FiringArc = 0d
 			RotateSpeed = 0d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 1
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			AllowFireWithBlockedLOS = true
 			CanBeGivenExplicitTarget = false
 
 
-			Emitter
+			OldEmitter
 			{
 				Type = Bullet
-				Bullet : &<placeholderbullet.txt> { ID = bub_liquid_ammo5 }
+				Bullet : &<placeholderbullet.txt> { ID = bubbet.bub_liquid_ammo5, OtherIDs = ["bub_liquid_ammo5"]
+}
 			}
+		Emitter = Turret3Emitter
+		}
+
+		Turret3Emitter: Turret3/OldEmitter
+		{
+			Type = BulletEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret3
+			FireTrigger = Turret3
+			GetTargetFrom = Turret3
+			OperationalToggle = IsOperational
+			FireDelay = .05
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1
 		}
 
 		OperationEffects
 		{
-			Type = OperationEffects
+			Type = ToggleEffects
+			Toggle = IsOperational,
 			Location = [.5, 0.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [.5, 0.5]
 			
 			HitEffects
@@ -275,7 +314,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff

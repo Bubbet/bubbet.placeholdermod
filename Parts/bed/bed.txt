@@ -2,14 +2,15 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/Smallbed"
 	IconNameKey = "Parts/Smallbed"
-	IDString = bed
+	IDString = bubbet.bed
+	OtherIDs = ["bed"]
 	EditorGroup = "Crew"
 	DescriptionKey = "Parts/SmallbedDesc"
 	Cost = 125
 	Size = [1, 1]
 	SelectionTypeID = "quarters"
 	MaxHealth = 1000
-	PenetrationResistance = 1
+	InitialPenetrationResistance = 1
 	TypeCategories = [crew]
 	CrewCapacity = 1
 	CrewSpawnLocations
@@ -25,19 +26,20 @@ Part : /BASE_PART
 		}
 		Size = [32, 32]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		
+		BlueprintSprite0
 		{
 			File = "blueprints.png"
 			Size = [1, 1]
+		Type=BlueprintSprite;}
+		CrewUIStats
+		{
+			Provided = 1
+			Type = UIStats
+			Stat = Crew
 		}
-	]
-	CrewUIStats
-	{
-		Provided = 1
-	}
-	Components
-	{
 		CrewIdler
 		{
 			Type = CrewIdler
@@ -130,7 +132,7 @@ Part : /BASE_PART
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/SmallPartDestroyedDry
+			MediaEffects = &/COMMON_EFFECTS/SmallPartDestroyedDry
 			Location = [.5,.5]
 		}
 	}

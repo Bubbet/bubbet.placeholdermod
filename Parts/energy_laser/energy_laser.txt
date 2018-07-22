@@ -2,7 +2,8 @@ Part : /BASE_PART
 {
 	NameKey = "Parts/R_Laser"
 	IconNameKey = "Parts/R_Laser"
-	IDString = electro_bolt_laser
+	IDString = bubbet.electro_bolt_laser
+	OtherIDs = ["electro_bolt_laser"]
 	EditorGroup = "Power"
 	DescriptionKey = "Parts/R_Laser_Desc"
 	Cost = 3000
@@ -14,7 +15,7 @@ Part : /BASE_PART
 	SelectionPriority = 1
 	SelectionTypeByRotation = true
 	MaxHealth = 6000
-	PenetrationResistance = 100
+	InitialPenetrationResistance = 100
 	ProhibitAbove = 0
 	AllowedDoorLocations
 	[
@@ -31,32 +32,46 @@ Part : /BASE_PART
 		}
 		Size = [16, 48]
 	}
-	BlueprintSprites
-	[
+	Components
+	{
+		
+		
+		BlueprintSprite0
 		{
 			File = "Graphics/blueprint.png"
 			Size = [1, 3]
 			Offset = [0, 0]
+		Type=BlueprintSprite;}
+		PowerUIStats
+		{
+			Min = 2
+			Ideal = 4
+			Type = UIStats
+			Stat = Power
 		}
-	]
-	PowerUIStats
-	{
-		Min = 2
-		Ideal = 4
-	}
-	CrewUIStats
-	{
-		Min = 1
-		Ideal = 3
-	}
-	Components
-	{
+		CrewUIStats
+		{
+			Min = 1
+			Ideal = 3
+			Type = UIStats
+			Stat = Crew
+		}
+		IsOperational
+		{
+			Type = MultiToggle
+			Toggles
+			[
+				PowerToggle
+				BatteryStorage
+				PartCrew
+			]
+			Mode = All
+		}
 		PowerToggle
 		{
 			Type = UIToggle
 			ToggleID = "on_off"
-			DefaultToggleValue = 1
-			RequiredForWholePartOperation = true
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -64,7 +79,7 @@ Part : /BASE_PART
 		{
 			Type = UIToggle
 			ToggleID = "fire_mode"
-			DefaultToggleValue = 1
+			Default = 1
 			ToggledOnChoices = [1]
 		}
 
@@ -73,20 +88,21 @@ Part : /BASE_PART
 			Type = AmmoConsumer
 			AmmoType = battery
 			MaxAmmo = 8000
-			LowConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_LowConsume
-			HighConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_HighConsume
-			EmptyConsumeJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_EmptyConsume
+			Priorities = { Low=&../LowConsumeJobPriority; High=&../HighConsumeJobPriority; Empty=&../EmptyConsumeJobPriority }
+			LowConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Low
+			HighConsumeJobPriority = &/PRIORITIES/Weapon_Supply/High
+			EmptyConsumeJobPriority = &/PRIORITIES/Weapon_Supply/Empty
 			JobUnassignThreshold = 1000000// Effectively unassignable.
 			ResupplyThreshold = 1000
-			RequiredForWholePartOperation = true
 			AmmoDesireToggle = PowerToggle
 
-			ReceiveAmmoMediaEffects = &/EFFECT_PREFABS/PowerDeliver
+			ReceiveAmmoMediaEffects = &/COMMON_EFFECTS/PowerDeliver
 		}
 
 		Graphics
 		{
 			Type = Graphics
+			OperationalToggle = IsOperational,
 			Location = [.5, 1.5]
 			Floor
 			{
@@ -94,17 +110,17 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/small_laser/floor.png"
+						File = "./Data/ships/terran/laser_blaster_small/floor.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "./Data/Ships/Terran/small_laser/floor_33.png"
+						File = "./Data/ships/terran/laser_blaster_small/floor_33.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "./Data/Ships/Terran/small_laser/floor_66.png"
+						File = "./Data/ships/terran/laser_blaster_small/floor_66.png"
 						Size = [1, 2]
 						Offset = [0, 0.5]
 					}
@@ -151,17 +167,17 @@ Part : /BASE_PART
 				DamageLevels
 				[
 					{
-						File = "./Data/Ships/Terran/bunk/walls.png"
+						File = "./Data/ships/terran/crew_quarters_small/walls.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "./Data/Ships/Terran/bunk/walls_33.png"
+						File = "./Data/ships/terran/crew_quarters_small/walls_33.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
 					{
-						File = "./Data/Ships/Terran/bunk/walls_66.png"
+						File = "./Data/ships/terran/crew_quarters_small/walls_66.png"
 						Size = [1.1, 2]
 						Offset = [0, 0.5]
 					}
@@ -212,17 +228,14 @@ Part : /BASE_PART
 		Turret
 		{
 			Source = PowerToggle
+			OperationalToggle = IsOperational,
 			Type = TurretWeapon
 			Location = [.5, 1] // Relative to upper-left corner of unrotated part.
 			Rotation = -90d // Relative to unrotated part.
 			FireInterval = 1.5
-			FireDelay = 0
 			FiringArc = 0d
 			RotateSpeed = 90d
 			FireThresholdAngle = 360d
-			SpawnLoc = [0, 0]
-			AmmoStorage = BatteryStorage
-			AmmoUsed = 1000
 			TargetSearchTriesPerFrame = 1
 			AIFirepowerRating = 600
 			FireModeToggle = FireModeToggle
@@ -241,7 +254,7 @@ Part : /BASE_PART
 			{
 			}
 			
-			Emitter
+			OldEmitter
 			{
 				Type = Beam
 				Range = 150000
@@ -258,7 +271,7 @@ Part : /BASE_PART
 						{
 							Texture = "beam_base.png"
 							_baseColor = [255, 255, 255, 255]
-							Shader = "./Data/Ships/Terran/ion_beam/beam.shader"
+							Shader = "./Data/shots/ion_beam/beam.shader"
 							_sizePulseFactor = 0.4//1.2
 							_sizePulseInterval = .35
 							_sizePulseUOffsetFactor = -.03
@@ -287,11 +300,11 @@ Part : /BASE_PART
 
 					MediaEffects
 					[
-						&/PARTICLES/EnergyLaserHit
+						&/PARTICLES_14019596578125481320/EnergyLaserHit
 
-						: /SOUNDS/AudioExterior
+						: /BASE_SOUNDS/AudioExterior
 						{
-							Sound = "./Data/Ships/Terran/ion_beam/hit.wav"
+							Sound = "./Data/shots/ion_beam/hit.wav"
 							Volume = .05
 							MaxConcurrent = 1
 							MaxConcurrentVolume = 0.5
@@ -302,6 +315,24 @@ Part : /BASE_PART
 				}
 				HitStructural=&HitOperational
 			}
+		Emitter = TurretEmitter
+		}
+
+		TurretEmitter: Turret/OldEmitter
+		{
+			Type = BeamEmitter
+			Location
+			[
+				0
+				0
+			]
+			ChainedTo = Turret
+			FireTrigger = Turret
+			GetTargetFrom = Turret
+			OperationalToggle = IsOperational
+			FireDelay = 0
+			AmmoStorage = BatteryStorage
+			AmmoUsed = 1000
 		}
 
 		CrewLocation
@@ -313,10 +344,11 @@ Part : /BASE_PART
 		PartCrew
 		{
 			Type = PartCrew
-			MinCrew = 1
-			FirstCrewJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_FirstCrew
-			AdditionalCrewJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_AdditionalCrew
-			FullCrewJobPriority = &/TERRAN_PRIORITIES/ElectroBolt_FullCrew
+			Crew = 1
+			Priorities = { First=&../FirstCrewJobPriority; Additional=&../AdditionalCrewJobPriority; Full=&../FullCrewJobPriority }
+			FirstCrewJobPriority = &/PRIORITIES/Weapon_Crew/First
+			AdditionalCrewJobPriority = &/PRIORITIES/Weapon_Crew/Additional
+			FullCrewJobPriority = &/PRIORITIES/Weapon_Crew/Full
 			PrerequisitesBeforeCrewing = [BatteryStorage, PowerToggle]
 			CrewDestinations
 			[
@@ -343,7 +375,7 @@ Part : /BASE_PART
 			Location = [-0.4, 0]
 			Rotation = 90d
 			Layer = "doodads_high"
-			ResetAnimationTrigger = Turret
+			ResetAnimationTrigger = TurretEmitter
 			AtlasSprite
 			{
 				AnimationFiles
@@ -368,7 +400,7 @@ Part : /BASE_PART
 			Location = [-0.4, 0]
 			Rotation = 90d
 			Layer = "weapons"
-			ResetAnimationTrigger = Turret
+			ResetAnimationTrigger = TurretEmitter
 			AtlasSprite
 			{
 				File = "Graphics/Turret1.png"
@@ -468,16 +500,17 @@ Part : /BASE_PART
 
 		OperationEffects
 		{
-			Type = OperationEffects
+			Type = ToggleEffects
+			Toggle = IsOperational,
 			Location = [.5, 1.5]
-			BecameOperationalMediaEffects = &/EFFECT_PREFABS/PowerOn
-			BecameNonOperationalMediaEffects = &/EFFECT_PREFABS/PowerOff
+			ToggledOnMediaEffects = &/COMMON_EFFECTS/PowerOn
+			ToggledOffMediaEffects = &/COMMON_EFFECTS/PowerOff
 		}
 
 		DestroyedEffects
 		{
 			Type = DeathEffects
-			MediaEffects = &/EFFECT_PREFABS/MedPartDestroyed
+			MediaEffects = &/COMMON_EFFECTS/MedPartDestroyed
 			Location = [.5, 2]
 		}
 
@@ -490,7 +523,7 @@ Part : /BASE_PART
 			[
 				// Turned off.
 				{
-					Source = PowerToggle
+					Toggle = PowerToggle
 					AtlasSprite
 					{
 						File = &/INDICATORS/PowerOff
@@ -500,7 +533,7 @@ Part : /BASE_PART
 
 				// Out of power.
 				{
-					Source = BatteryStorage
+					Toggle = BatteryStorage
 					AtlasSprite
 					{
 						File = &/INDICATORS/NoPower
@@ -510,7 +543,7 @@ Part : /BASE_PART
 
 				// No crew.
 				{
-					Source = PartCrew
+					Toggle = PartCrew
 					AtlasSprite
 					{
 						File = &/INDICATORS/NoCrew
